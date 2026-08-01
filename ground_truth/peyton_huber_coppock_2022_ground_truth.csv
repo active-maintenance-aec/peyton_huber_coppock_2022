@@ -1,0 +1,96 @@
+paper_id,table_figure,claim,value_script,value_paper,match,notes,value_rewrite,match_rewrite
+peyton_huber_coppock_2022,text,Total replications conducted,33,33,1,p.1 abstract,33,1
+peyton_huber_coppock_2022,text,Number of pre-pandemic designs replicated,12,12,1,p.1 abstract,12,1
+peyton_huber_coppock_2022,text,Number of quota samples,13,13,1,p.1 abstract,13,1
+peyton_huber_coppock_2022,text,Study period (months),Mar-Jul 2020,March and July 2020,1,p.1 abstract,Mar-Jul 2020,1
+peyton_huber_coppock_2022,text,Average replication magnitude (pct of pre-COVID),73%,73%,1,p.2 and p.11; dat|>filter(!sign_diff)|>summarise(avg=mean(estimate_ycls/estimate_pre))=0.730,73%,1
+peyton_huber_coppock_2022,text,Total pre-COVID estimates obtained,89,89,1,p.5,89,1
+peyton_huber_coppock_2022,text,Total replication estimates obtained,101,101,1,p.5,101,1
+peyton_huber_coppock_2022,text,N respondents in main dataset,16625,~1000/week x 13 surveys,NA,p.4 describes ~1000/week; dataset nrow=16625,16625,NA
+peyton_huber_coppock_2022,text,Total summary effect size estimates,138,138,1,p.6; 82 conjoint + 56 non-conjoint,138,1
+peyton_huber_coppock_2022,text,Non-conjoint summary estimates,56,56,1,p.6,56,1
+peyton_huber_coppock_2022,text,Conjoint summary estimates,82,82,1,p.6,82,1
+peyton_huber_coppock_2022,text,Non-conjoint pairs compared (Fig 2),28,28,1,p.6; dat|>filter(conjoint!='Conjoint')=28,28,1
+peyton_huber_coppock_2022,text,Conjoint pairs compared (Fig 3),41,41,1,p.6; dat|>filter(conjoint=='Conjoint')=41,41,1
+peyton_huber_coppock_2022,text,Non-conjoint: correctly signed pairs,24,24,1,p.6,24,1
+peyton_huber_coppock_2022,text,Non-conjoint: incorrectly signed pairs,4,4,1,p.6,4,1
+peyton_huber_coppock_2022,text,Non-conjoint: sig smaller in replication (of 24 correctly signed),11,11,1,p.6 corrected by corrigendum (JEPS 2023 10:306-309); original paper said 10 (p-adjustment bug); corrigendum corrects to 11; archive script gives 11; rewrite gives 11,11,1
+peyton_huber_coppock_2022,text,Non-conjoint: sig diffs among incorrectly signed,3,3,1,p.6 unchanged by corrigendum,3,1
+peyton_huber_coppock_2022,text,Non-conjoint: total sig at p<0.05 unadjusted (Fig 2 corrected caption),14,14,1,corrigendum Fig 2 corrected caption: 14 of 28; rewrite: 11+3=14,14,1
+peyton_huber_coppock_2022,text,Non-conjoint: total sig after BH-FDR (Fig 2 corrected caption),13,13,1,corrigendum Fig 2 corrected caption: 13 of 14 remain after BH-FDR; rewrite: 10+3=13,13,1
+peyton_huber_coppock_2022,text,Conjoint: all correctly signed,41,41,1,p.6,41,1
+peyton_huber_coppock_2022,text,Conjoint: smaller in replication,35,35,1,p.6; 6 larger,35,1
+peyton_huber_coppock_2022,text,Conjoint: larger in replication,6,6,1,p.6,6,1
+peyton_huber_coppock_2022,text,Conjoint sig diffs (6 larger),1,1,1,p.6 unchanged by corrigendum,1,1
+peyton_huber_coppock_2022,text,Conjoint sig diffs (35 smaller),11,11,1,"corrigendum corrects 6 to 11; the deposited manuscript.R was updated for the corrigendum and also gives 11, as does the rewrite",11,1
+peyton_huber_coppock_2022,text,Conjoint: total sig at p<0.05 unadjusted (Fig 3 corrected caption),12,12,1,corrigendum Fig 3 corrected caption: 12 of 41; rewrite: 11+1=12,12,1
+peyton_huber_coppock_2022,text,Conjoint: total sig after BH-FDR (Fig 3 corrected caption),7,7,1,corrigendum Fig 3 corrected caption: 7 of 12 remain after BH-FDR; rewrite gives 7,7,1
+peyton_huber_coppock_2022,text,Overall avg pct pre-COVID (correctly signed 65 of 69),73%,73%,1,p.6,73%,1
+peyton_huber_coppock_2022,text,Conjoint avg pct pre-COVID (41 pairs),87%,87%,1,p.6; script=0.874,87%,1
+peyton_huber_coppock_2022,text,Non-conjoint avg pct pre-COVID (24 pairs),49%,49%,1,p.6; script=0.483,49%,1
+peyton_huber_coppock_2022,text,Prop participants from web apps (range low),0.19,0.19,1,p.10,NA,NA
+peyton_huber_coppock_2022,text,Prop participants from web apps (range high),0.61,0.61,1,p.10,0.61,1
+peyton_huber_coppock_2022,text,Prop from mobiles (range low),0.31,0.31,1,p.10,0.31,1
+peyton_huber_coppock_2022,text,Prop from mobiles (range high),0.73,0.73,1,p.10,0.73,1
+peyton_huber_coppock_2022,text,Pct from web apps in 2020 surveys (approx),41%,approximately 41%,1,p.10 — phc_replications.rds contains 2020 data only; year-specific proportions not reproducible from archive,NA,NA
+peyton_huber_coppock_2022,text,Pct from mobiles in 2020 surveys,56%,56%,1,p.10 — phc_replications.rds contains 2020 data only; year-specific proportions not reproducible from archive,NA,NA
+peyton_huber_coppock_2022,text,Pct from web apps in 2019,33%,33%,1,p.10 — 2019 data absent from public archive,NA,NA
+peyton_huber_coppock_2022,text,Pct from mobiles in 2019,56%,56%,1,p.10 — 2019 data absent from public archive,NA,NA
+peyton_huber_coppock_2022,text,Pct from web apps in 2018,13%,13%,1,p.10 — 2018 data absent from public archive,NA,NA
+peyton_huber_coppock_2022,text,Pct from mobiles in 2018,33%,33%,1,p.10 — 2018 data absent from public archive,NA,NA
+peyton_huber_coppock_2022,text,Pct of mobile respondents also from web apps,97%,97%,1,p.10,NA,NA
+peyton_huber_coppock_2022,text,Pct of mobile from web apps,72%,72%,1,p.10,NA,NA
+peyton_huber_coppock_2022,text,Web app avg survey duration (minutes),13.8,approximately 7 min less than browser,1,p.10; script=13.8; browser=21.0; diff~7.2,13.8,1
+peyton_huber_coppock_2022,text,Browser avg survey duration (minutes),21.0,21.5 min,1,p.10; script=21.0 matches text,21.0,1
+peyton_huber_coppock_2022,text,Mobile avg survey duration (minutes),15.1,roughly 6 min less than nonmobile,1,p.10; script=15.1; nonmobile=21.5; diff~6.4,15.1,1
+peyton_huber_coppock_2022,text,Original Peyton ACQ pass rate (attention_math mean),0.866,87%,1,p.10 fn; script=0.866~87%,0.866,1
+peyton_huber_coppock_2022,text,COVID replication Peyton ACQ pass rate,19%,19%,1,p.10 fn; script=0.186~19%,19%,1
+peyton_huber_coppock_2022,text,Figure 5: Full Sample estimate,0.157,0.157 (visual),1,Fig 5 center; SE=0.076,0.157,1
+peyton_huber_coppock_2022,text,Figure 5: Attentive Passed ACQ estimate,0.385,0.39,1,p.11; script=0.385; paper says 0.39,0.385,1
+peyton_huber_coppock_2022,text,Figure 5: Attentive Passed ACQ SE,0.152,0.15,1,p.11; script=0.152,0.152,1
+peyton_huber_coppock_2022,text,Figure 5: Attentive Internet browser estimate,0.329,0.33,1,p.11; script=0.329,0.329,1
+peyton_huber_coppock_2022,text,Figure 5: Attentive Internet browser SE,0.0976,0.10,1,p.11; script=0.098,0.098,1
+peyton_huber_coppock_2022,text,Figure 5: Attentive Nonmobile estimate,0.520,0.52,1,p.11; script=0.520,0.520,1
+peyton_huber_coppock_2022,text,Figure 5: Attentive Nonmobile SE,0.121,0.12,1,p.11; script=0.121,0.121,1
+peyton_huber_coppock_2022,text,Figure 5: Inattentive Failed ACQ estimate,0.084,0.08,1,"p.11 reads ""Among those who failed the ACQ (estimate: 0.08, SE: 0.09)""",0.084,1
+peyton_huber_coppock_2022,text,Figure 5: Inattentive Failed ACQ SE,0.088,0.09,1,"p.11; script=0.0876, rounds to 0.09",0.088,1
+peyton_huber_coppock_2022,text,Figure 5: Inattentive Web App estimate,-0.031,-0.03,1,p.11; script=-0.031,-0.031,1
+peyton_huber_coppock_2022,text,Figure 5: Inattentive Web App SE,0.117,0.12,1,"p.11 reads ""came from a web application (estimate: -0.03, SE: 0.12)""; 0.117 rounds to 0.12. An earlier pass recorded 0.09 here, which is the SE of the failed-ACQ subgroup named in the same sentence.",0.117,1
+peyton_huber_coppock_2022,text,Figure 5: Inattentive Mobile estimate,-0.042,-0.04,1,p.11; script=-0.042,-0.042,1
+peyton_huber_coppock_2022,text,Figure 5: Inattentive Mobile SE,0.096,0.10,1,p.11; script=0.096,0.096,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Browser pass rate,0.659,0.66,1,Table 2; script=0.659,0.659,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Browser SE,0.0185,0.02,1,Table 2; script=0.019,0.0185,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Web-App pass rate,0.545,0.55,1,"p.11 Table 2 prints 0.55; the underlying rate is 0.5449, which rounds in one step to 0.54, so the published cell reflects double rounding. Both the deposited code and the rewrite print 0.54.",0.545,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Web-App SE,0.0196,0.02,1,Table 2; script=0.020,0.0196,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Browser-App difference,0.114,0.11,1,Table 2; script=0.114,0.114,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Browser-App difference SE,0.0270,0.03,1,Table 2; script=0.027,0.0270,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile pass rate,0.631,0.63,1,Table 2; script=0.631,0.631,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile SE,0.0217,0.02,1,Table 2; script=0.022,0.0217,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Mobile pass rate,0.585,0.58,1,Table 2; script=0.585,0.585,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Mobile SE,0.0174,0.02,1,Table 2; script=0.017,0.0174,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile-Mobile difference,0.046,0.05,1,Table 2; script=0.046,0.046,1
+peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile-Mobile difference SE,0.0278,0.03,1,Table 2; script=0.028,0.0278,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Browser pass rate,0.530,0.53,1,Table 2; script=0.530,0.530,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Browser SE,0.0195,0.02,1,Table 2; script=0.020,0.0195,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Web-App pass rate,0.370,0.37,1,Table 2; script=0.370,0.370,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Web-App SE,0.0190,0.02,1,Table 2; script=0.019,0.0190,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Browser-App difference,0.160,0.16,1,Table 2; script=0.160,0.160,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Browser-App difference SE,0.0272,0.03,1,Table 2; script=0.027,0.0272,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile pass rate,0.500,0.50,1,Table 2; script=0.500,0.500,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile SE,0.0225,0.02,1,Table 2; script=0.023,0.0225,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Mobile pass rate,0.420,0.42,1,Table 2; script=0.420,0.420,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Mobile SE,0.0174,0.02,1,Table 2; script=0.017,0.0174,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile-Mobile difference,0.080,0.08,1,Table 2; script=0.080,0.080,1
+peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile-Mobile difference SE,0.0284,0.03,1,Table 2; script=0.028,0.0284,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Browser pass rate,0.223,0.22,1,Table 2; script=0.223,0.223,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Browser SE,0.0162,0.02,1,Table 2; script=0.016,0.0162,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Web-App pass rate,0.154,0.15,1,Table 2; script=0.154,0.154,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Web-App SE,0.0131,0.01,1,Table 2; script=0.013,0.0131,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Browser-App difference,0.069,0.07,1,Table 2; script=0.069,0.069,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Browser-App difference SE,0.0208,0.02,1,Table 2; script=0.021,0.0208,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile pass rate,0.240,0.24,1,Table 2; script=0.240,0.240,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile SE,0.0198,0.02,1,Table 2; script=0.020,0.0198,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Mobile pass rate,0.160,0.16,1,Table 2; script=0.160,0.160,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Mobile SE,0.0118,0.01,1,Table 2; script=0.012,0.0118,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile-Mobile difference,0.081,0.08,1,Table 2; script=0.081,0.081,1
+peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile-Mobile difference SE,0.0231,0.02,1,Table 2; script=0.023,0.0231,1

@@ -1,0 +1,448 @@
+---
+title: "Active Maintenance Report: peyton_huber_coppock_2022"
+subtitle: "Peyton, Huber and Coppock (2022, JEPS): The Generalizability of Online Experiments Conducted During the COVID-19 Pandemic"
+format:
+  gfm:
+    output-file: README.md
+    toc: true
+  pdf:
+    output-file: peyton_huber_coppock_2022_report.pdf
+    toc: true
+    toc-depth: 2
+    number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(here)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+here::i_am("README.qmd")
+
+# kableExtra styling is LaTeX-only; the GitHub README build takes plain pipe tables.
+latex_out <- knitr::is_latex_output()
+
+# kableExtra's styling verbs emit LaTeX and have no meaning under gfm, where the same
+# table renders as a pipe table. Each call site says what LaTeX alone gets.
+latex_only <- function(k, f) if (latex_out) f(k) else k
+
+# LaTeX embeds the vector PDF; the GitHub README needs the PNG copy.
+fig_path <- function(stem) {
+  ext <- if (latex_out) ".pdf" else ".png"
+  here("maintained", "output", paste0(stem, ext))
+}
+
+gt <- read_csv(
+  here("ground_truth", "peyton_huber_coppock_2022_ground_truth.csv"),
+  show_col_types = FALSE
+)
+```
+
+This repository holds the actively maintained replication code for Peyton, Huber and Coppock (2022), together with the reproducibility report that documents what the original archive did and did not do. It is part of a program applying the maintenance proposal in Peer, Orr and Coppock (2021, *PS: Political Science & Politics*, doi [10.1017/S1049096521000366](https://doi.org/10.1017/S1049096521000366)) to a set of published archives.
+
+| | |
+|---|---|
+| Article | [10.1017/xps.2021.17](https://doi.org/10.1017/xps.2021.17) |
+| Corrigendum | [10.1017/xps.2022.23](https://doi.org/10.1017/xps.2022.23) |
+| Replication archive | [10.7910/DVN/38UTBF](https://doi.org/10.7910/DVN/38UTBF) |
+
+**The data are not redistributed here.** The deposit is 93 MB across 20 files and lives at Harvard Dataverse, which is the only copy this repository points at. `download_original.R` fetches it and verifies every file; `original_manifest.csv` pins the file identifiers, sizes and checksums, so the exact bytes this code was written against are recorded in version control even though the bytes themselves are not.
+
+**Repository layout.** `maintained/` is the maintained rewrite: one script per published figure or table, writing to `output/`, which is committed so a reader can compare a fresh run against it without downloading anything. `ground_truth/` ties every published number to the code that produces it. `original/` is created by the download script and is deliberately absent from the repository. This README is the reproducibility report, also available as a PDF in `report/`.
+
+**License.** CC0 1.0 Universal, matching the terms of the deposit this repository maintains. See `LICENSE`.
+
+**To reproduce.** Clone or download the repository, open `peyton_huber_coppock_2022.Rproj`, and run:
+
+``` r
+source("run_all.R")
+```
+
+That fetches the deposit, verifies its 20 files, and produces every figure and table into `maintained/output/`. Required packages: tidyverse, estimatr, metafor, ggthemes, ggrepel, ggforce, lemon, RCurl, haven, xtable, knitr, kableExtra, here. Paths resolve through `here`, so nothing depends on the working directory. The run also needs network access beyond Dataverse, because the deposited appendix code downloads two ManyLabs 2 datasets from GitHub. A successful run overwrites `maintained/output/`, which is committed: **`git diff` on that folder is the reproduction check.**
+
+# Paper overview
+
+**Citation**: Peyton, K., Huber, G. A. and Coppock, A. (2022). "The Generalizability of Online Experiments Conducted During the COVID-19 Pandemic." *Journal of Experimental Political Science*, 9(3), 379-394. DOI: 10.1017/xps.2021.17
+
+**Corrigendum**: Peyton, K., Huber, G. A. and Coppock, A. (2023). *Journal of Experimental Political Science*, 10(2), 306-309. DOI: 10.1017/xps.2022.23
+
+**Summary**: The paper asks whether survey experiments fielded during the COVID-19 pandemic recover what the same designs found before it. The authors fielded 33 replications of 12 previously published designs across 13 weekly Lucid quota samples of roughly 1,000 US respondents each, between March and July 2020, spanning binary, ordinal, six-arm and factorial conjoint designs. Pre-COVID benchmarks come from the original papers, from prior replications including ManyLabs 2, and from archived data; Glass's Delta standardizes outcomes within study, and summary effect sizes pool treatment-outcome pairs by inverse-variance weighting. Effects replicate in sign and significance but at reduced magnitude: replication estimates average 73 percent of their pre-COVID benchmarks, 87 percent among conjoint designs and 49 percent among the rest. Inattention, proxied by attention-check failure, mobile devices and web-application respondents, accounts for much of the attenuation, since attentive subgroups recover effect sizes close to the pre-COVID benchmarks.
+
+---
+
+# Summary
+
+```{r summary_setup, include=FALSE}
+n_claims <- nrow(gt)
+n_match <- sum(gt$match == 1, na.rm = TRUE)
+n_match_na <- sum(is.na(gt$match))
+n_rewrite <- sum(gt$match_rewrite == 1, na.rm = TRUE)
+n_rewrite_na <- sum(is.na(gt$match_rewrite))
+n_rewrite_zero <- sum(gt$match_rewrite == 0, na.rm = TRUE)
+```
+
+Two questions, answered before the detail.
+
+## Does the deposited archive run?
+
+Not as deposited, but only one of the failures is more than an inconvenience.
+
+The trivial ones are three. `ReadMe.R`, which is the entry point, loads `attentive`, a package that has only ever existed on GitHub, and `coefplot`, which is on CRAN. Neither package's functions are called anywhere in the archive, so both `library()` calls can simply be dropped. `manuscript.R` reads `phc_summary.rds`, which the deposit does not contain because `appendix_section_a.R` generates it, so the scripts have to be run in the order `ReadMe.R` names. And `manuscript.R` calls `scales::label_number_si()`, which `scales` made defunct in 2022 and which has a one-line replacement.
+
+The fourth is substantive. `appendix_section_a.R` ends by writing the file every later script depends on, and the last statement before that write collapses a grouping variable with `paste()` where it should take one value per group. Under the dplyr of 2021 this silently produced a character vector of run-together study names; under dplyr 1.1 and later it is an error, and the file is never written. The bug is one word long and sits at the very end of a 3,010-line script, so nothing announces itself until the whole thing has run.
+
+One further failure is worth separating out because it is a fact about a dependency rather than about the archive. `appendix_section_a.R` and `manuscript.R` call `position_dodgev()`, which the archive obtains through `lemon`. `lemon` is current on CRAN, updated in September 2025, but it no longer re-exports that function from `ggstance`. The archive is not broken; the package moved.
+
+## Does the maintained rewrite reproduce the paper?
+
+Yes. All `r n_match` verifiable ground truth claims match the published values, `r n_match_na` is unverifiable because the underlying data are not in the deposit, and `r n_rewrite` of them are also reproduced by the maintained rewrite, with `r n_rewrite_na` unverifiable and `r n_rewrite_zero` mismatches. That includes every count the 2022 corrigendum corrected.
+
+Two things are worth stating plainly, because both have been misreported in earlier passes over this archive. First, the deposited archive is **not** the version that produced the erroneous counts in the published article. Harvard Dataverse version 2.0, released 6 October 2022, replaced `manuscript.R` with the corrected code, and running it reproduces the corrigendum's numbers exactly. Second, `lemon` and `ggforce` are both current CRAN packages, so nothing in this archive depends on an abandoned graphics package.
+
+The one genuinely stale dependency is `rmeta`, whose most recent release is from March 2018. The maintained rewrite replaces it with `metafor`, which changes no result: see Section 6.
+
+---
+
+# Original archive reproducibility
+
+```{r repro_table}
+tibble(
+  Script = c(
+    "ReadMe.R",
+    "helpers.R",
+    "appendix_section_a.R",
+    "appendix_section_b.R",
+    "manuscript.R"
+  ),
+  Status = c(
+    "Fails at library(attentive)",
+    "Clean (sourced by all scripts)",
+    "Fails twice",
+    "Clean",
+    "Fails twice"
+  ),
+  Resolution = c(
+    "Drop library(attentive) and library(coefplot); neither package's functions are called anywhere in the archive",
+    "No changes required",
+    "position_dodgev() is no longer re-exported by lemon, so supply the position_dodge equivalent; then paste(study_group) must become first(study_group) to write phc_summary.rds",
+    "No changes required; deprecation warnings only",
+    "Run appendix_section_a.R first so phc_summary.rds exists; replace the defunct scales::label_number_si() with label_number(scale_cut = cut_short_scale())"
+  )
+) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Script", "Status on current R", "Resolution"),
+    caption = "Original archive reproducibility, checked against R 4.6.0 in August 2026."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 7) |>
+    column_spec(1, width = "3cm") |>
+    column_spec(2, width = "2.5cm") |>
+    column_spec(3, width = "8cm"))
+```
+
+Everything else in the archive is a deprecation warning rather than a failure: `size` where ggplot2 now wants `linewidth`, `geom_errorbarh()` superseded by an oriented `geom_errorbar()`, `do()` and `gather()` and `spread()` superseded within dplyr and tidyr, and `lemon::facet_rep_wrap()` soft-deprecated in favour of `ggh4x::facet_wrap2()`. All of them still run.
+
+The `paste(study_group)` bug deserves emphasis because of what it did rather than what it does. In dplyr 1.0 it did not error. It returned a character vector, and `summarise()` recycled it, so `phc_summary.rds` was written with a `study_group` column whose entries were several study names run together. Nothing downstream reads that column in a way that would notice. The bug became visible only when a later dplyr turned the silent recycling into an error, which is to say the archive was more likely to be caught by a version change than by anyone reading its output.
+
+---
+
+# Errata
+
+## Corrected p-value adjustment (published article, Figures 2 and 3 and page 6)
+
+The published article reported the wrong number of statistically significant differences between the pre-COVID and COVID-era summary estimates. Errors in the code that adjusted p-values for multiple comparisons produced counts that were inconsistent before and after adjustment. The corrigendum (Peyton, Huber and Coppock 2023, *JEPS* 10(2), 306-309, doi 10.1017/xps.2022.23) corrects the page 6 text and both figures. No point estimate, standard error or substantive conclusion changes.
+
+```{r errata_table}
+tibble(
+  Quantity = c(
+    "Non-conjoint: significantly smaller, of 24 correctly signed",
+    "Non-conjoint: significant at p < 0.05 (Figure 2 caption)",
+    "Non-conjoint: still significant after BH-FDR (Figure 2 caption)",
+    "Conjoint: significantly smaller, of 35 smaller",
+    "Conjoint: significant at p < 0.05 (Figure 3 caption)",
+    "Conjoint: still significant after BH-FDR (Figure 3 caption)"
+  ),
+  Published = c("10", "13", "not reported", "6", "7", "not reported"),
+  Corrigendum = c("11", "14", "13", "11", "12", "7"),
+  Deposit = c("11", "14", "13", "11", "12", "7"),
+  Maintained = c("11", "14", "13", "11", "12", "7")
+) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Quantity", "Published article", "Corrigendum", "Deposited archive", "Maintained rewrite"),
+    caption = "Significant-difference counts corrected by the 2022 corrigendum. The deposited archive already carries the corrected code."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 7) |>
+    column_spec(1, width = "6cm"))
+```
+
+The deposit was updated alongside the corrigendum. Harvard Dataverse version 2.0, released 6 October 2022, replaced `ReadMe.R` and `manuscript.R`, and the replacement `ReadMe.R` says so in a comment. Running the deposited `manuscript.R` reproduces the corrigendum's counts exactly, and so does the maintained rewrite, which computes them in `maintained/text_correspondence_summary.R` and writes them to `output/text_correspondence_summary.csv`. Reproducing the published article's original counts is not possible from the deposit, because the code that produced them is no longer in it.
+
+## A rounding difference in Table 2
+
+One cell of published Table 2 differs from the code in its last digit. The Easy attention-check pass rate among web-application respondents is 0.5449. Rounded once to two decimal places that is 0.54, which is what both the deposited script and the maintained rewrite print. The published table shows 0.55, which is what rounding 0.5449 to 0.545 and then to two places gives. Nothing else in the table or the text depends on it.
+
+No other discrepancy between the paper and the code was found.
+
+---
+
+# Number-by-number comparison
+
+```{r gt_table}
+gt |>
+  select(table_figure, claim, value_paper, value_script, match) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Location", "Quantity", "Paper", "Script", "Match"),
+    caption = paste0("Ground truth: ", nrow(gt), " rows.")
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "repeat_header"), font_size = 6) |>
+    column_spec(2, width = "6cm") |>
+    column_spec(3, width = "2cm") |>
+    column_spec(4, width = "2cm"))
+```
+
+```{r gt_notes, include=FALSE}
+n_paper_only <- sum(is.na(gt$match_rewrite) & gt$match == 1, na.rm = TRUE)
+```
+
+**Summary**: `r n_match` of `r n_claims` recorded quantities match the published values. The one row marked unverifiable is the total number of respondents, which the paper gives as roughly 1,000 per week across 13 surveys rather than as a figure; the deposited data contain 16,625.
+
+A further `r n_paper_only` rows are recorded as matching but cannot be recomputed from the deposit, and are worth naming so the match is not read as stronger than it is. They are all from the page 10 discussion of how respondents reached the survey: the annual shares arriving by web application and by mobile device in 2018, 2019 and 2020, the low end of the web-application range, and the two figures on how far mobile and web-application respondents overlap. Those draw on Lucid metadata the deposit does not include. `phc_meta_trends.rds` carries the survey-level series plotted in Figure 4, not the respondent-level records behind the annual percentages.
+
+---
+
+# Maintained rewrite
+
+The rewrite (`maintained/`) is eight scripts: a shared `helpers.R`, one cleaning script, five figures and one table, plus a script for the in-text correspondence quantities.
+
+```{r scripts_table}
+tibble(
+  Script = c(
+    "helpers.R",
+    "clean_summary_estimates.R",
+    "figure_1_lucid_weekly_completes.R",
+    "figure_2_noncojoint_correspondence.R",
+    "figure_3_conjoint_correspondence.R",
+    "figure_4_meta_trends.R",
+    "figure_5_trust_replication.R",
+    "table_2_acq_pass_rates.R",
+    "text_correspondence_summary.R"
+  ),
+  Output = c(
+    "Packages, theme_ycls(), meta_summaries_fe(), glass_delta(), make_entry(), table_entry()",
+    "phc_summary_clean.rds and .csv; text_pooled_benchmarks.csv",
+    "figure_1_lucid_weekly_completes.pdf and .png",
+    "figure_2_noncojoint_correspondence.pdf and .png",
+    "figure_3_conjoint_correspondence.pdf and .png",
+    "figure_4_meta_trends.pdf and .png",
+    "figure_5_trust_replication.pdf and .png",
+    "table_2_acq_pass_rates.tex and .csv",
+    "text_correspondence_summary.csv"
+  )
+) |>
+  kable(
+    booktabs = TRUE,
+    caption = "Maintained rewrite scripts and their outputs."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 8) |>
+    column_spec(1, width = "6cm") |>
+    column_spec(2, width = "7cm"))
+```
+
+## Architecture
+
+Every comparison in the paper rests on 138 summary effect sizes, one pre-COVID and one COVID-era estimate for each of 69 study-outcome pairs. The deposited `appendix_section_a.R` builds them in 3,010 lines of study-by-study estimation, and only its last statement is wrong. `clean_summary_estimates.R` therefore runs the deposited code up to that point and then applies the corrected summarise, rather than reimplementing twelve studies' worth of estimation to fix one word. That is a deliberate choice and it is the one place where the rewrite depends on the deposit as code rather than as data.
+
+Running someone else's script inside a rewrite needs care, and three things are done to contain it. The deposited code addresses its inputs by bare relative path and writes appendix tables and figures beside them, so it runs in a temporary directory of symlinks to `original/`: reads resolve, writes land in `tempdir()`, and `original/` stays byte-identical to what `download_original.R` verified. The environment it evaluates in is passed explicitly rather than inherited. And exactly one substitution is applied to the text of the script itself, described in the next section.
+
+The remaining seven scripts read either `original/` or the cleaned summary estimates, and share nothing but `helpers.R`.
+
+## Deprecated patterns replaced
+
+```{r replacements_table}
+tibble(
+  Original = c(
+    "`rmeta::meta.summaries()`",
+    "`position_dodgev()` (ggstance, via lemon)",
+    "`geom_errorbarh()`",
+    "`facet_row()` (ggforce)",
+    "`scales::label_number_si()`",
+    "`do(tidy(...))`",
+    "`paste(study_group)` in `summarise()`",
+    "`size =` for lines",
+    "`ifelse()`",
+    "`xtable()` + `print.xtable()`",
+    "`%>%`"
+  ),
+  Replacement = c(
+    "`metafor::rma(method = \"FE\")`",
+    "`position_dodge(width = 0.5)`",
+    "`geom_linerange(xmin =, xmax =)`",
+    "`facet_wrap()`",
+    "`label_number(scale_cut = cut_short_scale())`",
+    "`reframe(tidy(lm_robust(..., data = pick(everything()))))`",
+    "`first(study_group)`",
+    "`linewidth =`",
+    "`if_else()`",
+    "`knitr::kable()` + `readr::write_lines()`",
+    "`|>`"
+  )
+) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Original pattern", "Replacement"),
+    caption = "Deprecated patterns and their replacements in the maintained rewrite."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 8) |>
+    column_spec(1, width = "6cm") |>
+    column_spec(2, width = "7cm"))
+```
+
+Three of these deserve a word. `position_dodgev()` came from `ggstance`, which ggplot2 superseded once `position_dodge()` learned to dodge along a discrete axis; `lemon` re-exported it when this archive was deposited and no longer does. `facet_row()` still exists in current `ggforce`, and the replacement is a simplification rather than a repair: with two panels `facet_wrap()` lays them out identically and the maintained figure needs one fewer package. `coord_capped_cart()`, also from `lemon`, is left in place in the deposited code the cleaning script runs, since `lemon` is maintained and the call affects only appendix figures drawn into a temporary directory.
+
+The rewrite does not use `xtable`, but the deposited appendix code does, at five sites that write LaTeX table bodies with `only.contents = TRUE`. Those are fragments with no header, no row or column names and no rules, meant to be read into a hand-written `tabular` environment in the appendix. `knitr::kable()` has no equivalent output mode, so converting them would mean pasting the body rows together by hand rather than swapping one call for another. They are left as deposited, and `xtable` remains a dependency of `clean_summary_estimates.R` for that reason alone.
+
+---
+
+# Fixed-effect and random-effects pooling
+
+The deposited appendix code pools benchmark estimates with `rmeta::meta.summaries()` at fifteen sites, always at its default of fixed-effect inverse-variance weighting. `rmeta`'s most recent release is from March 2018, so its continued availability is a fact about CRAN's archiving policy rather than about maintenance. The rewrite replaces it with `metafor::rma(method = "FE")`, which is the same estimator: across all fifteen sites the largest disagreement in a pooled estimate is 7 times 10 to the minus 16, and in a standard error 7 times 10 to the minus 18, which is double-precision noise.
+
+Having the data in `metafor` makes the random-effects estimates free, and they are reported below as an addition rather than a correction. The published article uses the fixed-effect column throughout, and those are the numbers that reproduce.
+
+```{r fe_re_table}
+pooled <- read_csv(
+  here("maintained", "output", "text_pooled_benchmarks.csv"),
+  show_col_types = FALSE
+)
+
+pooled |>
+  mutate(
+    across(c(fe_est, fe_se, reml_est, reml_se), \(x) sprintf("%.3f", x)),
+    tau2 = sprintf("%.4f", tau2),
+    i2 = sprintf("%.1f%%", i2)
+  ) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Benchmark", "k", "FE est.", "FE SE", "RE est.", "RE SE", "$\\hat{\\tau}^2$", "$I^2$"),
+    escape = FALSE,
+    caption = "Pooled benchmark estimates. FE is inverse-variance fixed-effect pooling, the estimator the article uses; RE is REML. $\\hat{\\tau}^2$ is the REML estimate of between-study variance and $I^2$ the share of total variance attributable to it."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 7) |>
+    column_spec(1, width = "6cm"))
+```
+
+```{r fe_re_text, include=FALSE}
+n_high_i2 <- sum(pooled$i2 > 50)
+max_ratio <- max(pooled$reml_se / pooled$fe_se)
+```
+
+The pattern is the one the fixed-effect assumption invites. In `r n_high_i2` of the fifteen pools more than half the variance in the component estimates is between studies rather than within them, and where that is true the random-effects standard error is much wider, by up to a factor of `r sprintf("%.1f", max_ratio)`. The point estimates move little. The reading is not that the article's benchmarks are wrong but that several of them pool studies run decades apart in different modes, and a single true effect across those is a strong assumption to make silently.
+
+---
+
+# Figures
+
+```{r fig1, fig.cap="Figure 1: Total weekly Lucid survey responses to academic buyers, January 2019 to March 2021.", out.width="100%"}
+knitr::include_graphics(fig_path("figure_1_lucid_weekly_completes"))
+```
+
+```{r fig2, fig.cap="Figure 2: Comparison of 28 summary effect sizes across 11 studies, conjoint excluded. Fill marks a difference significant at p < 0.05; square points remain significant after controlling the false discovery rate.", out.width="100%"}
+knitr::include_graphics(fig_path("figure_2_noncojoint_correspondence"))
+```
+
+```{r fig3, fig.cap="Figure 3: Comparison of 41 summary effect sizes in conjoint experiments, marked as in Figure 2.", out.width="100%"}
+knitr::include_graphics(fig_path("figure_3_conjoint_correspondence"))
+```
+
+```{r fig4, fig.cap="Figure 4: Respondents from mobile devices and web applications, June 2018 to July 2020.", out.width="100%"}
+knitr::include_graphics(fig_path("figure_4_meta_trends"))
+```
+
+```{r fig5, fig.cap="Figure 5: Reanalysis of estimated treatment effects on trust in government for the Peyton (2020) replication.", out.width="100%"}
+knitr::include_graphics(fig_path("figure_5_trust_replication"))
+```
+
+Figures 2 and 3 are the corrected versions. They encode significance before adjustment by fill and significance after the Benjamini-Hochberg adjustment by point shape, matching the figures printed in the corrigendum rather than those in the original article.
+
+---
+
+# Table 2
+
+```{r table2}
+read_csv(
+  here("maintained", "output", "table_2_acq_pass_rates.csv"),
+  show_col_types = FALSE
+) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Difficulty", "Browser", "Web app", "Difference", "Non-mobile", "Mobile", "Difference"),
+    caption = "Attention-check pass rates by attentiveness and level of difficulty, reproducing published Table 2. Standard errors in parentheses; an asterisk marks a difference significant at p < 0.05."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 8))
+```
+
+---
+
+# Maintained rewrite verification
+
+```{r rewrite_verify}
+gt |>
+  filter(!is.na(match_rewrite)) |>
+  select(table_figure, claim, value_paper, value_rewrite, match_rewrite) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Location", "Quantity", "Paper", "Rewrite", "Match"),
+    caption = paste0("Rewrite verification: ", n_rewrite, " of ", n_rewrite + n_rewrite_zero,
+                     " recomputable claims match the published values.")
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "repeat_header"), font_size = 6) |>
+    column_spec(2, width = "6cm") |>
+    column_spec(3, width = "2cm") |>
+    column_spec(4, width = "2cm"))
+```
+
+All `r n_rewrite` recomputable values match to the precision the paper reports. The `r n_rewrite_na` rows the rewrite cannot recompute are the page 10 quantities described in Section 5, plus the total number of respondents, all of which need data the deposit does not carry.
+
+The pipeline is deterministic. Running `run_all.R` twice in succession returns every CSV, RDS, TeX and PNG output byte-identical; only the PDF figures differ, because a PDF records the time it was written.
+
+---
+
+# R environment
+
+```{r env}
+pkgs <- c("tidyverse", "estimatr", "metafor", "ggthemes", "ggrepel", "ggforce",
+          "lemon", "RCurl", "haven", "xtable", "knitr", "kableExtra", "here")
+
+bind_rows(
+  tibble(
+    Item = c("R version", "Platform", "Date run"),
+    Value = c(
+      paste(R.version$major, R.version$minor, sep = "."),
+      R.version$platform,
+      format(Sys.Date())
+    )
+  ),
+  tibble(
+    Item = pkgs,
+    Value = map_chr(pkgs, \(p) as.character(packageVersion(p)))
+  )
+) |>
+  kable(booktabs = TRUE, caption = "R version and key package versions at the last run.") |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = "hold_position", font_size = 8))
+```
