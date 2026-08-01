@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — figure_5_trust_replication.R
+# peyton_huber_coppock_2022/maintained/figure_5_trust_replication.R
 # Output: maintained/output/figure_5_trust_replication.pdf/.png
 # Depends on: original/phc_replications.rds, original/peyton_original.csv, helpers.R
 # Description: Reanalysis of treatment effects on trust in government for Peyton (2020)

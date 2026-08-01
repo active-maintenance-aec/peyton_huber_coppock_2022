@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — figure_3_conjoint_correspondence.R
+# peyton_huber_coppock_2022/maintained/figure_3_conjoint_correspondence.R
 # Output: maintained/output/figure_3_conjoint_correspondence.pdf/.png
 # Depends on: maintained/output/phc_summary_clean.rds, helpers.R
 # Description: Comparison of 41 conjoint summary effect sizes (pre-COVID vs COVID-era).

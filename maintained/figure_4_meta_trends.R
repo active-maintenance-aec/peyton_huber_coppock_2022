@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — figure_4_meta_trends.R
+# peyton_huber_coppock_2022/maintained/figure_4_meta_trends.R
 # Output: maintained/output/figure_4_meta_trends.pdf/.png
 # Depends on: original/phc_meta_trends.rds, helpers.R
 # Description: Respondents from mobile devices and web applications, Jun 2018 to Jul 2020.

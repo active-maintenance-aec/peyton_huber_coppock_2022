@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — figure_1_lucid_weekly_completes.R
+# peyton_huber_coppock_2022/maintained/figure_1_lucid_weekly_completes.R
 # Output: maintained/output/figure_1_lucid_weekly_completes.pdf/.png
 # Depends on: original/phc_lucid_completes.rds, helpers.R
 # Description: Weekly Lucid survey completions sold to academic buyers, Jan 2019 to Mar 2021.

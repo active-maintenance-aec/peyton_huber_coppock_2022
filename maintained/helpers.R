@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — helpers.R
+# peyton_huber_coppock_2022/maintained/helpers.R
 # Output: (none; sourced by all analysis scripts)
 # Description: Shared packages, paths, and helper functions for the maintained rewrite.
 

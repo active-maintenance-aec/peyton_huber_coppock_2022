@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — clean_summary_estimates.R
+# peyton_huber_coppock_2022/maintained/clean_summary_estimates.R
 # Output: maintained/output/phc_summary_clean.rds, maintained/output/phc_summary_clean.csv
 # Depends on: original/appendix_section_a.R and the twelve study datasets it reads; helpers.R
 # Description: Rebuilds the 138 summary effect sizes that Figures 2 and 3 compare. The

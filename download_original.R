@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — download_original.R
+# peyton_huber_coppock_2022/download_original.R
 # Output: original/ (the deposited replication archive, not redistributed in this repo)
 # Depends on: original_manifest.csv
 # Description: Fetch the deposited archive from Harvard Dataverse and verify every file.

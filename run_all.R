@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — run_all.R
+# peyton_huber_coppock_2022/run_all.R
 # Runs the whole reproduction in order: fetch and verify the deposited archive, rebuild
 # the summary effect sizes, then every published figure and table, then the in-text
 # quantities. Every script is self-contained and can also be run on its own.

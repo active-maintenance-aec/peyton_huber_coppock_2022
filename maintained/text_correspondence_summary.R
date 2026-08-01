@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — text_correspondence_summary.R
+# peyton_huber_coppock_2022/maintained/text_correspondence_summary.R
 # Output: maintained/output/text_correspondence_summary.csv
 # Depends on: maintained/output/phc_summary_clean.rds, helpers.R
 # Description: Computes the inline text statistics about correspondence between pre-COVID

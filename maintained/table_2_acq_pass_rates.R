@@ -1,4 +1,4 @@
-# peyton_huber_coppock_2022 — table_2_acq_pass_rates.R
+# peyton_huber_coppock_2022/maintained/table_2_acq_pass_rates.R
 # Output: maintained/output/table_2_acq_pass_rates.tex, .csv
 # Depends on: original/phc_replications.rds, helpers.R
 # Description: ACQ pass rates by attentiveness level and device type (browser vs web-app,
