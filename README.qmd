@@ -43,6 +43,8 @@ gt <- read_csv(
 )
 ```
 
+*Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
+
 This repository holds the actively maintained replication code for Peyton, Huber and Coppock (2022), together with the reproducibility report that documents what the original archive did and did not do. It is part of a program applying the maintenance proposal in Peer, Orr and Coppock (2021, *PS: Political Science & Politics*, doi [10.1017/S1049096521000366](https://doi.org/10.1017/S1049096521000366)) to a set of published archives.
 
 | | |
@@ -102,7 +104,7 @@ One further failure is worth separating out because it is a fact about a depende
 
 Yes. All `r n_match` verifiable ground truth claims match the published values, `r n_match_na` is unverifiable because the underlying data are not in the deposit, and `r n_rewrite` of them are also reproduced by the maintained rewrite, with `r n_rewrite_na` unverifiable and `r n_rewrite_zero` mismatches. That includes every count the 2022 corrigendum corrected.
 
-Two things are worth stating plainly, because both have been misreported in earlier passes over this archive. First, the deposited archive is **not** the version that produced the erroneous counts in the published article. Harvard Dataverse version 2.0, released 6 October 2022, replaced `manuscript.R` with the corrected code, and running it reproduces the corrigendum's numbers exactly. Second, `lemon` and `ggforce` are both current CRAN packages, so nothing in this archive depends on an abandoned graphics package.
+Two things are worth stating. First, the deposited archive is **not** the version that produced the erroneous counts in the published article. Harvard Dataverse version 2.0, released 6 October 2022, replaced `manuscript.R` with the corrected code, and running it reproduces the corrigendum's numbers exactly. Second, `lemon` and `ggforce` are both current CRAN packages, so nothing in this archive depends on an abandoned graphics package.
 
 The one genuinely stale dependency is `rmeta`, whose most recent release is from March 2018. The maintained rewrite replaces it with `metafor`, which changes no result: see Section 6.
 

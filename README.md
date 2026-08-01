@@ -24,6 +24,8 @@
 - [Maintained rewrite verification](#maintained-rewrite-verification)
 - [R environment](#r-environment)
 
+*Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
+
 This repository holds the actively maintained replication code for
 Peyton, Huber and Coppock (2022), together with the reproducibility
 report that documents what the original archive did and did not do. It
@@ -146,14 +148,13 @@ is unverifiable because the underlying data are not in the deposit, and
 unverifiable and 0 mismatches. That includes every count the 2022
 corrigendum corrected.
 
-Two things are worth stating plainly, because both have been misreported
-in earlier passes over this archive. First, the deposited archive is
-**not** the version that produced the erroneous counts in the published
-article. Harvard Dataverse version 2.0, released 6 October 2022,
-replaced `manuscript.R` with the corrected code, and running it
-reproduces the corrigendum’s numbers exactly. Second, `lemon` and
-`ggforce` are both current CRAN packages, so nothing in this archive
-depends on an abandoned graphics package.
+Two things are worth stating. First, the deposited archive is **not**
+the version that produced the erroneous counts in the published article.
+Harvard Dataverse version 2.0, released 6 October 2022, replaced
+`manuscript.R` with the corrected code, and running it reproduces the
+corrigendum’s numbers exactly. Second, `lemon` and `ggforce` are both
+current CRAN packages, so nothing in this archive depends on an
+abandoned graphics package.
 
 The one genuinely stale dependency is `rmeta`, whose most recent release
 is from March 2018. The maintained rewrite replaces it with `metafor`,
