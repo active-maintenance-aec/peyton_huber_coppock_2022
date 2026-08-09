@@ -1,0 +1,45 @@
+float,published_numbers,covered,reproduced_by_rewrite,reproduced_by_archive,plotted,plotted_reproduced,note
+table_1,0,0,0,0,NA,NA,Prints no estimates; its study count and replication count are covered as prose claims
+table_2,36,36,35,36,NA,NA,NA
+figure_1,0,0,0,0,NA,NA,Prints no numbers on its face; the quantities it carries are covered as prose claims about its note and the text around it
+figure_2,0,0,0,0,28,28,NA
+figure_3,0,0,0,0,41,41,NA
+figure_4,0,0,0,0,NA,NA,Prints no numbers on its face; the quantities it carries are covered as prose claims about its note and the text around it
+figure_5,0,0,0,0,10,10,NA
+appendix_table_1,42,42,42,42,NA,NA,NA
+appendix_table_2,44,44,44,27,NA,NA,NA
+appendix_table_3,24,24,24,24,NA,NA,NA
+figure_a1,0,0,0,0,4,4,NA
+figure_a2,0,0,0,0,4,4,NA
+figure_a3,0,0,0,0,10,10,NA
+figure_a4,0,0,0,0,34,34,NA
+figure_a5,0,0,0,0,24,24,NA
+figure_a6,0,0,0,0,2,2,NA
+figure_a7,0,0,0,0,4,4,NA
+figure_a8,0,0,0,0,20,20,NA
+figure_a9,0,0,0,0,10,10,NA
+figure_a10,0,0,0,0,82,82,NA
+figure_a11,0,0,0,0,12,12,NA
+figure_a12,0,0,0,0,10,10,NA
+figure_a13,0,0,0,0,8,8,NA
+figure_b1,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b2,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b3,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b4,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b5,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b6,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b7,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_b8,0,0,0,0,NA,NA,"The rewrite does not compute the covariate distributions, so the plotted proportions have no counterpart"
+figure_c1,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c2,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c3,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c4,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c5,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c6,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c7,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c8,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c9,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c10,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+figure_c11,0,0,0,0,NA,NA,"A screenshot of survey content, stating no estimated quantity"
+corrigendum_figure_1,0,0,0,0,NA,NA,Reprints an article figure in two panels; the counts in its notes are covered as prose claims
+corrigendum_figure_2,0,0,0,0,NA,NA,Reprints an article figure in two panels; the counts in its notes are covered as prose claims

@@ -1,96 +1,427 @@
-paper_id,table_figure,claim,value_script,value_paper,match,notes,value_rewrite,match_rewrite,defect_locus
-peyton_huber_coppock_2022,text,Total replications conducted,33,33,1,p.1 abstract,33,1,
-peyton_huber_coppock_2022,text,Number of pre-pandemic designs replicated,12,12,1,p.1 abstract,12,1,
-peyton_huber_coppock_2022,text,Number of quota samples,13,13,1,p.1 abstract,13,1,
-peyton_huber_coppock_2022,text,Study period (months),Mar-Jul 2020,March and July 2020,1,p.1 abstract,Mar-Jul 2020,1,
-peyton_huber_coppock_2022,text,Average replication magnitude (pct of pre-COVID),73%,73%,1,p.2 and p.11; dat|>filter(!sign_diff)|>summarise(avg=mean(estimate_ycls/estimate_pre))=0.730,73%,1,
-peyton_huber_coppock_2022,text,Total pre-COVID estimates obtained,89,89,1,p.5,89,1,
-peyton_huber_coppock_2022,text,Total replication estimates obtained,101,101,1,p.5,101,1,
-peyton_huber_coppock_2022,text,N respondents in main dataset,16625,~1000/week x 13 surveys,,p.4 describes ~1000/week; dataset nrow=16625,16625,,
-peyton_huber_coppock_2022,text,Total summary effect size estimates,138,138,1,p.6; 82 conjoint + 56 non-conjoint,138,1,
-peyton_huber_coppock_2022,text,Non-conjoint summary estimates,56,56,1,p.6,56,1,
-peyton_huber_coppock_2022,text,Conjoint summary estimates,82,82,1,p.6,82,1,
-peyton_huber_coppock_2022,text,Non-conjoint pairs compared (Fig 2),28,28,1,p.6; dat|>filter(conjoint!='Conjoint')=28,28,1,
-peyton_huber_coppock_2022,text,Conjoint pairs compared (Fig 3),41,41,1,p.6; dat|>filter(conjoint=='Conjoint')=41,41,1,
-peyton_huber_coppock_2022,text,Non-conjoint: correctly signed pairs,24,24,1,p.6,24,1,
-peyton_huber_coppock_2022,text,Non-conjoint: incorrectly signed pairs,4,4,1,p.6,4,1,
-peyton_huber_coppock_2022,text,Non-conjoint: sig smaller in replication (of 24 correctly signed),11,11,1,p.6 corrected by corrigendum (JEPS 2023 10:306-309); original paper said 10 (p-adjustment bug); corrigendum corrects to 11; archive script gives 11; rewrite gives 11,11,1,
-peyton_huber_coppock_2022,text,Non-conjoint: sig diffs among incorrectly signed,3,3,1,p.6 unchanged by corrigendum,3,1,
-peyton_huber_coppock_2022,text,Non-conjoint: total sig at p<0.05 unadjusted (Fig 2 corrected caption),14,14,1,corrigendum Fig 2 corrected caption: 14 of 28; rewrite: 11+3=14,14,1,
-peyton_huber_coppock_2022,text,Non-conjoint: total sig after BH-FDR (Fig 2 corrected caption),13,13,1,corrigendum Fig 2 corrected caption: 13 of 14 remain after BH-FDR; rewrite: 10+3=13,13,1,
-peyton_huber_coppock_2022,text,Conjoint: all correctly signed,41,41,1,p.6,41,1,
-peyton_huber_coppock_2022,text,Conjoint: smaller in replication,35,35,1,p.6; 6 larger,35,1,
-peyton_huber_coppock_2022,text,Conjoint: larger in replication,6,6,1,p.6,6,1,
-peyton_huber_coppock_2022,text,Conjoint sig diffs (6 larger),1,1,1,p.6 unchanged by corrigendum,1,1,
-peyton_huber_coppock_2022,text,Conjoint sig diffs (35 smaller),11,11,1,"corrigendum corrects 6 to 11; the deposited manuscript.R was updated for the corrigendum and also gives 11, as does the rewrite",11,1,
-peyton_huber_coppock_2022,text,Conjoint: total sig at p<0.05 unadjusted (Fig 3 corrected caption),12,12,1,corrigendum Fig 3 corrected caption: 12 of 41; rewrite: 11+1=12,12,1,
-peyton_huber_coppock_2022,text,Conjoint: total sig after BH-FDR (Fig 3 corrected caption),7,7,1,corrigendum Fig 3 corrected caption: 7 of 12 remain after BH-FDR; rewrite gives 7,7,1,
-peyton_huber_coppock_2022,text,Overall avg pct pre-COVID (correctly signed 65 of 69),73%,73%,1,p.6,73%,1,
-peyton_huber_coppock_2022,text,Conjoint avg pct pre-COVID (41 pairs),87%,87%,1,p.6; script=0.874,87%,1,
-peyton_huber_coppock_2022,text,Non-conjoint avg pct pre-COVID (24 pairs),49%,49%,1,p.6; script=0.483,49%,1,
-peyton_huber_coppock_2022,text,Prop participants from web apps (range low),0.19,0.19,1,p.10,,,
-peyton_huber_coppock_2022,text,Prop participants from web apps (range high),0.61,0.61,1,p.10,0.61,1,
-peyton_huber_coppock_2022,text,Prop from mobiles (range low),0.31,0.31,1,p.10,0.31,1,
-peyton_huber_coppock_2022,text,Prop from mobiles (range high),0.73,0.73,1,p.10,0.73,1,
-peyton_huber_coppock_2022,text,Pct from web apps in 2020 surveys (approx),41%,approximately 41%,1,p.10 — phc_replications.rds contains 2020 data only; year-specific proportions not reproducible from archive,,,
-peyton_huber_coppock_2022,text,Pct from mobiles in 2020 surveys,56%,56%,1,p.10 — phc_replications.rds contains 2020 data only; year-specific proportions not reproducible from archive,,,
-peyton_huber_coppock_2022,text,Pct from web apps in 2019,33%,33%,1,p.10 — 2019 data absent from public archive,,,
-peyton_huber_coppock_2022,text,Pct from mobiles in 2019,56%,56%,1,p.10 — 2019 data absent from public archive,,,
-peyton_huber_coppock_2022,text,Pct from web apps in 2018,13%,13%,1,p.10 — 2018 data absent from public archive,,,
-peyton_huber_coppock_2022,text,Pct from mobiles in 2018,33%,33%,1,p.10 — 2018 data absent from public archive,,,
-peyton_huber_coppock_2022,text,Pct of mobile respondents also from web apps,97%,97%,1,p.10,,,
-peyton_huber_coppock_2022,text,Pct of mobile from web apps,72%,72%,1,p.10,,,
-peyton_huber_coppock_2022,text,Web app avg survey duration (minutes),13.8,approximately 7 min less than browser,1,p.10; script=13.8; browser=21.0; diff~7.2,13.8,1,
-peyton_huber_coppock_2022,text,Browser avg survey duration (minutes),21.0,21.5 min,1,p.10; script=21.0 matches text,21.0,1,
-peyton_huber_coppock_2022,text,Mobile avg survey duration (minutes),15.1,roughly 6 min less than nonmobile,1,p.10; script=15.1; nonmobile=21.5; diff~6.4,15.1,1,
-peyton_huber_coppock_2022,text,Original Peyton ACQ pass rate (attention_math mean),0.866,87%,1,p.10 fn; script=0.866~87%,0.866,1,
-peyton_huber_coppock_2022,text,COVID replication Peyton ACQ pass rate,19%,19%,1,p.10 fn; script=0.186~19%,19%,1,
-peyton_huber_coppock_2022,text,Figure 5: Full Sample estimate,0.157,0.157 (visual),1,Fig 5 center; SE=0.076,0.157,1,
-peyton_huber_coppock_2022,text,Figure 5: Attentive Passed ACQ estimate,0.385,0.39,1,p.11; script=0.385; paper says 0.39,0.385,1,
-peyton_huber_coppock_2022,text,Figure 5: Attentive Passed ACQ SE,0.152,0.15,1,p.11; script=0.152,0.152,1,
-peyton_huber_coppock_2022,text,Figure 5: Attentive Internet browser estimate,0.329,0.33,1,p.11; script=0.329,0.329,1,
-peyton_huber_coppock_2022,text,Figure 5: Attentive Internet browser SE,0.0976,0.10,1,p.11; script=0.098,0.098,1,
-peyton_huber_coppock_2022,text,Figure 5: Attentive Nonmobile estimate,0.520,0.52,1,p.11; script=0.520,0.520,1,
-peyton_huber_coppock_2022,text,Figure 5: Attentive Nonmobile SE,0.121,0.12,1,p.11; script=0.121,0.121,1,
-peyton_huber_coppock_2022,text,Figure 5: Inattentive Failed ACQ estimate,0.084,0.08,1,"p.11 reads ""Among those who failed the ACQ (estimate: 0.08, SE: 0.09)""",0.084,1,
-peyton_huber_coppock_2022,text,Figure 5: Inattentive Failed ACQ SE,0.088,0.09,1,"p.11; script=0.0876, rounds to 0.09",0.088,1,
-peyton_huber_coppock_2022,text,Figure 5: Inattentive Web App estimate,-0.031,-0.03,1,p.11; script=-0.031,-0.031,1,
-peyton_huber_coppock_2022,text,Figure 5: Inattentive Web App SE,0.117,0.12,1,"p.11 reads ""came from a web application (estimate: -0.03, SE: 0.12)""; 0.117 rounds to 0.12. An earlier pass recorded 0.09 here, which is the SE of the failed-ACQ subgroup named in the same sentence.",0.117,1,
-peyton_huber_coppock_2022,text,Figure 5: Inattentive Mobile estimate,-0.042,-0.04,1,p.11; script=-0.042,-0.042,1,
-peyton_huber_coppock_2022,text,Figure 5: Inattentive Mobile SE,0.096,0.10,1,p.11; script=0.096,0.096,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Browser pass rate,0.659,0.66,1,Table 2; script=0.659,0.659,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Browser SE,0.0185,0.02,1,Table 2; script=0.019,0.0185,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Web-App pass rate,0.545,0.55,1,"p.11 Table 2 prints 0.55; the underlying rate is 0.5449, which rounds in one step to 0.54, so the published cell reflects double rounding. Both the deposited code and the rewrite print 0.54.",0.545,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Web-App SE,0.0196,0.02,1,Table 2; script=0.020,0.0196,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Browser-App difference,0.114,0.11,1,Table 2; script=0.114,0.114,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Browser-App difference SE,0.0270,0.03,1,Table 2; script=0.027,0.0270,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile pass rate,0.631,0.63,1,Table 2; script=0.631,0.631,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile SE,0.0217,0.02,1,Table 2; script=0.022,0.0217,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Mobile pass rate,0.585,0.58,1,Table 2; script=0.585,0.585,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Mobile SE,0.0174,0.02,1,Table 2; script=0.017,0.0174,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile-Mobile difference,0.046,0.05,1,Table 2; script=0.046,0.046,1,
-peyton_huber_coppock_2022,table_2,Easy ACQ: Nonmobile-Mobile difference SE,0.0278,0.03,1,Table 2; script=0.028,0.0278,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Browser pass rate,0.530,0.53,1,Table 2; script=0.530,0.530,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Browser SE,0.0195,0.02,1,Table 2; script=0.020,0.0195,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Web-App pass rate,0.370,0.37,1,Table 2; script=0.370,0.370,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Web-App SE,0.0190,0.02,1,Table 2; script=0.019,0.0190,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Browser-App difference,0.160,0.16,1,Table 2; script=0.160,0.160,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Browser-App difference SE,0.0272,0.03,1,Table 2; script=0.027,0.0272,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile pass rate,0.500,0.50,1,Table 2; script=0.500,0.500,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile SE,0.0225,0.02,1,Table 2; script=0.023,0.0225,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Mobile pass rate,0.420,0.42,1,Table 2; script=0.420,0.420,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Mobile SE,0.0174,0.02,1,Table 2; script=0.017,0.0174,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile-Mobile difference,0.080,0.08,1,Table 2; script=0.080,0.080,1,
-peyton_huber_coppock_2022,table_2,Medium ACQ: Nonmobile-Mobile difference SE,0.0284,0.03,1,Table 2; script=0.028,0.0284,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Browser pass rate,0.223,0.22,1,Table 2; script=0.223,0.223,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Browser SE,0.0162,0.02,1,Table 2; script=0.016,0.0162,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Web-App pass rate,0.154,0.15,1,Table 2; script=0.154,0.154,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Web-App SE,0.0131,0.01,1,Table 2; script=0.013,0.0131,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Browser-App difference,0.069,0.07,1,Table 2; script=0.069,0.069,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Browser-App difference SE,0.0208,0.02,1,Table 2; script=0.021,0.0208,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile pass rate,0.240,0.24,1,Table 2; script=0.240,0.240,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile SE,0.0198,0.02,1,Table 2; script=0.020,0.0198,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Mobile pass rate,0.160,0.16,1,Table 2; script=0.160,0.160,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Mobile SE,0.0118,0.01,1,Table 2; script=0.012,0.0118,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile-Mobile difference,0.081,0.08,1,Table 2; script=0.081,0.081,1,
-peyton_huber_coppock_2022,table_2,Hard ACQ: Nonmobile-Mobile difference SE,0.0231,0.02,1,Table 2; script=0.023,0.0231,1,
+paper_id,claim_id,table_figure,claim,value_script,value_paper,digits,match,value_rewrite,match_rewrite,holds,defect_locus,notes
+peyton_huber_coppock_2022,abstract_replications,Abstract (p. 1),33 replications of 12 pre-pandemic designs,NA,33,0,NA,33,1,NA,NA,NA
+peyton_huber_coppock_2022,abstract_designs,Abstract (p. 1),12 pre-pandemic designs,NA,12,0,NA,12,1,NA,NA,NA
+peyton_huber_coppock_2022,abstract_samples,Abstract (p. 1),fielded across 13 quota samples of Americans,NA,13,0,NA,13,1,NA,NA,NA
+peyton_huber_coppock_2022,abstract_field_month_first,Abstract (p. 1),between March and July 2020: first month of fielding,NA,3,0,NA,3,1,NA,NA,NA
+peyton_huber_coppock_2022,abstract_field_month_last,Abstract (p. 1),between March and July 2020: last month of fielding,NA,7,0,NA,7,1,NA,NA,NA
+peyton_huber_coppock_2022,abstract_field_year,Abstract (p. 1),between March and July 2020: the year of fielding,NA,2020,0,NA,2020,1,NA,NA,NA
+peyton_huber_coppock_2022,intro_replications,Introduction (p. 2),an answer using 33 replications fielded during the onset of the COVID-19 pandemic,NA,33,0,NA,33,1,NA,NA,NA
+peyton_huber_coppock_2022,intro_designs,Introduction (p. 2),of 12 previously published survey experiments,NA,12,0,NA,12,1,NA,NA,NA
+peyton_huber_coppock_2022,intro_correspondence,Introduction (p. 2),somewhat smaller in magnitude at an average of 73% of the pre-COVID effect size,72.97646089665277,73,0,1,73,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_1_completes_2019,Figure 1 note (p. 3),"In 2019, Lucid sold 729,284 completed survey responses to academic buyers",NA,729284,0,NA,729284,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_1_completes_2020,Figure 1 note (p. 3),"compared with 2,185,387 in 2020",NA,2185387,0,NA,2185387,1,NA,NA,NA
+peyton_huber_coppock_2022,background_academic_growth,Background (p. 3),and by 200% among academic clients (see Figure 1),NA,200,0,NA,199.66199724661448,1,NA,NA,NA
+peyton_huber_coppock_2022,design_weekly_sample,Design (p. 4),"we recruited weekly samples of approximately 1,000 US-based participants via Lucid",NA,1000,0,NA,1278.8461538461538,NA,NA,NA,NA
+peyton_huber_coppock_2022,design_median_duration,Design (p. 4),(median duration: 12.8 min),NA,12.8,1,NA,12.883333333333333,0,NA,paper_internal,"The median completion time is 12.883 minutes, which is 12.9 at the stated precision and 12.8 only if truncated"
+peyton_huber_coppock_2022,design_replications,Selection criteria (p. 4),We conducted 33 replications across 12 unique studies,NA,33,0,NA,33,1,NA,NA,NA
+peyton_huber_coppock_2022,design_studies,Selection criteria (p. 4),We conducted 33 replications across 12 unique studies,NA,12,0,NA,12,1,NA,NA,NA
+peyton_huber_coppock_2022,results_studies,Results (p. 5),the original effect size(s) for each of the 12 pre-COVID studies listed in Table 1,NA,12,0,NA,12,1,NA,NA,NA
+peyton_huber_coppock_2022,results_studies_with_precovid_replication,Results (p. 5),at least one pre-COVID replication estimate of the original effect size(s) for 7 of these studies,NA,7,0,NA,7,1,NA,NA,NA
+peyton_huber_coppock_2022,results_precovid_estimates,Results (p. 5),"In total, we obtained 89 pre-COVID estimates",NA,89,0,NA,89,1,NA,NA,NA
+peyton_huber_coppock_2022,results_replication_estimates,Results (p. 5),and 101 replication estimates,NA,101,0,NA,102,0,NA,unresolved,The deposit's own set of pooled estimates holds 102 replication estimates against the article's 101; the 89 pre-COVID estimates in the same sentence reproduce exactly
+peyton_huber_coppock_2022,footnote_3_gss_administrations,Footnote 3 (p. 5),The GSS has administered the welfare versus aid to the poor experiment 20 times between 1986 and 2018,NA,20,0,NA,20,1,NA,NA,NA
+peyton_huber_coppock_2022,footnote_3_all_precovid_estimates,Footnote 3 (p. 5),"If all GSS estimates are included, we have 108 pre-COVID-19 estimates in total",NA,108,0,NA,108,1,NA,NA,NA
+peyton_huber_coppock_2022,footnote_3_huber_replications,Footnote 3 (p. 5),take the first two replications conducted on online samples by Huber and Paris (2013) as our pre-COVID replication estimates,NA,2,0,NA,2,1,NA,NA,NA
+peyton_huber_coppock_2022,results_summary_estimates,Results (p. 6),"Across the 12 studies, we obtained 138 summary effect size estimates",138,138,0,1,138,1,NA,NA,NA
+peyton_huber_coppock_2022,results_summary_conjoint,Results (p. 6),82 for the conjoint studies,82,82,0,1,82,1,NA,NA,NA
+peyton_huber_coppock_2022,results_summary_nonconjoint,Results (p. 6),and 56 for the remaining studies,56,56,0,1,56,1,NA,NA,NA
+peyton_huber_coppock_2022,results_fig2_pairs,Results (p. 6),Figure 2 compares the 28 estimated summary effects from the pre-COVID studies with their 28 replications,28,28,0,1,28,1,NA,NA,NA
+peyton_huber_coppock_2022,results_correctly_signed_nonconjoint,Results (p. 6),with 24 of 28 signed in the same direction,24,24,0,1,24,1,NA,NA,NA
+peyton_huber_coppock_2022,results_sig_smaller_of_24,Results (p. 6),"Of the 24 correctly signed estimates, 10 were significantly smaller in replication. Superseded by the 2023 corrigendum, which gives 11",11,10,0,0,11,0,NA,paper_internal,"Corrected to 11 by the 2023 corrigendum, which the deposit and the rewrite both give"
+peyton_huber_coppock_2022,results_incorrectly_signed,Results (p. 6),Of the four incorrectly signed estimates,4,4,0,1,4,1,NA,NA,NA
+peyton_huber_coppock_2022,results_sig_among_incorrect,Results (p. 6),three were significantly different,3,3,0,1,3,1,NA,NA,NA
+peyton_huber_coppock_2022,results_atomic_sig_count,Results (p. 6),two of six estimates from the atomic aversion study,NA,2,0,NA,2,1,NA,NA,NA
+peyton_huber_coppock_2022,results_atomic_estimate_count,Results (p. 6),two of six estimates from the atomic aversion study,NA,6,0,NA,6,1,NA,NA,NA
+peyton_huber_coppock_2022,results_conjoint_pairs,Results (p. 6),Figure 3 plots the analogous information for the 41 conjoint estimates and their 41 replications,41,41,0,1,41,1,NA,NA,NA
+peyton_huber_coppock_2022,results_conjoint_smaller,Results (p. 6),"Of these, 35 of 41 were smaller in replication",35,35,0,1,35,1,NA,NA,NA
+peyton_huber_coppock_2022,results_conjoint_sig_among_smaller,Results (p. 6),"35 of 41 were smaller in replication (6 statistically significant differences). Superseded by the 2023 corrigendum, which gives 11",11,6,0,0,11,0,NA,paper_internal,"Corrected to 11 by the 2023 corrigendum, which the deposit and the rewrite both give"
+peyton_huber_coppock_2022,results_conjoint_larger,Results (p. 6),and 6 of 41 were larger in replication,6,6,0,1,6,1,NA,NA,NA
+peyton_huber_coppock_2022,results_conjoint_sig_among_larger,Results (p. 6),6 of 41 were larger in replication (1 of 6 significant differences),1,1,0,1,1,1,NA,NA,NA
+peyton_huber_coppock_2022,results_pooled_correctly_signed,Results (p. 6),Pooling across all 65 of 69 correctly signed pairs presented in Figures 2-3,65,65,0,1,65,1,NA,NA,NA
+peyton_huber_coppock_2022,results_pooled_pairs,Results (p. 6),Pooling across all 65 of 69 correctly signed pairs,69,69,0,1,69,1,NA,NA,NA
+peyton_huber_coppock_2022,results_correspondence_overall,Results (p. 6),"the replication estimates were, on average, 73% as large as the pre-COVID estimates",72.97646089665277,73,0,1,73,1,NA,NA,NA
+peyton_huber_coppock_2022,results_correspondence_conjoint,Results (p. 6),"The 41 correctly signed estimates from the conjoint replication were, on average, 87% as large as the original",87.4051915189156,87,0,1,87.4,1,NA,NA,NA
+peyton_huber_coppock_2022,results_correspondence_nonconjoint,Results (p. 6),"The 24 of 28 correctly signed estimates from the other replications were, on average, 49% as large",48.32737941695379,49,0,0,48.3,0,NA,paper_internal,"The mean ratio over the 24 correctly signed non-conjoint pairs is 0.4833, which is 48 per cent; the overall 73 and the conjoint 87 in the same paragraph both reproduce"
+peyton_huber_coppock_2022,figure_2_caption_pairs,Figure 2 caption (p. 7),Comparison of 28 summary effect sizes across 11 studies (conjoint excluded),28,28,0,1,28,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_2_caption_studies,Figure 2 caption (p. 7),Comparison of 28 summary effect sizes across 11 studies (conjoint excluded),NA,11,0,NA,11,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_2_sig_count,Figure 2 note (p. 7),"Thirteen of 28 replication estimates were significantly different from their pre-COVID benchmark at P < 0.05. Superseded by the 2023 corrigendum, which gives 14 before adjustment and 13 after",14,13,0,0,14,0,NA,paper_internal,Corrected to 14 before adjustment and 13 after by the 2023 corrigendum
+peyton_huber_coppock_2022,figure_3_caption_pairs,Figure 3 caption (p. 8),Comparison of 41 summary effect sizes in conjoint experiments,41,41,0,1,41,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_3_sig_count,Figure 3 note (p. 8),"Seven of 41 replication estimates were significantly different from their pre-COVID benchmark at P < 0.05. Superseded by the 2023 corrigendum, which gives 12 before adjustment and 7 after",12,7,0,0,12,0,NA,paper_internal,Corrected to 12 before adjustment and 7 after by the 2023 corrigendum
+peyton_huber_coppock_2022,device_surveys,Inattention (p. 10),Applying this approach across the 13 surveys used for the replication studies,NA,13,0,NA,13,1,NA,NA,NA
+peyton_huber_coppock_2022,device_webapp_min,Inattention (p. 10),the proportion of participants coming from web applications ranged from 0.19 to 0.61,NA,0.19,2,NA,0.1879858657243816,1,NA,NA,NA
+peyton_huber_coppock_2022,device_webapp_max,Inattention (p. 10),the proportion of participants coming from web applications ranged from 0.19 to 0.61,NA,0.61,2,NA,0.6069321533923304,1,NA,NA,NA
+peyton_huber_coppock_2022,device_mobile_min,Inattention (p. 10),the proportion of participants coming from mobiles ranged from 0.31 to 0.73,NA,0.31,2,NA,0.31236749116607776,1,NA,NA,NA
+peyton_huber_coppock_2022,device_mobile_max,Inattention (p. 10),the proportion of participants coming from mobiles ranged from 0.31 to 0.73,NA,0.73,2,NA,0.7286135693215339,1,NA,NA,NA
+peyton_huber_coppock_2022,device_additional_sample,Inattention (p. 10),"Based on an additional sample of 63,245 respondents obtained from Lucid surveys",NA,63245,0,NA,63245,1,NA,NA,NA
+peyton_huber_coppock_2022,device_2020_webapp,Inattention (p. 10),"In the 2020 surveys, approximately 41% of respondents came from web applications",NA,41,0,NA,40.634505239663035,NA,NA,NA,NA
+peyton_huber_coppock_2022,device_2020_mobile,Inattention (p. 10),In the 2020 surveys ... (56% from mobiles),NA,56,0,NA,55.92851372732204,1,NA,NA,NA
+peyton_huber_coppock_2022,device_2019_webapp,Inattention (p. 10),an increase from 33% ... in 2019,NA,33,0,NA,33.8223825745237,0,NA,paper_internal,"The mean over the seventeen 2019 surveys is 33.8 per cent, which is 34 at the stated precision; the 2018 and 2020 figures in the same sentence reproduce exactly under the same derivation"
+peyton_huber_coppock_2022,device_2019_mobile,Inattention (p. 10),an increase from 33% (56% from mobiles) in 2019,NA,56,0,NA,57.62362400274482,0,NA,paper_internal,"The mean over the seventeen 2019 surveys is 57.6 per cent; the sentence prints the same 56 per cent it gives for 2020, which does reproduce"
+peyton_huber_coppock_2022,device_2018_webapp,Inattention (p. 10),and just 13% ... in 2018,NA,13,0,NA,13,1,NA,NA,NA
+peyton_huber_coppock_2022,device_2018_mobile,Inattention (p. 10),and just 13% (33% from mobiles) in 2018,NA,33,0,NA,32.666666666666664,1,NA,NA,NA
+peyton_huber_coppock_2022,device_overlap_mobile_given_webapp,Inattention (p. 10),97% of participants from web applications were also on mobile devices,NA,97,0,NA,97.0619658119658,1,NA,NA,NA
+peyton_huber_coppock_2022,device_overlap_webapp_given_mobile,Inattention (p. 10),and 72% on mobile devices arrived from web applications,NA,72,0,NA,74.51302029936436,0,NA,unresolved,"Of the 9,754 mobile respondents, 7,268 arrived from a web application, which is 75 per cent; the 97 per cent in the same sentence reproduces exactly"
+peyton_huber_coppock_2022,device_duration_gap_webapp,Inattention (p. 10),Those from web applications spent approximately 7 min less time completing surveys than those from web browsers,NA,7,0,NA,7.163279901667778,NA,NA,NA,NA
+peyton_huber_coppock_2022,device_duration_browser,Inattention (p. 10),"those from web browsers, who spent an average of 21.5 min",NA,21.5,1,NA,20.999177337565214,0,NA,paper_internal,"Browser respondents averaged 21.0 minutes; 21.5 is the nonmobile average, which the next sentence uses"
+peyton_huber_coppock_2022,device_duration_gap_mobile,Inattention (p. 10),Respondents from mobile devices spent roughly 6 min less time completing surveys than subjects from nonmobile devices,NA,6,0,NA,6.3681848279692215,NA,NA,NA,NA
+peyton_huber_coppock_2022,device_acq_surveys,Inattention (p. 10),in 2 of the 13 surveys we included ACQs of varying difficulty,NA,2,0,NA,2,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_note_original_pass,Table 2 note (p. 11),was passed by 87% of respondents in the original study,NA,87,0,NA,86.63101604278076,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_acq_pass_estimate,Inattention (p. 11),"Among those who passed the ACQ, the average effect of treatment was 0.39 (SE: 0.15)",0.385328897491882,0.39,2,1,0.385328897491882,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_acq_pass_se,Inattention (p. 11),"Among those who passed the ACQ, the average effect of treatment was 0.39 (SE: 0.15)",0.15194970803027055,0.15,2,1,0.15194970803027055,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_browser_estimate,Inattention (p. 11),"Among those coming from browsers, the estimate was 0.33 (SE: 0.10)",0.32926531360152156,0.33,2,1,0.32926531360152156,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_browser_se,Inattention (p. 11),"Among those coming from browsers, the estimate was 0.33 (SE: 0.10)",0.0976306008500555,0.10,2,1,0.0976306008500555,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_nonmobile_estimate,Inattention (p. 11),among nonmobile users it was 0.52 (SE: 0.12),0.5200367752279467,0.52,2,1,0.5200367752279467,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_nonmobile_se,Inattention (p. 11),among nonmobile users it was 0.52 (SE: 0.12),0.12133668563369916,0.12,2,1,0.12133668563369916,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_acq_fail_estimate,Inattention (p. 11),"Among those who failed the ACQ (estimate: 0.08, SE: 0.09)",0.08366429495651713,0.08,2,1,0.08366429495651713,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_acq_fail_se,Inattention (p. 11),"Among those who failed the ACQ (estimate: 0.08, SE: 0.09)",0.0875748095721057,0.09,2,1,0.0875748095721057,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_webapp_estimate,Inattention (p. 11),"came from a web application (estimate: -0.03, SE: 0.12)",-0.03059084932990912,-0.03,2,1,-0.03059084932990912,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_webapp_se,Inattention (p. 11),"came from a web application (estimate: -0.03, SE: 0.12)",0.11725456578995798,0.12,2,1,0.11725456578995798,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_mobile_estimate,Inattention (p. 11),"or used a mobile phone (estimate: -0.04, SE: 0.10)",-0.04238507557113483,-0.04,2,1,-0.04238507557113483,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_mobile_se,Inattention (p. 11),"or used a mobile phone (estimate: -0.04, SE: 0.10)",0.096077554339612,0.10,2,1,0.096077554339612,1,NA,NA,NA
+peyton_huber_coppock_2022,inattention_correspondence,Inattention (p. 11),"Pooling across all replication studies, we find effect sizes were, on average, 73% their pre-COVID magnitude",72.97646089665277,73,0,1,73,1,NA,NA,NA
+peyton_huber_coppock_2022,inattention_attentive_share,Inattention (p. 11),If 73% of respondents were attentive,72.97646089665277,73,0,1,73,1,NA,NA,NA
+peyton_huber_coppock_2022,inattention_inattentive_share,Inattention (p. 11),"If 73% of respondents were attentive and 26% inattentive, our replication estimate would, on average, match our pre-COVID benchmarks",27.023539103347225,26,0,0,27,0,NA,paper_internal,"The correspondence is 72.98 per cent, so the complement is 27 per cent"
+peyton_huber_coppock_2022,inattention_inflated_correspondence,Inattention (p. 11),yields an estimated replication correspondence of 104% the pre-COVID effect sizes,104.25208699521824,104,0,1,104.3,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_note_field_month,Figure 5 note (p. 12),"Estimates for the Lucid replication, fielded in May 2020",NA,5,0,NA,5,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_note_corr_nonmobile_browser,Figure 5 note (p. 12),Pairwise correlations between these methods: 0.67 for nonmobile and browsers,NA,0.67,2,NA,0.671157880635778,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_note_corr_nonmobile_acq,Figure 5 note (p. 12),0.10 for non-mobiles and ACQ pass,NA,0.10,2,NA,0.09721605751660337,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_note_corr_browser_acq,Figure 5 note (p. 12),and 0.09 for browsers and ACQ pass,NA,0.09,2,NA,0.08837387614240307,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_note_original_pass,Figure 5 note (p. 12),Peyton (2020) Appendix S5.8 reports 87% of respondents passed their pretreatment ACQ,NA,87,0,NA,86.63101604278076,1,NA,NA,NA
+peyton_huber_coppock_2022,figure_5_note_replication_pass,Figure 5 note (p. 12),"In our direct replication, 19% of respondents passed this same ACQ",NA,19,0,NA,18.609550561797743,1,NA,NA,NA
+peyton_huber_coppock_2022,discussion_replications,Discussion (p. 12),We investigated by conducting 33 replications during the early COVID era of 12 published experimental studies,NA,33,0,NA,33,1,NA,NA,NA
+peyton_huber_coppock_2022,discussion_studies,Discussion (p. 12),33 replications during the early COVID era of 12 published experimental studies,NA,12,0,NA,12,1,NA,NA,NA
+peyton_huber_coppock_2022,a1_precovid_summary,Online Appendix A.1 (p. 1),"Pooling across the pre-COVID studies, the summary effect size estimate is a 30 percentage point increase in support for Russian journalists",30.495410944447165,30,0,1,30.495410944447165,1,NA,NA,NA
+peyton_huber_coppock_2022,a1_replication_estimate,Online Appendix A.1 (p. 1),Our effect estimate of 25.5 points is 83% of this magnitude,25.387482979024107,25.5,1,0,25.387482979024107,0,NA,paper_internal,"The COVID-era summary effect is 25.39 points, and 25.4 is what the 83 per cent ratio in the same sentence implies"
+peyton_huber_coppock_2022,a1_relative,Online Appendix A.1 (p. 1),Our effect estimate of 25.5 points is 83% of this magnitude,NA,83,0,NA,83.25017500263216,1,NA,NA,NA
+peyton_huber_coppock_2022,a1_difference,Online Appendix A.1 (p. 1),this difference of 5.5 percentage points is not statistically significant (P = 0.16),NA,5.5,1,NA,5.107927965423059,0,NA,paper_internal,"The difference is 5.11 points, which is what the P = 0.16 in the same sentence implies"
+peyton_huber_coppock_2022,a1_difference_p,Online Appendix A.1 (p. 1),this difference of 5.5 percentage points is not statistically significant (P = 0.16),NA,0.16,2,NA,0.15536976031734429,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_direct_effect,Online Appendix A.2 (p. 3),The estimated effect in our direct replication of 15 percentage points,NA,15,0,NA,15.290543698395393,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_precovid_effect,Online Appendix A.2 (p. 3),was indistinguishable from the pre-COVID replication (16 percentage points),NA,16,0,NA,16.326312576312326,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_covid_effect,Online Appendix A.2 (p. 3),the estimated treatment effect of 7 percentage points was indistinguishable from zero,NA,7,0,NA,7.091580563508846,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_summary_pre,Online Appendix A.2 (p. 3),"Pooling across the pre-COVID replication and original, the summary effect size estimate is 0.17 (SE = 0.01, P < 0.01)",0.174166697528828,0.17,2,1,0.174166697528828,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_summary_pre_se,Online Appendix A.2 (p. 3),"the summary effect size estimate is 0.17 (SE = 0.01, P < 0.01)",0.01494537091478543,0.01,2,1,0.01494537091478543,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_summary_covid,Online Appendix A.2 (p. 3),"compared to 0.11 (SE = 0.03, P < 0.01) for our replications",0.11109001849182036,0.11,2,1,0.11109001849182036,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_summary_covid_se,Online Appendix A.2 (p. 3),"compared to 0.11 (SE = 0.03, P < 0.01) for our replications",0.03078055465490208,0.03,2,1,0.03078055465490208,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_covid_vs_precovid_diff,Online Appendix A.2 (p. 3),"smaller than both the pre-COVID replication (difference of 9 percentage points, SE = 0.05, P = 0.02)",NA,9,0,NA,9.23473201280348,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_covid_vs_precovid_se,Online Appendix A.2 (p. 3),"difference of 9 percentage points, SE = 0.05, P = 0.02",NA,0.05,2,NA,0.045740308795599885,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_covid_vs_precovid_p,Online Appendix A.2 (p. 3),"difference of 9 percentage points, SE = 0.05, P = 0.02",NA,0.02,2,NA,0.043492590040677515,0,NA,paper_internal,The two-sided p-value is 0.044; the published 0.02 is the one-tailed value
+peyton_huber_coppock_2022,a2_covid_vs_direct_diff,Online Appendix A.2 (p. 3),"and our direct replication (difference of 8 percentage points, SE = 0.06, P = 0.09)",NA,8,0,NA,8.198963134886545,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_covid_vs_direct_se,Online Appendix A.2 (p. 3),"difference of 8 percentage points, SE = 0.06, P = 0.09",NA,0.06,2,NA,0.06157344646733055,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_covid_vs_direct_p,Online Appendix A.2 (p. 3),"difference of 8 percentage points, SE = 0.06, P = 0.09",NA,0.09,2,NA,0.18300004810906678,0,NA,paper_internal,The two-sided p-value is 0.183; the published 0.09 is the one-tailed value
+peyton_huber_coppock_2022,a6_difference,Online Appendix A.6 (p. 13),"The estimate from the original study is therefore 0.26 units larger, in the opposite direction, than the replication study (SE = 0.09, P < 0.01)",NA,0.26,2,NA,0.2648986653055364,1,NA,NA,NA
+peyton_huber_coppock_2022,a6_difference_se,Online Appendix A.6 (p. 13),"0.26 units larger, in the opposite direction, than the replication study (SE = 0.09, P < 0.01)",NA,0.09,2,NA,0.08860037771963962,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_direct_effect,Online Appendix A.7 (p. 15),"The estimated treatment effect is 0.39 (SE = 0.04, P < 0.01) in the direct replication",NA,0.39,2,NA,0.3896896277301259,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_direct_se,Online Appendix A.7 (p. 15),"The estimated treatment effect is 0.39 (SE = 0.04, P < 0.01) in the direct replication",NA,0.04,2,NA,0.0404251536980531,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_covid_effect,Online Appendix A.7 (p. 15),"and 0.38 in the COVID-specific replication (SE = 0.04, P < 0.01)",NA,0.38,2,NA,0.3838058054659647,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_covid_se,Online Appendix A.7 (p. 15),"and 0.38 in the COVID-specific replication (SE = 0.04, P < 0.01)",NA,0.04,2,NA,0.04011939313564167,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_covid_vs_direct_diff,Online Appendix A.7 (p. 15),The estimated treatment effect for the COVID-specific replication is about 0.01 points smaller than the direct replication,NA,0.01,2,NA,0.005883822264161176,NA,NA,NA,NA
+peyton_huber_coppock_2022,a7_covid_vs_direct_se,Online Appendix A.7 (p. 15),"about 0.01 points smaller than the direct replication (SE = 0.04, P = 0.46)",NA,0.04,2,NA,0.05695400562808017,0,NA,paper_internal,"The standard error of that difference is 0.057; the published 0.04 is the standard error of the difference against the pre-COVID benchmark, given in the next sentence"
+peyton_huber_coppock_2022,a7_covid_vs_direct_p,Online Appendix A.7 (p. 15),"about 0.01 points smaller than the direct replication (SE = 0.04, P = 0.46)",NA,0.46,2,NA,0.917718277767267,0,NA,paper_internal,The two-sided p-value is 0.919; the published 0.46 is the one-tailed value
+peyton_huber_coppock_2022,a7_relative_precovid,Online Appendix A.7 (p. 15),The direct replication is approximately 60% the size of the pre-COVID benchmark,NA,60,0,NA,60.84242654365,NA,NA,NA,NA
+peyton_huber_coppock_2022,a7_difference_precovid,Online Appendix A.7 (p. 15),"approximately 60% the size of the pre-COVID benchmark (difference of 0.25 points, SE = 0.04, P < 0.01)",NA,0.25,2,NA,0.25162995538927196,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_difference_precovid_se,Online Appendix A.7 (p. 15),"(difference of 0.25 points, SE = 0.04, P < 0.01)",NA,0.04,2,NA,0.0421179862498438,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_male_effect,Online Appendix A.9 (p. 22),the negative point estimates for Male indicate that male immigrants are about 2 percentage points less likely to be selected than female immigrants,NA,2,0,NA,1.933868529354489,1,NA,NA,NA
+peyton_huber_coppock_2022,a2_correspondence,Online Appendix A.2 (p. 3),for a correspondence of 64%,NA,64,0,NA,63.78373137231519,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_replications,Online Appendix A.3 (p. 5),The summary effect size for our five replications,NA,5,0,NA,5,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_precovid_studies,Online Appendix A.3 (p. 5),the summary effect size for the five pre-COVID experiments,NA,5,0,NA,5,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_covid_summary,Online Appendix A.3 (p. 5),"The summary effect size for our five replications is 0.15 (SE = 0.02, P < 0.01)",0.1468214632680544,0.15,2,1,0.1468214632680544,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_covid_se,Online Appendix A.3 (p. 5),"The summary effect size for our five replications is 0.15 (SE = 0.02, P < 0.01)",0.01857612538510998,0.02,2,1,0.01857612538510998,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_relative,Online Appendix A.3 (p. 5),approximately 50% the size of the summary effect size for the five pre-COVID experiments,NA,50,0,NA,50.88380641689448,NA,NA,NA,NA
+peyton_huber_coppock_2022,a3_pre_summary,Online Appendix A.3 (p. 5),"(summary effect size: 0.29, SE = 0.01, P < 0.01)",0.28854261032505346,0.29,2,1,0.28854261032505346,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_pre_se,Online Appendix A.3 (p. 5),"(summary effect size: 0.29, SE = 0.01, P < 0.01)",0.0137473063723327,0.01,2,1,0.0137473063723327,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_difference,Online Appendix A.3 (p. 5),"smaller than those from pre-COVID experiments (difference: 0.14, SE = 0.02, P < 0.01)",NA,0.14,2,NA,0.14172114705699906,1,NA,NA,NA
+peyton_huber_coppock_2022,a3_difference_se,Online Appendix A.3 (p. 5),"(difference: 0.14, SE = 0.02, P < 0.01)",NA,0.02,2,NA,0.02310975696146774,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_cawi_summary,Online Appendix A.4 (p. 6),"The summary effect size for the experimental estimates from CAWI surveys is 0.44 (SE = 0.02, P < 0.01)",0.4374812809373469,0.44,2,1,0.4374812809373469,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_cawi_se,Online Appendix A.4 (p. 6),"the experimental estimates from CAWI surveys is 0.44 (SE = 0.02, P < 0.01)",0.01710199317817524,0.02,2,1,0.01710199317817524,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_cawi_relative,Online Appendix A.4 (p. 6),approximately 44% the size of the summary effect sizes for the CAPI and PAPI surveys,NA,44,0,NA,44.0000855512954,NA,NA,NA,NA
+peyton_huber_coppock_2022,a4_capi_summary,Online Appendix A.4 (p. 6),"the CAPI (1.00, SE = 0.01, P < 0.01) surveys from the GSS",0.994273705280255,1.00,2,0,0.994273705280255,0,NA,paper_internal,"The pooled CAPI summary is 0.9943, which is 0.99 at the stated precision"
+peyton_huber_coppock_2022,a4_capi_se,Online Appendix A.4 (p. 6),"the CAPI (1.00, SE = 0.01, P < 0.01) surveys from the GSS",0.01240730192197381,0.01,2,1,0.01240730192197381,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_papi_summary,Online Appendix A.4 (p. 6),"and PAPI (1.05, SE = 0.01, P < 0.01) surveys from the GSS",1.0475506854221706,1.05,2,1,1.0475506854221706,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_papi_se,Online Appendix A.4 (p. 6),"and PAPI (1.05, SE = 0.01, P < 0.01) surveys from the GSS",0.01317493342067975,0.01,2,1,0.01317493342067975,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_experimental_summary,Online Appendix A.4 (p. 6),"our experimental estimates (summary effect size: 0.43, SE = 0.02, P < 0.01)",0.4344711671138928,0.43,2,1,0.4344711671138928,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_experimental_se,Online Appendix A.4 (p. 6),"our experimental estimates (summary effect size: 0.43, SE = 0.02, P < 0.01)",0.01812812837887351,0.02,2,1,0.01812812837887351,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_huber_summary,Online Appendix A.4 (p. 6),"are indistinguishable from the pre-COVID estimates (0.46, SE = 0.05, P < 0.01) from Huber and Paris (2013)",0.4618345713790354,0.46,2,1,0.4618345713790354,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_huber_se,Online Appendix A.4 (p. 6),"the pre-COVID estimates (0.46, SE = 0.05, P < 0.01) from Huber and Paris (2013)",0.05156325597004613,0.05,2,1,0.05156325597004613,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_benchmark_summary,Online Appendix A.4 (p. 8),"The summary effect size for these three estimates is 0.70 (SE = 0.04, P < 0.01)",0.7020664572126808,0.70,2,1,0.7020664572126808,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_benchmark_se,Online Appendix A.4 (p. 8),"The summary effect size for these three estimates is 0.70 (SE = 0.04, P < 0.01)",0.03557513442920204,0.04,2,1,0.03557513442920204,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_benchmark_relative,Online Appendix A.4 (p. 8),our COVID-era replication estimates are approximately 61% the size of this pre-COVID benchmark,NA,61,0,NA,61.88462112814999,NA,NA,NA,NA
+peyton_huber_coppock_2022,a4_footnote_3_cawi_q,Online Appendix A.4 footnote 3 (p. 8),"CAWI chi-squared: 12.72, P = 0.31",NA,12.72,2,NA,12.720586505551951,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_footnote_3_cawi_p,Online Appendix A.4 footnote 3 (p. 8),"CAWI chi-squared: 12.72, P = 0.31",NA,0.31,2,NA,0.3119793563781196,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_footnote_3_capi_q,Online Appendix A.4 footnote 3 (p. 8),"CAPI chi-squared: 17.21, P = 0.03",NA,17.21,2,NA,17.209543412869515,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_footnote_3_capi_p,Online Appendix A.4 footnote 3 (p. 8),"CAPI chi-squared: 17.21, P = 0.03",NA,0.03,2,NA,0.02799959579430284,1,NA,NA,NA
+peyton_huber_coppock_2022,a4_footnote_3_papi_q,Online Appendix A.4 footnote 3 (p. 8),"PAPI chi-squared: 85.19, P < 0.01",NA,85.19,2,NA,85.1939998963695,1,NA,NA,NA
+peyton_huber_coppock_2022,a6_original_estimate,Online Appendix A.6 (p. 13),"The estimated treatment effect in the original study is an increase in support for foreign aid of 0.21 (SE = 0.06, P =< 0.01)",NA,0.21,2,NA,0.212443625753144,1,NA,NA,NA
+peyton_huber_coppock_2022,a6_original_se,Online Appendix A.6 (p. 13),"an increase in support for foreign aid of 0.21 (SE = 0.06, P =< 0.01)",NA,0.06,2,NA,0.06352206011912954,1,NA,NA,NA
+peyton_huber_coppock_2022,a6_replication_estimate,Online Appendix A.6 (p. 13),"The estimated treatment effect in the replication study is a decrease in support for foreign aid by 0.05 (SE = 0.06, P = 0.40)",NA,0.05,2,NA,0.05245503955239242,1,NA,NA,NA
+peyton_huber_coppock_2022,a6_replication_se,Online Appendix A.6 (p. 13),"a decrease in support for foreign aid by 0.05 (SE = 0.06, P = 0.40)",NA,0.06,2,NA,0.06176548235288465,1,NA,NA,NA
+peyton_huber_coppock_2022,a6_replication_p,Online Appendix A.6 (p. 13),"a decrease in support for foreign aid by 0.05 (SE = 0.06, P = 0.40)",NA,0.40,2,NA,0.39593205695418177,1,NA,NA,NA
+peyton_huber_coppock_2022,a7_ml_effect,Online Appendix A.7 (p. 14),"the replication study from Klein et al. (2018), which found an estimated treatment effect of 64 percentage points",NA,64,0,NA,64.13195831193978,1,NA,NA,NA
+peyton_huber_coppock_2022,a8_9090_success,Online Appendix A.8 (p. 17),a 90/90 condition in which the nuclear and conventional strike both had a 90% chance of success. The condition label names the conventional strike's chance of success,NA,90,0,NA,90,1,NA,NA,NA
+peyton_huber_coppock_2022,a8_9070_success,Online Appendix A.8 (p. 17),a 90/70 condition in which the conventional strike had a 75% chance of success. The condition label names the conventional strike's chance of success,NA,75,0,NA,70,0,NA,paper_internal,"The condition is labelled 90/70 throughout, and its two siblings are described at the rates their labels name"
+peyton_huber_coppock_2022,a8_9045_success,Online Appendix A.8 (p. 17),a 90/45 condition in which the conventional strike had a 45% chance of success. The condition label names the conventional strike's chance of success,NA,45,0,NA,45,1,NA,NA,NA
+peyton_huber_coppock_2022,a8_original_9070_prefer,Online Appendix A.8 (p. 18),"In the original study, the 90/70 condition caused an increase in the proportion of subject that preferred the nuclear option by about 37 percentage points relative to the 90/90 condition",29.710617383018263,37,0,0,29.710617383018263,0,NA,paper_internal,"The original study's estimate is 29.7 points; 37 is the Aronow, Baron and Pinson replication's, as appendix Table 2 prints"
+peyton_huber_coppock_2022,a8_original_9045_prefer,Online Appendix A.8 (p. 18),"The estimated effect of the 90/45 condition, relative to the 90/90 condition, was 51 percentage points",47.558386411889686,51,0,0,47.558386411889686,0,NA,paper_internal,"The original study's estimate is 47.6 points; 51 is the Aronow, Baron and Pinson replication's"
+peyton_huber_coppock_2022,a8_original_9070_approve,Online Appendix A.8 (p. 18),the 90/70 condition caused an increase in the proportion of subjects that approved of the nuclear option by about 17 percentage points,5.13566377451229,17,0,0,5.13566377451229,0,NA,paper_internal,"The original study's estimate is 5.1 points; 17 is the Aronow, Baron and Pinson replication's"
+peyton_huber_coppock_2022,a8_original_9045_approve,Online Appendix A.8 (p. 18),and the 90/45 condition caused an increase of about 27 percentage points,27.51828261382409,27,0,0,27.51828261382409,0,NA,paper_internal,"The original study's estimate is 27.5 points; 27 is the Aronow, Baron and Pinson replication's"
+peyton_huber_coppock_2022,a8_abp_retrospective_approve,Online Appendix A.8 (p. 19),the nuclear strike caused a 12 percentage point reduction in the proportion of respondents who approved the strike,11.7077895332973,12,0,1,11.7077895332973,1,NA,NA,NA
+peyton_huber_coppock_2022,a8_abp_retrospective_ethical,Online Appendix A.8 (p. 19),and a 13 percentage point reduction in the proportion who believed the strike was ethical,12.57883491646716,13,0,1,12.57883491646716,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_country_levels,Online Appendix A.9 (p. 22),country was 10 levels,NA,10,0,NA,10,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_gender_levels,Online Appendix A.9 (p. 22),and gender was 2,NA,2,0,NA,2,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_total_amces,Online Appendix A.9 (p. 22),"In total, there are 81 estimated AMCEs in Figure A.10",NA,81,0,NA,82,0,NA,paper_internal,41 for the original study and 41 for the replication is 82
+peyton_huber_coppock_2022,a9_amces_original,Online Appendix A.9 (p. 22),41 for the original study,NA,41,0,NA,41,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_amces_replication,Online Appendix A.9 (p. 22),and 41 for the replication,NA,41,0,NA,41,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_opposite_sign_count,Online Appendix A.9 (p. 22),Only one of 41 replication estimates is signed in the opposite direction when compared to the original study,NA,1,0,NA,1,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_gardener_original,Online Appendix A.9 (p. 22),the AMCE for Gardener is 0.02 points in the original study and approximately zero in the replication,NA,0.02,2,NA,0.01590735623625289,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_smaller_count,Online Appendix A.9 (p. 23),The majority of the replication estimates (27 of 41) are smaller in magnitude than the original estimates,NA,27,0,NA,27,1,NA,NA,NA
+peyton_huber_coppock_2022,a9_footnote_4_fdr,Online Appendix A.9 footnote 4 (p. 23),only 7 of 41 differences are statistically significant after correcting for multiple comparisons to control the false discovery rate,7,7,0,1,7,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_stories,Online Appendix A.10 (p. 25),randomly selected from a sample of six fake news stories,NA,6,0,NA,6,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_original_low,Online Appendix A.10 (p. 25),average treatment effects ranging from -0.24 scale points on the low end,NA,-0.24,2,NA,-0.24433206689918485,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_original_high,Online Appendix A.10 (p. 25),to -0.95 scale points on the high end,NA,-0.95,2,NA,-0.9477800711787796,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_replication_n,Online Appendix A.10 (p. 25),"a direct replication of this experiment on a sample of 1,415 respondents in April 2020",NA,1415,0,NA,1415,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_replication_low,Online Appendix A.10 (p. 25),"All replication estimates, ranging from -0.04 to -0.67",NA,-0.04,2,NA,-0.04246997703418995,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_replication_high,Online Appendix A.10 (p. 25),"All replication estimates, ranging from -0.04 to -0.67",NA,-0.67,2,NA,-0.6717271291947566,1,NA,NA,NA
+peyton_huber_coppock_2022,a10_footnote_5_significant,Online Appendix A.10 footnote 5 (p. 25),only two of these differences (John Podesta and Trump stories) are statistically distinguishable from zero,NA,2,0,NA,4,0,NA,paper_internal,Four of the six differences are significant before adjustment and three after controlling the false discovery rate
+peyton_huber_coppock_2022,a11_all_smaller,Online Appendix A.11 (p. 28),all 5 replication estimates are smaller in magnitude than those in the original study,NA,5,0,NA,5,1,NA,NA,NA
+peyton_huber_coppock_2022,a12_replication_n,Online Appendix A.12 (p. 29),"a direct replication of Experiment 3 on a sample of 1,424 respondents in May 2020",NA,1424,0,NA,1424,1,NA,NA,NA
+peyton_huber_coppock_2022,b_surveys,Online Appendix B (p. 31),These estimates are presented below for the pooled sample of respondents across all 13 surveys that we conducted between March and July 2020,NA,13,0,NA,13,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_correctly_signed,Corrigendum (p. 306),"Of the 24 correctly signed estimates, 11 were significantly smaller in replication",24,24,0,1,24,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_sig_smaller_of_24,Corrigendum (p. 306),"Of the 24 correctly signed estimates, 11 were significantly smaller in replication",11,11,0,1,11,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_incorrectly_signed,Corrigendum (p. 309),"Of the four incorrectly signed estimates, three were significantly different",4,4,0,1,4,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_sig_among_incorrect,Corrigendum (p. 309),"Of the four incorrectly signed estimates, three were significantly different",3,3,0,1,3,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_atomic_sig_count,Corrigendum (p. 309),the foreign aid misperceptions study and two of six estimates from the atomic aversion study,NA,2,0,NA,2,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_atomic_estimate_count,Corrigendum (p. 309),two of six estimates from the atomic aversion study,NA,6,0,NA,6,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_conjoint_pairs,Corrigendum (p. 309),Figure 3 plots the analogous information for the 41 conjoint estimates and their 41 replications,41,41,0,1,41,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_conjoint_smaller,Corrigendum (p. 309),"Of these, 35 of 41 were smaller in replication (11 statistically significant differences)",35,35,0,1,35,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_conjoint_sig_among_smaller,Corrigendum (p. 309),35 of 41 were smaller in replication (11 statistically significant differences),11,11,0,1,11,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_conjoint_larger,Corrigendum (p. 309),and 6 of 41 were larger in replication (1 of 6 significant differences),6,6,0,1,6,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_conjoint_sig_among_larger,Corrigendum (p. 309),6 of 41 were larger in replication (1 of 6 significant differences),1,1,0,1,1,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_1_caption_pairs,Corrigendum Figure 1 caption (p. 307),Comparison of 28 summary effect sizes across 11 studies (conjoint excluded),28,28,0,1,28,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_1_caption_studies,Corrigendum Figure 1 caption (p. 307),Comparison of 28 summary effect sizes across 11 studies (conjoint excluded),NA,11,0,NA,11,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_1a_note_sig,Corrigendum Figure 1a note (p. 307),Thirteen of 28 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05. The note reprinted with the article's original panel,14,13,0,0,14,0,NA,paper_internal,"The note reprinted above the corrigendum's original panel, superseded by the corrected panel on the same page"
+peyton_huber_coppock_2022,corrigendum_figure_1b_note_sig,Corrigendum Figure 1b note (p. 307),14 of 28 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05,14,14,0,1,14,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_1b_note_fdr,Corrigendum Figure 1b note (p. 307),and 13 of these (denoted by square shaped points) remained statistically significant after adjusting for multiple comparisons to control the false discovery rate,13,13,0,1,13,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_2_caption_pairs,Corrigendum Figure 2 caption (p. 308),Comparison of 41 summary effect sizes in conjoint experiments,41,41,0,1,41,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_2a_note_sig,Corrigendum Figure 2a note (p. 308),7 of 41 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05. The note reprinted with the article's original panel,12,7,0,0,12,0,NA,paper_internal,"The note reprinted above the corrigendum's original panel, superseded by the corrected panel on the same page"
+peyton_huber_coppock_2022,corrigendum_figure_2b_note_sig,Corrigendum Figure 2b note (p. 308),12 of 41 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05,12,12,0,1,12,1,NA,NA,NA
+peyton_huber_coppock_2022,corrigendum_figure_2b_note_fdr,Corrigendum Figure 2b note (p. 308),and 7 of these (denoted by square shaped points) remained statistically significant after adjusting for multiple comparisons,7,7,0,1,7,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_2,Float inventory,"Figure 2 plots 28 points, one per non-conjoint study-outcome pair, each with a horizontal and a vertical interval",NA,28,0,NA,28,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_3,Float inventory,"Figure 3 plots 41 points, one per conjoint attribute level, each with a horizontal and a vertical interval",NA,41,0,NA,41,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_5,Float inventory,"Figure 5 plots ten estimates with intervals, on the ten labelled rows below its two headings",NA,10,0,NA,10,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a1,Float inventory,"Figure A.1 plots four estimates, on the rows labelled Hyman and Sheatsley (1950), Schuman and Presser (1980), Schuman et al. (1983) and Week 3",NA,4,0,NA,4,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a2,Float inventory,"Figure A.2 plots four estimates, on the rows labelled Tversky and Kahneman (1981), Many Labs (2018), Direct replication and COVID-specific",NA,4,0,NA,4,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a3,Float inventory,"Figure A.3 plots ten estimates, on ten labelled rows",NA,10,0,NA,10,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a4,Float inventory,"Figure A.4 plots 34 estimates across three panels: fourteen computer-assisted web interviews, nine computer-assisted personal interviews and eleven paper and pencil interviews",NA,34,0,NA,34,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a5,Float inventory,"Figure A.5 plots 24 estimates: two partisan panels, three risk-averse labels and four studies",NA,24,0,NA,24,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a6,Float inventory,"Figure A.6 plots two estimates, on the rows labelled Gilens (2001) and Week 3",NA,2,0,NA,2,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a7,Float inventory,"Figure A.7 plots four estimates, on four labelled rows",NA,4,0,NA,4,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a8,Float inventory,"Figure A.8 plots 20 estimates: two outcome panels, five surveys and the 90/70 and 90/45 contrasts",NA,20,0,NA,20,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a9,Float inventory,Figure A.9 plots ten estimates: two outcome panels and five surveys,NA,10,0,NA,10,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a10,Float inventory,"Figure A.10 plots 82 estimates, the original study and the replication for each of 41 attribute levels",NA,82,0,NA,82,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a11,Float inventory,"Figure A.11 plots twelve estimates, the original study and the replication for each of six stories",NA,12,0,NA,12,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a12,Float inventory,"Figure A.12 plots ten estimates: two manipulation checks and three outcome scales, each for the original study and the replication",NA,10,0,NA,10,1,NA,NA,NA
+peyton_huber_coppock_2022,plotted_figure_a13,Float inventory,Figure A.13 plots eight estimates: two outcome panels and four samples,NA,8,0,NA,8,1,NA,NA,NA
+peyton_huber_coppock_2022,intro_lucid_tripled,Introduction (p. 2),purchases by academic clients on Lucid nearly tripled between 2019 and 2020,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,figure_1_coverage_period,Figure 1 note (p. 3),Proprietary data provided by Lucid cover the period 1 January 2019 - 18 March 2021,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,background_figure_1_reference,Background (p. 3),cross-reference: (see Figure 1),NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,design_modified_studies,Selection criteria (p. 5),"Modified versions of studies 2, 3, 5, and 7 were also replicated using COVID-specific content",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,design_appendix_a_reference,Selection criteria (p. 5),cross-reference: A description of each modified version ... are provided in Online Appendix Section A,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,results_table_1_reference,Results (p. 5),cross-reference: the 12 pre-COVID studies listed in Table 1,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,results_all_smaller_nonconjoint,Results (p. 6),All replication summary estimates were smaller in magnitude than their pre-COVID estimates,NA,NA,0,NA,NA,NA,FALSE,paper_internal,"Twenty-seven of the 28 non-conjoint replication estimates are smaller in magnitude; the redistribution pair is not, because its pre-COVID summary is essentially zero"
+peyton_huber_coppock_2022,results_foreign_aid_significant,Results (p. 6),the foreign aid misperceptions study [is one of the three significantly different incorrectly signed estimates],NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,results_conjoint_same_sign,Results (p. 6),all of which are signed in the same direction,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,results_figures_2_3_reference,Results (p. 6),cross-reference: the 65 of 69 correctly signed pairs presented in Figures 2-3,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,footnote_5_table_2_reference,Footnote 5 (p. 9),cross-reference: the Easy ACQ from Table 2,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,device_additional_sample_period,Inattention (p. 10),"an additional sample of 63,245 respondents obtained from Lucid surveys fielded prior to March 2020",NA,NA,0,NA,NA,NA,FALSE,paper_internal,"The 63,245 respondents are those in the 25 UserAgent surveys other than the thirteen reported here, two of which were fielded in May and June 2020"
+peyton_huber_coppock_2022,device_trending_upward,Inattention (p. 10),the proportion of participants from both web applications and mobiles was trending upward prior to the COVID-19 outbreak,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,device_figure_4_reference,Inattention (p. 10),"cross-reference: These results, reported in Figure 4",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,device_acq_significance,Inattention (p. 10),"found those on web applications (or mobiles) were significantly less likely to pass the ACQs, compared to those coming from browsers (or nonmobiles)",NA,NA,0,NA,NA,NA,FALSE,paper_internal,"Five of the six contrasts in Table 2 are significant; the Easy check's nonmobile-versus-mobile contrast is not, and Table 2 prints it without an asterisk"
+peyton_huber_coppock_2022,device_table_2_reference,Inattention (p. 10),cross-reference: These results are reported in Table 2,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,table_2_note_c9_c10_reference,Table 2 note (p. 11),cross-reference: novel ACQs that subjects completed after reading a short news article (see Fig. C.9-C.10),NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,table_2_note_c11_reference,Table 2 note (p. 11),cross-reference: passed by 87% of respondents in the original study (see Fig. C.11),NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,figure_5_reference,Inattention (p. 11),cross-reference: Figure 5 shows that regardless of the approach used to classify subjects as attentive,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,figure_5_attentive_positive,Inattention (p. 11),estimated treatment effects among the attentive are positive and significant,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,figure_5_inattentive_near_zero,Inattention (p. 11),estimated treatment effects were all close to zero and nonsignificant [for the three inattentive subgroups],NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,inattention_figure_5_reference,Inattention (p. 11),cross-reference: consistent with the evidence provided in Figure 5,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,discussion_one_exception,Discussion (p. 12),"Because these pre-COVID experiments were, with one exception, successfully replicated",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a2_c1_c4_reference,Online Appendix A.2 (p. 3),cross-reference: See Figures C.1-C.4 for a full description of each condition,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a2_summaries_significant,Online Appendix A.2 (p. 3),both summary effect sizes are reported with P < 0.01,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a3_all_distinguishable,Online Appendix A.3 (p. 5),"all COVID-era replication estimates are statistically distinguishable from zero, and in the expected direction",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a4_within_subject_weeks,Online Appendix A.4 (p. 6),Two of our replications (Week 9 and Week 5) were within-subject experiments,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a4_all_distinguishable,Online Appendix A.4 (p. 6),All replication estimates are statistically distinguishable from zero and are in the expected direction,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a4_footnote_3_papi_p,Online Appendix A.4 footnote 3 (p. 8),"PAPI chi-squared: 85.19, P < 0.01",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a4_week_13_direct,Online Appendix A.4 figure note (p. 9),Week 13 is a direct replication of Huber and Paris (2013) using the GSS question wordings,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a5_table_reference,Online Appendix A.5 (p. 11),cross-reference: Table A.5 provides a summary of differences between the original study and the replications by treatment arm,NA,NA,0,NA,NA,NA,FALSE,paper_internal,The appendix carries no Table A.5; the table this sentence points at is captioned Table 1
+peyton_huber_coppock_2022,a5_program_a_significant,Online Appendix A.5 (p. 10),All estimates are statistically distinguishable from zero and in the expected direction when Program A is used to describe the risk-averse alternative,NA,NA,0,NA,NA,NA,FALSE,unresolved,"Seven of the eight plotted Program A estimates are distinguishable from zero; the sentence does not say whether it describes the plotted study-level estimates or the pooled summaries, and it holds for the summaries"
+peyton_huber_coppock_2022,a5_partisan_attenuation,Online Appendix A.5 (pp. 10-11),"among Democrats, preference reversal effects are indistinguishable from zero when Program A is replaced with Republicans' Program; among Republicans, when replaced with Democrats' Program",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a5_all_expected_direction,Online Appendix A.5 (p. 11),"Although the replications estimates are, on average, smaller than those from the original study, all replication estimates are in the expected direction",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a6_only_failure,Online Appendix A.6 (p. 13),This is the only experimental result among our set that we classify as a replication failure,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a7_c5_c8_reference,Online Appendix A.7 (p. 15),cross-reference: See Figures C.5-C.8 for full text of each condition,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a7_all_distinguishable,Online Appendix A.7 (p. 15),all estimates are in the expected direction and statistically distinguishable from zero,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a8_monotonic,Online Appendix A.8 (p. 18),estimated treatment effects increased monotonically with the relative effectiveness of nuclear weapons,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a8_table_2_reference,Online Appendix A.8 (p. 19),cross-reference: Table 2 provides a summary of the differences in estimates from the prospective experiment,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a8_approve_opposite_sign,Online Appendix A.8 (p. 19),Estimates for the Approve Nuclear Use outcome were of the opposite sign and not distinguishable from zero in 2/3 of our replications,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a8_table_3_reference,Online Appendix A.8 (p. 19),cross-reference: Table 3 provides a summary of the differences in estimates from the retrospective experiment,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a8_prefer_smaller_significant,Online Appendix A.8 (p. 19),"our replication estimates for the Prefer Nuclear Use outcome in the prospective experiment are significantly smaller, but of the expected sign and statistically distinguishable from zero",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a9_gardener_not_significant,Online Appendix A.9 (p. 22),but neither estimate is distinguishable from zero,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a10_all_smaller,Online Appendix A.10 (p. 25),"All replication estimates are uniformly smaller then those in the original study, but all are correctly signed",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a10_footnote_5_named,Online Appendix A.10 footnote 5 (p. 25),the two significantly different stories are the John Podesta and Trump stories,NA,NA,0,NA,NA,NA,FALSE,paper_internal,The Scaramucci and Vermont stories are also significantly different before adjustment
+peyton_huber_coppock_2022,a11_expected_direction,Online Appendix A.11 (p. 28),All replication estimates are in the expected direction when compared to the original study,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a11_none_significant,Online Appendix A.11 (p. 28),none of these differences are statistically distinguishable from zero,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a12_original_trust_significant,Online Appendix A.12 (p. 29),The author found significant effects on subjects' trust in government in all three experiments,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a12_original_redistribution_null,Online Appendix A.12 (p. 29),but support for redistribution was indistinguishable from zero,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a12_replication_trust_significant,Online Appendix A.12 (p. 29),"The estimated treatment effect on trust in government in the replication is statistically distinguishable from zero, and in the expected direction",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a12_replication_smaller,Online Appendix A.12 (p. 30),this estimate is significantly smaller in magnitude than all of the estimates in the original study,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,a12_replication_redistribution_null,Online Appendix A.12 (p. 30),The estimated treatment effects on support for redistribution are indistinguishable from zero in the replication,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,corrigendum_scope,Corrigendum (p. 306),Correcting these mistakes affects Figures 2-3 and the first paragraph on p. 6 in the published article,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,corrigendum_conclusions_unchanged,Corrigendum (p. 306),"All point estimates, standard errors, and substantive conclusions are unchanged",NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,corrigendum_archive_updated,Corrigendum (p. 309),The replication archive has been updated so that the code used to generate Figures 2-3 now produces the correct versions shown here in Figures 1-2,NA,NA,0,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,table_2_easy_browser_estimate,Table 2,"Table 2, Easy ACQ, Browser estimate",0.659,0.66,2,1,0.6590563165905643,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_browser_se,Table 2,"Table 2, Easy ACQ, Browser se",0.019,0.02,2,1,0.01850762401212402,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_webapp_estimate,Table 2,"Table 2, Easy ACQ, Web-App estimate",0.545,0.55,2,1,0.5448916408668737,0,NA,archive,"The deposited script rounds each pass rate to three decimals before formatting to two, so 0.5449 is printed as 0.55; the rate itself is 0.54 at the published precision"
+peyton_huber_coppock_2022,table_2_easy_webapp_se,Table 2,"Table 2, Easy ACQ, Web-App se",0.02,0.02,2,1,0.01960796945162698,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_browser_webapp_estimate,Table 2,"Table 2, Easy ACQ, Browser minus Web-App estimate",0.114,0.11,2,1,0.1141646757236906,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_browser_webapp_se,Table 2,"Table 2, Easy ACQ, Browser minus Web-App se",0.02758622844826744,0.03,2,1,0.02696302306103836,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_nonmobile_estimate,Table 2,"Table 2, Easy ACQ, Nonmobile estimate",0.631,0.63,2,1,0.6310483870967734,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_nonmobile_se,Table 2,"Table 2, Easy ACQ, Nonmobile se",0.022,0.02,2,1,0.0216876970308907,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_mobile_estimate,Table 2,"Table 2, Easy ACQ, Mobile estimate",0.585,0.58,2,1,0.5848822800495673,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_mobile_se,Table 2,"Table 2, Easy ACQ, Mobile se",0.017,0.02,2,1,0.01735610813217543,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_nonmobile_mobile_estimate,Table 2,"Table 2, Easy ACQ, Nonmobile minus Mobile estimate",0.04600000000000004,0.05,2,1,0.04616610704720603,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_easy_nonmobile_mobile_se,Table 2,"Table 2, Easy ACQ, Nonmobile minus Mobile se",0.02780287754891568,0.03,2,1,0.02777752134369572,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_browser_estimate,Table 2,"Table 2, Medium ACQ, Browser estimate",0.53,0.53,2,1,0.5296803652968042,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_browser_se,Table 2,"Table 2, Medium ACQ, Browser se",0.019,0.02,2,1,0.01948729557676258,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_webapp_estimate,Table 2,"Table 2, Medium ACQ, Web-App estimate",0.37,0.37,2,1,0.3699690402476783,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_webapp_se,Table 2,"Table 2, Medium ACQ, Web-App se",0.019,0.02,2,1,0.01901007278920813,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_browser_webapp_estimate,Table 2,"Table 2, Medium ACQ, Browser minus Web-App estimate",0.16000000000000003,0.16,2,1,0.15971132504912583,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_browser_webapp_se,Table 2,"Table 2, Medium ACQ, Browser minus Web-App se",0.0268700576850888,0.03,2,1,0.02722384168972303,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_nonmobile_estimate,Table 2,"Table 2, Medium ACQ, Nonmobile estimate",0.5,0.50,2,1,0.49999999999999944,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_nonmobile_se,Table 2,"Table 2, Medium ACQ, Nonmobile se",0.022,0.02,2,1,0.02247332874877475,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_mobile_estimate,Table 2,"Table 2, Medium ACQ, Mobile estimate",0.42,0.42,2,1,0.4200743494423796,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_mobile_se,Table 2,"Table 2, Medium ACQ, Mobile se",0.017,0.02,2,1,0.01738528121591661,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_nonmobile_mobile_estimate,Table 2,"Table 2, Medium ACQ, Nonmobile minus Mobile estimate",0.08000000000000002,0.08,2,1,0.07992565055761985,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_medium_nonmobile_mobile_se,Table 2,"Table 2, Medium ACQ, Nonmobile minus Mobile se",0.02780287754891568,0.03,2,1,0.02841299892667103,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_browser_estimate,Table 2,"Table 2, Hard ACQ, Browser estimate",0.223,0.22,2,1,0.22289156626506015,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_browser_se,Table 2,"Table 2, Hard ACQ, Browser se",0.016,0.02,2,1,0.01616333093447595,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_webapp_estimate,Table 2,"Table 2, Hard ACQ, Web-App estimate",0.154,0.15,2,1,0.15394736842105256,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_webapp_se,Table 2,"Table 2, Hard ACQ, Web-App se",0.013,0.01,2,1,0.01309977803960069,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_browser_webapp_estimate,Table 2,"Table 2, Hard ACQ, Browser minus Web-App estimate",0.069,0.07,2,1,0.0689441978440076,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_browser_webapp_se,Table 2,"Table 2, Hard ACQ, Browser minus Web-App se",0.0206155281280883,0.02,2,1,0.02080522654488991,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_nonmobile_estimate,Table 2,"Table 2, Hard ACQ, Nonmobile estimate",0.24,0.24,2,1,0.24034334763948503,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_nonmobile_se,Table 2,"Table 2, Hard ACQ, Nonmobile se",0.02,0.02,2,1,0.01981519037619907,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_mobile_estimate,Table 2,"Table 2, Hard ACQ, Mobile estimate",0.16,0.16,2,1,0.1597077244258873,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_mobile_se,Table 2,"Table 2, Hard ACQ, Mobile se",0.012,0.01,2,1,0.01184192149467703,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_nonmobile_mobile_estimate,Table 2,"Table 2, Hard ACQ, Nonmobile minus Mobile estimate",0.07999999999999999,0.08,2,1,0.0806356232135978,1,NA,NA,NA
+peyton_huber_coppock_2022,table_2_hard_nonmobile_mobile_se,Table 2,"Table 2, Hard ACQ, Nonmobile minus Mobile se",0.0233238075793812,0.02,2,1,0.02308403938506227,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_ycls_summary_estimate,Appendix Table 1,Appendix Table 1 | Program A | Democrats | YCLS summary estimate,0.15059399238413726,0.15,2,1,0.15059399238413726,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_ycls_summary_se,Appendix Table 1,Appendix Table 1 | Program A | Democrats | YCLS summary se,0.04474029831081451,0.04,2,1,0.04474029831081451,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_druckman_2001__estimate,Appendix Table 1,Appendix Table 1 | Program A | Democrats | Druckman (2001) estimate,0.4647058823529413,0.46,2,1,0.4647058823529413,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_druckman_2001__se,Appendix Table 1,Appendix Table 1 | Program A | Democrats | Druckman (2001) se,0.11266688807882984,0.11,2,1,0.11266688807882984,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_difference_estimate,Appendix Table 1,Appendix Table 1 | Program A | Democrats | Difference estimate,-0.314111889968804,-0.31,2,1,-0.314111889968804,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_difference_se,Appendix Table 1,Appendix Table 1 | Program A | Democrats | Difference se,0.1212250880070138,0.12,2,1,0.1212250880070138,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_ycls_summary_estimate,Appendix Table 1,Appendix Table 1 | Program A | Republicans | YCLS summary estimate,0.1953106189858295,0.20,2,1,0.1953106189858295,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_ycls_summary_se,Appendix Table 1,Appendix Table 1 | Program A | Republicans | YCLS summary se,0.04651815284736427,0.05,2,1,0.04651815284736427,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_druckman_2001__estimate,Appendix Table 1,Appendix Table 1 | Program A | Republicans | Druckman (2001) estimate,0.4119047619047618,0.41,2,1,0.4119047619047618,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_druckman_2001__se,Appendix Table 1,Appendix Table 1 | Program A | Republicans | Druckman (2001) se,0.14506543004832964,0.15,2,1,0.14506543004832964,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_difference_estimate,Appendix Table 1,Appendix Table 1 | Program A | Republicans | Difference estimate,-0.21659414291893228,-0.22,2,1,-0.21659414291893228,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_difference_se,Appendix Table 1,Appendix Table 1 | Program A | Republicans | Difference se,0.15234145049669695,0.15,2,1,0.15234145049669695,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_ycls_summary_estimate,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | YCLS summary estimate,0.10517926287981384,0.11,2,1,0.10517926287981384,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_ycls_summary_se,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | YCLS summary se,0.03394420850485905,0.03,2,1,0.03394420850485905,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_druckman_2001__estimate,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | Druckman (2001) estimate,0.2104072398190047,0.21,2,1,0.2104072398190047,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_druckman_2001__se,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | Druckman (2001) se,0.11019230788956196,0.11,2,1,0.11019230788956196,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_difference_estimate,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | Difference estimate,-0.10522797693919086,-0.11,2,1,-0.10522797693919086,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_difference_se,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | Difference se,0.11530201216392263,0.12,2,1,0.11530201216392263,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_ycls_summary_estimate,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | YCLS summary estimate,0.05842287934294005,0.06,2,1,0.05842287934294005,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_ycls_summary_se,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | YCLS summary se,0.03759586720978229,0.04,2,1,0.03759586720978229,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_druckman_2001__estimate,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | Druckman (2001) estimate,0.03529411764705894,0.04,2,1,0.03529411764705894,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_druckman_2001__se,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | Druckman (2001) se,0.133836995659463,0.13,2,1,0.133836995659463,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_difference_estimate,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | Difference estimate,0.0231287616958811,0.02,2,1,0.0231287616958811,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_difference_se,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | Difference se,0.13901723144418718,0.14,2,1,0.13901723144418718,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_ycls_summary_estimate,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | YCLS summary estimate,0.05142505121883323,0.05,2,1,0.05142505121883323,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_ycls_summary_se,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | YCLS summary se,0.03706760646968065,0.04,2,1,0.03706760646968065,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_druckman_2001__estimate,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | Druckman (2001) estimate,0.1455301455301455,0.15,2,1,0.1455301455301455,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_druckman_2001__se,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | Druckman (2001) se,0.09684923653117468,0.10,2,1,0.09684923653117468,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_difference_estimate,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | Difference estimate,-0.09410509431131228,-0.09,2,1,-0.09410509431131228,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_difference_se,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | Difference se,0.10370044390484802,0.10,2,1,0.10370044390484802,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_ycls_summary_estimate,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | YCLS summary estimate,0.09522749386663952,0.10,2,1,0.09522749386663952,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_ycls_summary_se,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | YCLS summary se,0.03480505863330833,0.03,2,1,0.03480505863330833,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_druckman_2001__estimate,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | Druckman (2001) estimate,0.055944055944056,0.06,2,1,0.055944055944056,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_druckman_2001__se,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | Druckman (2001) se,0.13978552788371212,0.14,2,1,0.13978552788371212,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_difference_estimate,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | Difference estimate,0.03928343792258353,0.04,2,1,0.03928343792258353,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_difference_se,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | Difference se,0.14405341340001662,0.14,2,1,0.14405341340001662,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_ycls_summary_estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | YCLS summary estimate,0.09470227594235696,0.08,2,0,0.07874830168300552,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_ycls_summary_se,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | YCLS summary se,0.02328311486223962,0.02,2,1,0.02466377664891175,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_press_et_al_2013__estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | Press et al. (2013) estimate,0.2971061738301826,0.30,2,1,0.2971061738301826,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_press_et_al_2013__se,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | Press et al. (2013) se,0.05453305631302247,0.05,2,1,0.05453305631302247,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_psv_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | psv_diff estimate,-0.20240389788782565,-0.22,2,0,-0.2183578721471771,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_psv_diff_se,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | psv_diff se,0.05929551136913758,0.06,2,1,0.05985111619198664,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_aronow_et_al_2019__estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | Aronow et al. (2019) estimate,0.36762655805816663,0.37,2,1,0.36762655805816663,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_aronow_et_al_2019__se,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | Aronow et al. (2019) se,0.02597173772111781,0.03,2,1,0.02597173772111781,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_abp_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | abp_diff estimate,-0.27292428211580966,-0.29,2,0,-0.2888782563751611,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_abp_diff_se,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | abp_diff se,0.03488028953352849,0.04,2,0,0.03581665867779878,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_ycls_summary_estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | YCLS summary estimate,0.15227918574750038,0.13,2,0,0.12662554452847233,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_ycls_summary_se,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | YCLS summary se,0.02453087559259065,0.03,2,0,0.02598552814765863,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_press_et_al_2013__estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | Press et al. (2013) estimate,0.47558386411889686,0.48,2,1,0.47558386411889686,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_press_et_al_2013__se,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | Press et al. (2013) se,0.04869390764367955,0.05,2,1,0.04869390764367955,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_psv_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | psv_diff estimate,-0.3233046783713965,-0.35,2,0,-0.34895831959042456,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_psv_diff_se,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | psv_diff se,0.05452394427176333,0.06,2,0,0.05519369814321153,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_aronow_et_al_2019__estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | Aronow et al. (2019) estimate,0.5148886712283406,0.51,2,1,0.5148886712283406,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_aronow_et_al_2019__se,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | Aronow et al. (2019) se,0.02528185493979006,0.03,2,1,0.02528185493979006,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_abp_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | abp_diff estimate,-0.3626094854808402,-0.39,2,0,-0.3882631266998683,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_abp_diff_se,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | abp_diff se,0.03522692218368995,0.04,2,1,0.03625492880022447,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_ycls_summary_estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | YCLS summary estimate,-0.04635034699255466,-0.04,2,0,-0.03862400728939073,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_ycls_summary_se,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | YCLS summary se,0.0287740620626941,0.03,2,1,0.0321671728069822,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_press_et_al_2013__estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | Press et al. (2013) estimate,0.0513566377451229,0.05,2,1,0.0513566377451229,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_press_et_al_2013__se,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | Press et al. (2013) se,0.05979215163001947,0.06,2,1,0.05979215163001947,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_psv_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | psv_diff estimate,-0.09770698473767755,-0.09,2,0,-0.08998064503451364,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_psv_diff_se,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | psv_diff se,0.06635546732662662,0.07,2,1,0.06789571711780866,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_aronow_et_al_2019__estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | Aronow et al. (2019) estimate,0.1733681390771925,0.17,2,1,0.1733681390771925,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_aronow_et_al_2019__se,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | Aronow et al. (2019) se,0.02989653711401837,0.03,2,1,0.02989653711401837,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_abp_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | abp_diff estimate,-0.2197184860697472,-0.21,2,0,-0.21199214636658328,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_abp_diff_se,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | abp_diff se,0.041493970393271,0.04,2,1,0.04391503088697687,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_ycls_summary_estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | YCLS summary estimate,-0.05418360416895249,-0.05,2,1,-0.04515150496550223,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_ycls_summary_se,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | YCLS summary se,0.02898335176306823,0.03,2,1,0.0324011424823095,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_press_et_al_2013__estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | Press et al. (2013) estimate,0.2751828261382409,0.28,2,1,0.2751828261382409,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_press_et_al_2013__se,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | Press et al. (2013) se,0.05230914852330297,0.05,2,1,0.05230914852330297,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_psv_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | psv_diff estimate,-0.32936643030719337,-0.32,2,0,-0.32033433110374315,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_psv_diff_se,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | psv_diff se,0.05980202085761584,0.06,2,1,0.06153113889236807,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_aronow_et_al_2019__estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | Aronow et al. (2019) estimate,0.2704792517382193,0.27,2,1,0.2704792517382193,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_aronow_et_al_2019__se,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | Aronow et al. (2019) se,0.02934968387640169,0.03,2,1,0.02934968387640169,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_abp_diff_estimate,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | abp_diff estimate,-0.3246628559071718,-0.32,2,1,-0.31563075670372154,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_abp_diff_se,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | abp_diff se,0.04124849843408199,0.04,2,1,0.04371770782879215,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_ycls_summary_estimate,Appendix Table 3,Appendix Table 3 | Approve Strike | YCLS summary estimate,-0.06196391317125214,-0.06,2,1,-0.06196391317125214,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_ycls_summary_se,Appendix Table 3,Appendix Table 3 | Approve Strike | YCLS summary se,0.02957137859518852,0.03,2,1,0.02957137859518852,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_press_et_al_2013__estimate,Appendix Table 3,Appendix Table 3 | Approve Strike | Press et al. (2013) estimate,-0.06516976998904729,-0.07,2,1,-0.06516976998904729,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_press_et_al_2013__se,Appendix Table 3,Appendix Table 3 | Approve Strike | Press et al. (2013) se,0.05062962187886071,0.05,2,1,0.05062962187886071,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_psv_diff_estimate,Appendix Table 3,Appendix Table 3 | Approve Strike | psv_diff estimate,0.00320585681779515,0.00,2,1,0.00320585681779515,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_psv_diff_se,Appendix Table 3,Appendix Table 3 | Approve Strike | psv_diff se,0.05863296891354202,0.06,2,1,0.05863296891354202,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_aronow_et_al_2019__estimate,Appendix Table 3,Appendix Table 3 | Approve Strike | Aronow et al. (2019) estimate,-0.117077895332973,-0.12,2,1,-0.117077895332973,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_aronow_et_al_2019__se,Appendix Table 3,Appendix Table 3 | Approve Strike | Aronow et al. (2019) se,0.02946689526831147,0.03,2,1,0.02946689526831147,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_abp_diff_estimate,Appendix Table 3,Appendix Table 3 | Approve Strike | abp_diff estimate,0.05511398216172087,0.06,2,1,0.05511398216172087,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_abp_diff_se,Appendix Table 3,Appendix Table 3 | Approve Strike | abp_diff se,0.04174642917392589,0.04,2,1,0.04174642917392589,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_ycls_summary_estimate,Appendix Table 3,Appendix Table 3 | Ethical Strike | YCLS summary estimate,-0.03571023177236133,-0.04,2,1,-0.03571023177236133,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_ycls_summary_se,Appendix Table 3,Appendix Table 3 | Ethical Strike | YCLS summary se,0.03152735086598343,0.03,2,1,0.03152735086598343,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_press_et_al_2013__estimate,Appendix Table 3,Appendix Table 3 | Ethical Strike | Press et al. (2013) estimate,-0.05601627288374272,-0.06,2,1,-0.05601627288374272,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_press_et_al_2013__se,Appendix Table 3,Appendix Table 3 | Ethical Strike | Press et al. (2013) se,0.0552034230650955,0.06,2,1,0.0552034230650955,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_psv_diff_estimate,Appendix Table 3,Appendix Table 3 | Ethical Strike | psv_diff estimate,0.02030604111138138,0.02,2,1,0.02030604111138138,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_psv_diff_se,Appendix Table 3,Appendix Table 3 | Ethical Strike | psv_diff se,0.06357194169388523,0.06,2,1,0.06357194169388523,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_aronow_et_al_2019__estimate,Appendix Table 3,Appendix Table 3 | Ethical Strike | Aronow et al. (2019) estimate,-0.1257883491646716,-0.13,2,1,-0.1257883491646716,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_aronow_et_al_2019__se,Appendix Table 3,Appendix Table 3 | Ethical Strike | Aronow et al. (2019) se,0.02967088760518997,0.03,2,1,0.02967088760518997,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_abp_diff_estimate,Appendix Table 3,Appendix Table 3 | Ethical Strike | abp_diff estimate,0.09007811739231028,0.09,2,1,0.09007811739231028,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_abp_diff_se,Appendix Table 3,Appendix Table 3 | Ethical Strike | abp_diff se,0.04329359564539127,0.04,2,1,0.04329359564539127,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_democrats_ratio,Appendix Table 1,Appendix Table 1 | Program A | Democrats | Ratio,0.3240630215861181,0.32,2,1,0.3240630215861181,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_program_a_republicans_ratio,Appendix Table 1,Appendix Table 1 | Program A | Republicans | Ratio,0.47416450852051106,0.47,2,1,0.47416450852051106,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_democrats_ratio,Appendix Table 1,Appendix Table 1 | Democrats' Program | Democrats | Ratio,0.4998842386330933,0.50,2,1,0.4998842386330933,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_democrats_program_republicans_ratio,Appendix Table 1,Appendix Table 1 | Democrats' Program | Republicans | Ratio,1.6553149147166293,1.66,2,1,1.6553149147166293,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_democrats_ratio,Appendix Table 1,Appendix Table 1 | Republicans' Program | Democrats | Ratio,0.3533635662322684,0.35,2,1,0.3533635662322684,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_1_republicans_program_republicans_ratio,Appendix Table 1,Appendix Table 1 | Republicans' Program | Republicans | Ratio,1.7021914528661797,1.70,2,1,1.7021914528661797,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_psv_ratio,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | psv_ratio,0.31874893315574815,0.27,2,0,0.2650510444391364,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_70_prefer_nuclear_use_abp_ratio,Appendix Table 2,Appendix Table 2 | 90/70 | Prefer Nuclear Use | abp_ratio,0.2576045551294827,0.21,2,0,0.2142073252241635,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_psv_ratio,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | psv_ratio,0.3201941807458596,0.27,2,0,0.26625281907549264,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_2_90_45_prefer_nuclear_use_abp_ratio,Appendix Table 2,Appendix Table 2 | 90/45 | Prefer Nuclear Use | abp_ratio,0.29575167265618135,0.25,2,0,0.2459280065851691,1,NA,archive,The deposited prospective pooling omits the estimate-type filter its three siblings carry; the rewrite restores it and the published cell then reproduces
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_psv_ratio,Appendix Table 3,Appendix Table 3 | Approve Strike | psv_ratio,0.9508076088294628,0.95,2,1,0.9508076088294628,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_approve_strike_abp_ratio,Appendix Table 3,Appendix Table 3 | Approve Strike | abp_ratio,0.5292537331237885,0.53,2,1,0.5292537331237885,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_psv_ratio,Appendix Table 3,Appendix Table 3 | Ethical Strike | psv_ratio,0.6374974616121828,0.64,2,1,0.6374974616121828,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_3_ethical_strike_abp_ratio,Appendix Table 3,Appendix Table 3 | Ethical Strike | abp_ratio,0.2838914097331262,0.28,2,1,0.2838914097331262,1,NA,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_psv_ratio,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | psv_ratio,NA,-,NA,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_70_approve_nuclear_use_abp_ratio,Appendix Table 2,Appendix Table 2 | 90/70 | Approve Nuclear Use | abp_ratio,NA,-,NA,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_psv_ratio,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | psv_ratio,NA,-,NA,NA,NA,NA,TRUE,NA,NA
+peyton_huber_coppock_2022,appendix_table_2_90_45_approve_nuclear_use_abp_ratio,Appendix Table 2,Appendix Table 2 | 90/45 | Approve Nuclear Use | abp_ratio,NA,-,NA,NA,NA,NA,TRUE,NA,NA

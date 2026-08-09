@@ -1,11 +1,15 @@
 # peyton_huber_coppock_2022/maintained/clean_summary_estimates.R
-# Output: maintained/output/phc_summary_clean.rds, maintained/output/phc_summary_clean.csv
+# Output: maintained/output/phc_summary_clean.rds, maintained/output/phc_summary_clean.csv,
+#   maintained/output/appendix_study_estimates.csv,
+#   maintained/output/appendix_table_cells.csv,
+#   maintained/output/appendix_table_ratios.csv,
+#   maintained/output/text_pooled_benchmarks.csv
 # Depends on: original/appendix_section_a.R and the twelve study datasets it reads; helpers.R
 # Description: Rebuilds the 138 summary effect sizes that Figures 2 and 3 compare. The
 #   deposited appendix_section_a.R computes them in 3,010 lines, of which only the final
 #   summarise is broken, so this script runs the deposited code up to that point and then
 #   applies the fixed version rather than reimplementing 3,010 lines of study-by-study
-#   estimation. Two substitutions are made to the sourced text, both listed below.
+#   estimation. Three substitutions are made to the sourced text, all listed below.
 #
 #   This script needs network access: the deposited code downloads the two ManyLabs 2
 #   datasets from GitHub at runtime.
@@ -37,6 +41,19 @@ appendix_lines <- str_replace_all(
   "meta_summaries_fe("
 )
 
+# The prospective atomic aversion block pools the COVID-era weeks without restricting
+# them to the unstandardized estimates, so the precision-weighted mean runs over each
+# week twice, once on the percentage-point scale and once on Glass's delta scale. Its
+# two neighbours in the same table (the original study and the ABP replication) and
+# the whole retrospective block four hundred lines below are written the same way with
+# the filter present, and the published appendix Table 2 is what the filtered version
+# gives. The missing clause is restored here; it is the one analysis correction the
+# rewrite makes and it moves twenty of that table's cells.
+prospective_filter <- which(appendix_lines == '  filter(str_detect(survey, "Week")) %>% ')
+stopifnot(length(prospective_filter) == 1)
+appendix_lines[prospective_filter] <-
+  '  filter(str_detect(survey, "Week"), estimate_type == "Unstandardized") %>% '
+
 # position_dodgev() came from ggstance, which ggplot2 superseded once position_dodge
 # learned to dodge along a discrete axis. lemon re-exported it when this archive was
 # deposited and no longer does, so the deposited code needs the equivalent supplied here.
@@ -50,6 +67,78 @@ withr::with_dir(
   sandbox,
   eval(parse(text = paste(appendix_lines, collapse = "\n")), envir = script_env)
 )
+
+# Individual study estimates ----
+# Every estimate the thirteen appendix Section A figures plot, and every cell of the
+# three appendix tables, comes from these thirteen per-study objects. The deposited
+# code binds them together and then keeps only the standardized rows, which is right
+# for the summary effect sizes and wrong for the appendix, whose atomic aversion
+# figures and tables are on the percentage-point scale. They are bound here without
+# that filter so the appendix has something to be compared against.
+appendix_estimates <- bind_rows(
+  `Hyman & Sheatsley (1950)`                     = est_study_1,
+  `Tversky & Kaheneman (1981) - Cheap/Expensive` = est_study_2,
+  `Tversky & Kaheneman (1981) - Gain/Loss`       = est_study_3,
+  `Smith (1987)`                                 = est_study_4,
+  `Druckman (2001)`                              = est_study_5,
+  `Gilens (2001)`                                = est_study_6,
+  `Knobe (2003)`                                 = est_study_7,
+  `Press et al. (2013) - prospective`            = est_study_8a,
+  `Press et al. (2013) - retrospective`          = est_study_8b,
+  `Hainmueller & Hopkins (2015)`                 = est_study_9,
+  `Porter et al. (2018)`                         = est_study_10,
+  `Trump & White (2018)`                         = est_study_11,
+  `Peyton (2020)`                                = est_study_12,
+  .id = "study_group"
+) |>
+  ungroup() |>
+  mutate(across(where(is.factor), as.character))
+
+write_csv(appendix_estimates, file.path(out_dir, "appendix_study_estimates.csv"))
+
+# Appendix tables ----
+# The appendix prints three tables, captioned Table 1 in Section A.5 and Tables 2 and 3
+# in Section A.8. The deposited code builds each as a pair of long frames, one of
+# estimates and one of standard errors, and then formats them to two decimals. Both
+# halves of each pair are joined and written unrounded here, so a published cell is
+# compared against the number behind it rather than against a re-rounded reprint.
+appendix_table_cells <- bind_rows(
+  `Table 1` = full_join(combined_estimates, combined_ses,
+                        by = c("AD_Z_party_sure_thing", "x_pid3", "survey")) |>
+    transmute(row = paste(AD_Z_party_sure_thing, x_pid3, sep = " | "),
+              column = survey, estimate, std.error),
+  `Table 2` = full_join(combined_prospective_estimates, combined_prospective_ses,
+                        by = c("Z_psv", "outcome_group", "survey")) |>
+    transmute(row = paste(Z_psv, outcome_group, sep = " | "),
+              column = survey, estimate, std.error),
+  `Table 3` = full_join(combined_retrospective_estimates, combined_retrospective_ses,
+                        by = c("outcome_group", "survey")) |>
+    transmute(row = outcome_group, column = survey, estimate, std.error),
+  .id = "appendix_table"
+) |>
+  mutate(p.value = 2 * (1 - pnorm(abs(estimate / std.error)))) |>
+  arrange(appendix_table, row, column)
+
+write_csv(appendix_table_cells, file.path(out_dir, "appendix_table_cells.csv"))
+
+appendix_table_ratios <- bind_rows(
+  `Table 1` = combined_estimates |>
+    distinct(AD_Z_party_sure_thing, x_pid3, Ratio) |>
+    transmute(row = paste(AD_Z_party_sure_thing, x_pid3, sep = " | "),
+              column = "Ratio", ratio = Ratio),
+  `Table 2` = combined_prospective_estimates |>
+    distinct(Z_psv, outcome_group, psv_ratio, abp_ratio) |>
+    pivot_longer(c(psv_ratio, abp_ratio), names_to = "column", values_to = "ratio") |>
+    transmute(row = paste(Z_psv, outcome_group, sep = " | "), column, ratio),
+  `Table 3` = combined_retrospective_estimates |>
+    distinct(outcome_group, psv_ratio, abp_ratio) |>
+    pivot_longer(c(psv_ratio, abp_ratio), names_to = "column", values_to = "ratio") |>
+    transmute(row = outcome_group, column, ratio),
+  .id = "appendix_table"
+) |>
+  arrange(appendix_table, row, column)
+
+write_csv(appendix_table_ratios, file.path(out_dir, "appendix_table_ratios.csv"))
 
 # Summary effect sizes ----
 # The deposited script ends with study_group = paste(study_group) inside a group where
@@ -130,16 +219,20 @@ pooled_benchmarks <- benchmark_fits |>
     reml_est = map_dbl(reml, \(f) unname(f$beta[1, 1])),
     reml_se  = map_dbl(reml, \(f) f$se),
     tau2     = map_dbl(reml, \(f) f$tau2),
-    i2       = map_dbl(reml, \(f) f$I2)
+    i2       = map_dbl(reml, \(f) f$I2),
+    q_stat   = map_dbl(fit, \(f) f$QE),
+    q_p      = map_dbl(fit, \(f) f$QEp)
   ) |>
-  select(benchmark, k, fe_est, fe_se, reml_est, reml_se, tau2, i2)
+  select(benchmark, k, fe_est, fe_se, reml_est, reml_se, tau2, i2, q_stat, q_p)
 
 write_csv(pooled_benchmarks, file.path(out_dir, "text_pooled_benchmarks.csv"))
 
 # Checks ----
 check_clean <- tibble(
-  check = c("Summary effect size rows", "Study-outcome groups", "Pooled benchmarks"),
-  value = c(nrow(summary_dat), n_distinct(summary_dat$study_group_detail), nrow(pooled_benchmarks))
+  check = c("Summary effect size rows", "Study-outcome groups", "Pooled benchmarks",
+            "Individual study estimates"),
+  value = c(nrow(summary_dat), n_distinct(summary_dat$study_group_detail),
+            nrow(pooled_benchmarks), nrow(appendix_estimates))
 )
 
 print(check_clean)

@@ -30,6 +30,7 @@ source(here::here("maintained", "table_2_acq_pass_rates.R"))
 
 # In-text quantities ----
 source(here::here("maintained", "text_correspondence_summary.R"))
+source(here::here("maintained", "text_device_metadata.R"))
 
 # Figure timestamps ----
 # R's pdf() device stamps a wall-clock /CreationDate and /ModDate into every figure it
@@ -41,6 +42,21 @@ walk(
   list.files(here::here("maintained", "output"), pattern = "\\.pdf$", full.names = TRUE),
   blank_pdf_timestamps
 )
+
+# The deposit's own answer ----
+# Runs the deposited code end to end in a scratch copy and writes down what it produces,
+# so that the ground truth's value_script column is generated rather than typed. This is
+# the second slow step, at a few minutes.
+source(here::here("ground_truth", "extract_archive_values.R"))
+
+# Ground truth ----
+# Builds the comparison table and runs the coverage gate, which sources in_text_claims.R
+# into its own environment and counts what it prints.
+source(here::here("ground_truth", "build_ground_truth.R"))
+
+# The second instrument, for a human to read ----
+# It has already run inside the gate; this pass is the readable log.
+source(here::here("maintained", "in_text_claims.R"))
 
 # Deposited archive, again ----
 # The check at the top of this file is a precondition: it says original/ was intact

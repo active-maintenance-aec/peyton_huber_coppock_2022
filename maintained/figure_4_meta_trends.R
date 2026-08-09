@@ -1,5 +1,5 @@
 # peyton_huber_coppock_2022/maintained/figure_4_meta_trends.R
-# Output: maintained/output/figure_4_meta_trends.pdf/.png
+# Output: maintained/output/figure_4_meta_trends.pdf/.png/.csv
 # Depends on: original/phc_meta_trends.rds, helpers.R
 # Description: Respondents from mobile devices and web applications, Jun 2018 to Jul 2020.
 
@@ -57,6 +57,15 @@ g <- ggplot(
     fill = guide_legend(override.aes = list(size = 3)),
     size = guide_legend(override.aes = list(color = "black"))
   )
+
+# The plotted values ----
+# One row per plotted point: the survey's date, the panel it sits in, the share it
+# reports, its standard error, the size band that sets the point's area and whether
+# the survey predates the pandemic.
+write_csv(
+  gg_df |> arrange(name, time) |> select(name, time, est, std.error, size_group, pre_covid),
+  file.path(out_dir, "figure_4_meta_trends.csv")
+)
 
 ggsave(
   here::here("maintained", "output", "figure_4_meta_trends.pdf"),

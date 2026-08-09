@@ -1,0 +1,19 @@
+appendix_table,x_pid3,AD_Z_party_sure_thing,row,column,ratio
+Table 1,Democrats,Democrats' Program,Democrats' Program | Democrats,Ratio,0.4998842386330933
+Table 1,Republicans,Democrats' Program,Democrats' Program | Republicans,Ratio,1.6553149147166293
+Table 1,Democrats,Program A,Program A | Democrats,Ratio,0.3240630215861181
+Table 1,Republicans,Program A,Program A | Republicans,Ratio,0.47416450852051106
+Table 1,Democrats,Republicans' Program,Republicans' Program | Democrats,Ratio,0.3533635662322684
+Table 1,Republicans,Republicans' Program,Republicans' Program | Republicans,Ratio,1.7021914528661797
+Table 2,NA,NA,90/45 | Approve Nuclear Use,abp_ratio,-0.16693149169608645
+Table 2,NA,NA,90/45 | Approve Nuclear Use,psv_ratio,-0.16407820792864417
+Table 2,NA,NA,90/45 | Prefer Nuclear Use,abp_ratio,0.24592800658516914
+Table 2,NA,NA,90/45 | Prefer Nuclear Use,psv_ratio,0.26625281907549264
+Table 2,NA,NA,90/70 | Approve Nuclear Use,abp_ratio,-0.22278607531337297
+Table 2,NA,NA,90/70 | Approve Nuclear Use,psv_ratio,-0.7520742981866775
+Table 2,NA,NA,90/70 | Prefer Nuclear Use,abp_ratio,0.2142073252241635
+Table 2,NA,NA,90/70 | Prefer Nuclear Use,psv_ratio,0.2650510444391364
+Table 3,NA,NA,Approve Strike,abp_ratio,0.5292537331237885
+Table 3,NA,NA,Approve Strike,psv_ratio,0.9508076088294628
+Table 3,NA,NA,Ethical Strike,abp_ratio,0.2838914097331262
+Table 3,NA,NA,Ethical Strike,psv_ratio,0.6374974616121828

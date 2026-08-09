@@ -37,10 +37,19 @@ fig_path <- function(stem) {
   here("maintained", "output", paste0(stem, ext))
 }
 
+# A value_paper column whose entries all look numeric is guessed as double, which turns
+# 0.50 into 0.5 and -0.00 into 0. It is the string the page prints and must stay one.
 gt <- read_csv(
   here("ground_truth", "peyton_huber_coppock_2022_ground_truth.csv"),
-  show_col_types = FALSE
+  col_types = cols(value_paper = col_character(), .default = col_guess())
 )
+
+published_claims <- read_csv(
+  here("ground_truth", "published_claims.csv"),
+  col_types = cols(value_paper = col_character(), .default = col_guess())
+)
+
+float_coverage <- read_csv(here("ground_truth", "float_coverage.csv"), show_col_types = FALSE)
 ```
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
@@ -65,7 +74,7 @@ This repository holds the actively maintained replication code for Peyton, Huber
 source("run_all.R")
 ```
 
-That fetches the deposit, verifies its 20 files, and produces every figure and table into `maintained/output/`. Required packages: tidyverse, estimatr, metafor, ggthemes, ggrepel, ggforce, lemon, RCurl, haven, xtable, knitr, kableExtra, here. Paths resolve through `here`, so nothing depends on the working directory. The run also needs network access beyond Dataverse, because the deposited appendix code downloads two ManyLabs 2 datasets from GitHub. A successful run overwrites `maintained/output/`, which is committed: **`git diff` on that folder is the reproduction check.**
+That fetches the deposit, verifies its 20 files, produces every figure and table into `maintained/output/`, runs the deposited code once more to record what it produces, rebuilds the ground truth and runs the coverage gate over the in-text claims. Required packages: tidyverse, estimatr, metafor, ggthemes, ggrepel, ggforce, lemon, RCurl, haven, xtable, knitr, kableExtra, here. Paths resolve through `here`, so nothing depends on the working directory. The run also needs network access beyond Dataverse, because the deposited appendix code downloads two ManyLabs 2 datasets from GitHub. A successful run overwrites `maintained/output/`, which is committed: **`git diff` on that folder is the reproduction check.**
 
 # Paper overview
 
@@ -83,9 +92,24 @@ That fetches the deposit, verifies its 20 files, and produces every figure and t
 n_claims <- nrow(gt)
 n_match <- sum(gt$match == 1, na.rm = TRUE)
 n_match_na <- sum(is.na(gt$match))
+n_match_zero <- sum(gt$match == 0, na.rm = TRUE)
 n_rewrite <- sum(gt$match_rewrite == 1, na.rm = TRUE)
 n_rewrite_na <- sum(is.na(gt$match_rewrite))
 n_rewrite_zero <- sum(gt$match_rewrite == 0, na.rm = TRUE)
+n_holds_true <- sum(gt$holds, na.rm = TRUE)
+n_holds_false <- sum(!gt$holds, na.rm = TRUE)
+n_archive <- sum(gt$defect_locus == "archive" & str_starts(gt$claim_id, "appendix_table_2"),
+                 na.rm = TRUE)
+appendix_2_cells <- float_coverage$published_numbers[float_coverage$float == "appendix_table_2"]
+n_blocks <- sum(published_claims$needs_block)
+n_extraction <- nrow(published_claims)
+n_float_cells <- sum(float_coverage$published_numbers)
+n_plotted <- sum(float_coverage$plotted, na.rm = TRUE)
+n_appendix_floats <- sum(str_detect(float_coverage$float, "^(figure_[abc]|appendix_table)"))
+n_prose_rows <- sum(gt$claim_id %in% published_claims$claim_id &
+                      !str_starts(gt$claim_id, "plotted_"))
+n_plotted_rows <- sum(str_starts(gt$claim_id, "plotted_"))
+n_uncovered_floats <- sum(float_coverage$published_numbers == 0 & is.na(float_coverage$plotted))
 ```
 
 Two questions, answered before the detail.
@@ -102,11 +126,13 @@ One further failure is worth separating out because it is a fact about a depende
 
 ## Does the maintained rewrite reproduce the paper?
 
-Yes. All `r n_match` verifiable ground truth claims match the published values, `r n_match_na` is unverifiable because the underlying data are not in the deposit, and `r n_rewrite` of them are also reproduced by the maintained rewrite, with `r n_rewrite_na` unverifiable and `r n_rewrite_zero` mismatches. That includes every count the 2022 corrigendum corrected.
+Almost everywhere. The ground truth carries `r n_claims` rows; `r n_rewrite` of the `r n_rewrite + n_rewrite_zero` the rewrite can compute agree with the published value at the page's own precision, and `r n_holds_true` of the `r n_holds_true + n_holds_false` claims about shape, sign or count hold. That includes every count the 2023 corrigendum corrected. The `r n_rewrite_zero + n_holds_false` that do not are among the rows the number-by-number comparison below lists, and eleven of them are corrected in `peyton_huber_coppock_2022_errata.pdf`.
 
 Two things are worth stating. First, the deposited archive is **not** the version that produced the erroneous counts in the published article. Harvard Dataverse version 2.0, released 6 October 2022, replaced `manuscript.R` with the corrected code, and running it reproduces the corrigendum's numbers exactly. Second, `lemon` and `ggforce` are both current CRAN packages, so nothing in this archive depends on an abandoned graphics package.
 
-The one genuinely stale dependency is `rmeta`, whose most recent release is from March 2018. The maintained rewrite replaces it with `metafor`, which changes no result: see Section 6.
+The deposit does not reproduce one of its own published tables. `appendix_section_a.R` pools the COVID-era weeks of the prospective atomic aversion experiment without restricting them to the unstandardized estimates, so each week enters the precision-weighted mean twice, once on the percentage-point scale and once on Glass's Delta scale. `r n_archive` cells of the appendix's Table 2 move as a result. The three blocks around it are written the same way with the filter present, and restoring it returns all `r appendix_2_cells` of that table's cells exactly.
+
+The one genuinely stale dependency is `rmeta`, whose most recent release is from March 2018. The maintained rewrite replaces it with `metafor`, which changes no result: see the section on fixed-effect and random-effects pooling.
 
 ---
 
@@ -187,44 +213,91 @@ tibble(
 
 The deposit was updated alongside the corrigendum. Harvard Dataverse version 2.0, released 6 October 2022, replaced `ReadMe.R` and `manuscript.R`, and the replacement `ReadMe.R` says so in a comment. Running the deposited `manuscript.R` reproduces the corrigendum's counts exactly, and so does the maintained rewrite, which computes them in `maintained/text_correspondence_summary.R` and writes them to `output/text_correspondence_summary.csv`. Reproducing the published article's original counts is not possible from the deposit, because the code that produced them is no longer in it.
 
+## Everything else the reanalysis found
+
+Eleven further corrections are set out in `peyton_huber_coppock_2022_errata.pdf` at the root of this repository, each quoting the published sentence and the corrected one, with every corrected value computed at render time from `maintained/output/`. None of them changes a conclusion. The largest is a paragraph of the online appendix that attributes four estimates to the original atomic aversion study which are in fact the pre-COVID replication's, as the appendix's own Table 2 shows.
+
 ## A rounding difference in Table 2
 
-One cell of published Table 2 differs from the code in its last digit. The Easy attention-check pass rate among web-application respondents is 0.5449. Rounded once to two decimal places that is 0.54, which is what both the deposited script and the maintained rewrite print. The published table shows 0.55, which is what rounding 0.5449 to 0.545 and then to two places gives. Nothing else in the table or the text depends on it.
+One cell of published Table 2 differs from the pass rate behind it in its last digit. The Easy attention-check pass rate among web-application respondents is 0.5449. Rounded once to two decimal places that is 0.54, which is what the maintained rewrite prints. The deposited script rounds every estimate to three decimals before formatting it to two, so 0.5449 becomes 0.545 and then 0.55, which is what the published table shows. The deposit therefore reproduces its own table, and the discrepancy is between the printed cell and the quantity it reports. Nothing else in the table or the text depends on it. It is a table cell rather than a sentence, so it stays here rather than in the errata.
 
-No other discrepancy between the paper and the code was found.
+## Two findings that are not corrections
+
+Two disagreements are recorded in the ground truth without a correction, because establishing what the published figure should be would mean choosing between analytical conventions the paper does not state.
+
+The appendix reports three pairwise comparisons between two of the authors' own replication arms, in Sections A.2 and A.7, and each printed p-value is the one-tailed value at the standard error the comparison implies: 0.02 against a two-sided 0.044, 0.09 against 0.183, and 0.46 against 0.919. Every other p-value in the article and the appendix is two-sided, and the deposited code computes two-sided p-values everywhere. The estimates and standard errors in those sentences are unaffected.
+
+The annual device shares on page 10 reproduce for 2018 and 2020 and not for 2019. Averaging the per-survey shares in the deposited `phc_meta_trends.rds` over the surveys fielded in each year returns 13 per cent and 33 per cent for 2018 and 41 per cent and 56 per cent for 2020, exactly as printed, and 34 per cent and 58 per cent for 2019, against a printed 33 and 56. The 56 the sentence gives for 2019 is the same figure it gives for 2020 in the preceding clause.
+
+---
+
+# The extraction and the two instruments
+
+`ground_truth/published_claims.csv` is an exhaustive numeric-token extraction from the article, its `r n_appendix_floats`-float online appendix and the 2023 corrigendum, read line by line rather than searched for expected patterns. It carries `r n_extraction` rows, each classified as a `pipeline`, `descriptive`, `definitional`, `structural` or `transcribed` claim and each carrying the precision at which the page prints it, so that the two instruments cannot disagree about what precision a comparison should use. `r n_blocks` of those rows require a recomputation.
+
+The coverage boundary is every number printed in the body of the article, in every caption, note and footnote, and in the online appendix's prose and its three tables, plus every number in the corrigendum. Five classes of token are excluded and named here so the exclusion is auditable: bibliographic tokens, which is to say citation years and the volume, issue and page numbers of the two reference lists; page numbers and the page references in the appendix's contents; the DOIs and the institutional review board protocol number; axis tick labels, which are scale furniture rather than estimates; and the prices, probabilities and casualty counts quoted from the original studies' instruments, which the extraction records once per section as a `transcribed` row rather than one row per token.
+
+`maintained/in_text_claims.R` is the second instrument. It recomputes every one of those `r n_blocks` claims from `maintained/output/` by a route of its own and prints one line per claim. Where `build_ground_truth.R` reaches a quantity through a summary file, the claims file goes back to the study-level estimates the summary was built from, so the two derivations are separate; where they disagree, one of them is wrong. `build_ground_truth.R` runs the claims file inside its own environment, captures what it prints, and halts unless the printed identifiers are exactly the identifiers the extraction requires and every printed value equals the ground truth's at the extraction's precision. It also halts if a transcribed value does not survive a round trip through its own recorded precision, if a published cell has no rewrite counterpart or a rewrite cell no published counterpart, if a float prints a different number of cells from the count the extraction declares, or if an adverse row carries no cause or a clean match carries one.
 
 ---
 
 # Number-by-number comparison
 
+The ground truth carries `r n_claims` rows: `r n_prose_rows` prose and caption quantities named in the extraction, `r n_float_cells` cells transcribed from Table 2 and the appendix's three tables, four relative sizes the appendix prints as a dash, and `r n_plotted_rows` counts of what a wordless figure plots. The full table is `ground_truth/peyton_huber_coppock_2022_ground_truth.csv`; only the rows that disagree are printed here.
+
 ```{r gt_table}
 gt |>
-  select(table_figure, claim, value_paper, value_script, match) |>
+  filter((!is.na(match_rewrite) & match_rewrite == 0) | (!is.na(holds) & !holds) |
+           (!is.na(match) & match == 0)) |>
+  transmute(
+    Location = table_figure,
+    Quantity = claim_id,
+    Paper = value_paper,
+    Rewrite = if_else(is.na(value_rewrite), as.character(holds),
+                      sprintf("%.4g", value_rewrite)),
+    Cause = defect_locus
+  ) |>
   kable(
     booktabs = TRUE,
-    col.names = c("Location", "Quantity", "Paper", "Script", "Match"),
-    caption = paste0("Ground truth: ", nrow(gt), " rows.")
+    caption = paste0("Every row of the ground truth that does not agree with the published page: ",
+                     sum((!is.na(gt$match_rewrite) & gt$match_rewrite == 0) |
+                           (!is.na(gt$holds) & !gt$holds) |
+                           (!is.na(gt$match) & gt$match == 0)), " of ", nrow(gt), ".")
   ) |>
   latex_only(\(k) k |>
     kable_styling(latex_options = c("hold_position", "repeat_header"), font_size = 6) |>
-    column_spec(2, width = "6cm") |>
-    column_spec(3, width = "2cm") |>
-    column_spec(4, width = "2cm"))
+    column_spec(1, width = "3.5cm") |>
+    column_spec(2, width = "5cm"))
 ```
 
-```{r gt_notes, include=FALSE}
-n_paper_only <- sum(is.na(gt$match_rewrite) & gt$match == 1, na.rm = TRUE)
+## Float coverage
+
+```{r float_coverage_table}
+float_coverage |>
+  filter(published_numbers > 0 | !is.na(plotted)) |>
+  transmute(
+    Float = float,
+    `Numbers printed` = published_numbers,
+    Covered = covered,
+    `Reproduced by the rewrite` = reproduced_by_rewrite,
+    `Reproduced by the deposit` = reproduced_by_archive,
+    `Estimates plotted` = plotted
+  ) |>
+  kable(
+    booktabs = TRUE,
+    caption = "Published floats that print a number or plot an estimate. A float printing no numbers is covered by the count of what it plots; the remaining floats, listed in the float coverage file, carry a stated reason."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "repeat_header"), font_size = 7))
 ```
 
-**Summary**: `r n_match` of `r n_claims` recorded quantities match the published values. The one row marked unverifiable is the total number of respondents, which the paper gives as roughly 1,000 per week across 13 surveys rather than as a figure; the deposited data contain 16,625.
-
-A further `r n_paper_only` rows are recorded as matching but cannot be recomputed from the deposit, and are worth naming so the match is not read as stronger than it is. They are all from the page 10 discussion of how respondents reached the survey: the annual shares arriving by web application and by mobile device in 2018, 2019 and 2020, the low end of the web-application range, and the two figures on how far mobile and web-application respondents overlap. Those draw on Lucid metadata the deposit does not include. `phc_meta_trends.rds` carries the survey-level series plotted in Figure 4, not the respondent-level records behind the annual percentages.
+The `r n_uncovered_floats` floats not in that table are the eight covariate-distribution figures of appendix Section B, whose proportions the rewrite does not compute; the eleven Section C figures, which are screenshots of survey content and state no estimated quantity; Table 1 and Figures 1 and 4, which print no estimates and whose content is covered as prose claims; and the corrigendum's two figures, which reprint the article's.
 
 ---
 
 # Maintained rewrite
 
-The rewrite (`maintained/`) is eight scripts: a shared `helpers.R`, one cleaning script, five figures and one table, plus a script for the in-text correspondence quantities.
+The rewrite (`maintained/`) is eleven scripts: a shared `helpers.R`, one cleaning script, five figures, one table, two scripts for quantities the article states only in prose, and the in-text claims file that recomputes every one of them.
 
 ```{r scripts_table}
 tibble(
@@ -237,18 +310,22 @@ tibble(
     "figure_4_meta_trends.R",
     "figure_5_trust_replication.R",
     "table_2_acq_pass_rates.R",
-    "text_correspondence_summary.R"
+    "text_correspondence_summary.R",
+    "text_device_metadata.R",
+    "in_text_claims.R"
   ),
   Output = c(
     "Packages, theme_ycls(), meta_summaries_fe(), glass_delta(), make_entry(), table_entry()",
-    "phc_summary_clean.rds and .csv; text_pooled_benchmarks.csv",
-    "figure_1_lucid_weekly_completes.pdf and .png",
-    "figure_2_noncojoint_correspondence.pdf and .png",
-    "figure_3_conjoint_correspondence.pdf and .png",
-    "figure_4_meta_trends.pdf and .png",
-    "figure_5_trust_replication.pdf and .png",
-    "table_2_acq_pass_rates.tex and .csv",
-    "text_correspondence_summary.csv"
+    "phc_summary_clean.rds and .csv; appendix_study_estimates.csv; appendix_table_cells.csv; appendix_table_ratios.csv; text_pooled_benchmarks.csv",
+    "figure_1_lucid_weekly_completes.pdf, .png and .csv",
+    "figure_2_noncojoint_correspondence.pdf, .png and .csv",
+    "figure_3_conjoint_correspondence.pdf, .png and .csv",
+    "figure_4_meta_trends.pdf, .png and .csv",
+    "figure_5_trust_replication.pdf, .png and .csv",
+    "table_2_acq_pass_rates.tex and .csv; table_2_acq_pass_rates_cells.csv",
+    "text_correspondence_summary.csv",
+    "text_device_metadata.csv; text_device_by_survey.csv; text_device_by_year.csv; text_device_all_surveys.csv",
+    "Printed to the console: one line per published claim"
   )
 ) |>
   kable(
@@ -265,9 +342,11 @@ tibble(
 
 Every comparison in the paper rests on 138 summary effect sizes, one pre-COVID and one COVID-era estimate for each of 69 study-outcome pairs. The deposited `appendix_section_a.R` builds them in 3,010 lines of study-by-study estimation, and only its last statement is wrong. `clean_summary_estimates.R` therefore runs the deposited code up to that point and then applies the corrected summarise, rather than reimplementing twelve studies' worth of estimation to fix one word. That is a deliberate choice and it is the one place where the rewrite depends on the deposit as code rather than as data.
 
-Running someone else's script inside a rewrite needs care, and three things are done to contain it. The deposited code addresses its inputs by bare relative path and writes appendix tables and figures beside them, so it runs in a temporary directory of symlinks to `original/`: reads resolve, writes land in `tempdir()`, and `original/` stays byte-identical to what `download_original.R` verified. The environment it evaluates in is passed explicitly rather than inherited. And exactly one substitution is applied to the text of the script itself, described in the next section.
+Running someone else's script inside a rewrite needs care, and three things are done to contain it. The deposited code addresses its inputs by bare relative path and writes appendix tables and figures beside them, so it runs in a temporary directory of symlinks to `original/`: reads resolve, writes land in `tempdir()`, and `original/` stays byte-identical to what `download_original.R` verified. The environment it evaluates in is passed explicitly rather than inherited. And three substitutions are applied to the text of the script itself. Two are dependency repairs, described in the next section. The third is an analysis correction: the block that pools the COVID-era weeks of the prospective atomic aversion experiment omits the `estimate_type == "Unstandardized"` filter that its three siblings in the same file all carry, so it averages each week's percentage-point estimate together with the same week's Glass's Delta estimate. Restoring the filter is what makes the rewrite reproduce the appendix's published Table 2.
 
-The remaining seven scripts read either `original/` or the cleaned summary estimates, and share nothing but `helpers.R`.
+Every figure script also writes a CSV of the estimates it plots. A PDF records the time it was written, so for a paper whose results are almost entirely figures the committed output would otherwise be undiffable.
+
+The remaining scripts read either `original/` or the cleaned summary estimates, and share nothing but `helpers.R`. `ground_truth/extract_archive_values.R` runs the deposited code a second time with only the repairs it needs to execute, and not the analysis correction, so that the deposit's own answer is recorded separately from the rewrite's.
 
 ## Deprecated patterns replaced
 
@@ -333,13 +412,16 @@ pooled |>
   mutate(
     across(c(fe_est, fe_se, reml_est, reml_se), \(x) sprintf("%.3f", x)),
     tau2 = sprintf("%.4f", tau2),
-    i2 = sprintf("%.1f%%", i2)
+    i2 = sprintf("%.1f%%", i2),
+    q_stat = sprintf("%.2f", q_stat),
+    q_p = sprintf("%.3f", q_p)
   ) |>
   kable(
     booktabs = TRUE,
-    col.names = c("Benchmark", "k", "FE est.", "FE SE", "RE est.", "RE SE", "$\\hat{\\tau}^2$", "$I^2$"),
+    col.names = c("Benchmark", "k", "FE est.", "FE SE", "RE est.", "RE SE",
+                  "$\\hat{\\tau}^2$", "$I^2$", "$Q$", "$p$"),
     escape = FALSE,
-    caption = "Pooled benchmark estimates. FE is inverse-variance fixed-effect pooling, the estimator the article uses; RE is REML. $\\hat{\\tau}^2$ is the REML estimate of between-study variance and $I^2$ the share of total variance attributable to it."
+    caption = "Pooled benchmark estimates. FE is inverse-variance fixed-effect pooling, the estimator the article uses; RE is REML. $\\hat{\\tau}^2$ is the REML estimate of between-study variance and $I^2$ the share of total variance attributable to it. $Q$ is Cochran's heterogeneity statistic, which the appendix quotes for the three welfare survey modes."
   ) |>
   latex_only(\(k) k |>
     kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 7) |>
@@ -401,26 +483,11 @@ read_csv(
 
 # Maintained rewrite verification
 
-```{r rewrite_verify}
-gt |>
-  filter(!is.na(match_rewrite)) |>
-  select(table_figure, claim, value_paper, value_rewrite, match_rewrite) |>
-  kable(
-    booktabs = TRUE,
-    col.names = c("Location", "Quantity", "Paper", "Rewrite", "Match"),
-    caption = paste0("Rewrite verification: ", n_rewrite, " of ", n_rewrite + n_rewrite_zero,
-                     " recomputable claims match the published values.")
-  ) |>
-  latex_only(\(k) k |>
-    kable_styling(latex_options = c("hold_position", "repeat_header"), font_size = 6) |>
-    column_spec(2, width = "6cm") |>
-    column_spec(3, width = "2cm") |>
-    column_spec(4, width = "2cm"))
-```
+`r n_rewrite` of the `r n_rewrite + n_rewrite_zero` claims the rewrite can compute match the published value at the page's own precision, and `r n_holds_true` of the `r n_holds_true + n_holds_false` claims about shape, sign or count hold. The `r n_rewrite_na - n_holds_true - n_holds_false` rows carrying no verdict are `approximate` hedges, which have no comparison by design, and the descriptive rows are counted separately above.
 
-All `r n_rewrite` recomputable values match to the precision the paper reports. The `r n_rewrite_na` rows the rewrite cannot recompute are the page 10 quantities described in Section 5, plus the total number of respondents, all of which need data the deposit does not carry.
+The pipeline is deterministic. Running `run_all.R` twice in succession returns every file it writes byte-identical, the figure PDFs included: `maintained/helpers.R` blanks the wall-clock `/CreationDate` and `/ModDate` that R's `pdf()` device stamps into every figure, which are otherwise the only reason two runs differ.
 
-The pipeline is deterministic. Running `run_all.R` twice in succession returns every CSV, RDS, TeX and PNG output byte-identical; only the PDF figures differ, because a PDF records the time it was written.
+The coverage gate was tested by breaking it three ways. Deleting a claim block fails the count. Changing a computed value in the claims file fails the cross-instrument comparison. Changing a recorded precision in the extraction fails the round-trip check, which runs before anything consumes the precision, so a wrong precision cannot hide behind a value comparison downstream.
 
 ---
 

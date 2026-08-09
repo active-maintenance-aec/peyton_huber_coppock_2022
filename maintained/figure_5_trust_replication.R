@@ -1,5 +1,5 @@
 # peyton_huber_coppock_2022/maintained/figure_5_trust_replication.R
-# Output: maintained/output/figure_5_trust_replication.pdf/.png
+# Output: maintained/output/figure_5_trust_replication.pdf/.png/.csv
 # Depends on: original/phc_replications.rds, original/peyton_original.csv, helpers.R
 # Description: Reanalysis of treatment effects on trust in government for Peyton (2020)
 #   replication, showing full sample and attentive vs inattentive subgroups.
@@ -135,6 +135,17 @@ g <- ggplot(gg_df, aes(x = estimate, y = dataset, fill = study, shape = study)) 
 
 fixed   <- 1
 spacing <- 0.285
+
+# The plotted values ----
+# The two heading rows carry no estimate and are dropped; what remains is one row
+# per plotted point, in the order the figure stacks them from the top.
+write_csv(
+  gg_df |>
+    filter(!is.na(estimate)) |>
+    arrange(desc(as.integer(dataset))) |>
+    select(dataset, study, estimate, std.error, statistic, p.value, conf.low, conf.high, df),
+  file.path(out_dir, "figure_5_trust_replication.csv")
+)
 
 ggsave(
   here::here("maintained", "output", "figure_5_trust_replication.pdf"),

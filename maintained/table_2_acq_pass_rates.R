@@ -1,5 +1,6 @@
 # peyton_huber_coppock_2022/maintained/table_2_acq_pass_rates.R
-# Output: maintained/output/table_2_acq_pass_rates.tex, .csv
+# Output: maintained/output/table_2_acq_pass_rates.tex, .csv,
+#   maintained/output/table_2_acq_pass_rates_cells.csv
 # Depends on: original/phc_replications.rds, helpers.R
 # Description: ACQ pass rates by attentiveness level and device type (browser vs web-app,
 #   nonmobile vs mobile). Reproduces manuscript Table 2.
@@ -91,6 +92,59 @@ app_acq_diffs <- bind_rows(app_easy_pass, app_medium_pass, app_hard_pass) |>
 app_acq_summary    <- left_join(app_acq_means,    app_acq_diffs,    by = "level")
 mobile_acq_summary <- left_join(mobile_acq_means, mobile_acq_diffs, by = "level")
 acq_summary        <- left_join(app_acq_summary,  mobile_acq_summary, by = "level")
+
+# Unrounded cells ----
+# The formatted table rounds to two decimals, so reading a value back out of it and
+# rounding again to compare against the published page would round twice. Every cell
+# is therefore written once at full precision, keyed by the column it appears in.
+acq_cells <- bind_rows(
+  bind_rows(app_easy_pass, app_medium_pass, app_hard_pass) |>
+    ungroup() |>
+    transmute(
+      level,
+      column = if_else(admin_browser == 1, "Browser", "Web-App"),
+      estimate, std.error, p.value = NA_real_
+    ),
+  bind_rows(mobile_easy_pass, mobile_medium_pass, mobile_hard_pass) |>
+    ungroup() |>
+    transmute(
+      level,
+      column = if_else(admin_nonmobile == 1, "Nonmobile", "Mobile"),
+      estimate, std.error, p.value = NA_real_
+    ),
+  bind_rows(app_easy_pass, app_medium_pass, app_hard_pass) |>
+    ungroup() |>
+    mutate(device = if_else(admin_browser == 1, "Browser", "Web-App")) |>
+    select(estimate, std.error, level, device) |>
+    pivot_wider(names_from = device, values_from = c(estimate, std.error)) |>
+    transmute(
+      level,
+      column = "Browser minus Web-App",
+      estimate = `estimate_Browser` - `estimate_Web-App`,
+      std.error = sqrt(`std.error_Browser` ^ 2 + `std.error_Web-App` ^ 2),
+      p.value = 2 * (1 - pnorm(abs(estimate / std.error)))
+    ),
+  bind_rows(mobile_easy_pass, mobile_medium_pass, mobile_hard_pass) |>
+    ungroup() |>
+    mutate(device = if_else(admin_nonmobile == 1, "Nonmobile", "Mobile")) |>
+    select(estimate, std.error, level, device) |>
+    pivot_wider(names_from = device, values_from = c(estimate, std.error)) |>
+    transmute(
+      level,
+      column = "Nonmobile minus Mobile",
+      estimate = `estimate_Nonmobile` - `estimate_Mobile`,
+      std.error = sqrt(`std.error_Nonmobile` ^ 2 + `std.error_Mobile` ^ 2),
+      p.value = 2 * (1 - pnorm(abs(estimate / std.error)))
+    )
+) |>
+  mutate(
+    level = factor(level, levels = c("Easy", "Medium", "Hard")),
+    column = factor(column, levels = c("Browser", "Web-App", "Browser minus Web-App",
+                                       "Nonmobile", "Mobile", "Nonmobile minus Mobile"))
+  ) |>
+  arrange(level, column)
+
+write_csv(acq_cells, file.path(out_dir, "table_2_acq_pass_rates_cells.csv"))
 
 # Export ----
 write_csv(acq_summary, file.path(out_dir, "table_2_acq_pass_rates.csv"))

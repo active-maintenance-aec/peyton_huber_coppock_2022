@@ -1,0 +1,441 @@
+claim_id,location,claim_type,value_paper,digits,units,comparison,needs_block,claim
+abstract_replications,Abstract (p. 1),pipeline,33,0,NA,==,TRUE,33 replications of 12 pre-pandemic designs
+abstract_designs,Abstract (p. 1),pipeline,12,0,NA,==,TRUE,12 pre-pandemic designs
+abstract_samples,Abstract (p. 1),pipeline,13,0,NA,==,TRUE,fielded across 13 quota samples of Americans
+abstract_field_month_first,Abstract (p. 1),definitional,3,0,month,==,TRUE,between March and July 2020: first month of fielding
+abstract_field_month_last,Abstract (p. 1),definitional,7,0,month,==,TRUE,between March and July 2020: last month of fielding
+abstract_field_year,Abstract (p. 1),definitional,2020,0,NA,==,TRUE,between March and July 2020: the year of fielding
+intro_lucid_tripled,Introduction (p. 2),descriptive,NA,0,NA,==,TRUE,purchases by academic clients on Lucid nearly tripled between 2019 and 2020
+intro_replications,Introduction (p. 2),pipeline,33,0,NA,==,TRUE,an answer using 33 replications fielded during the onset of the COVID-19 pandemic
+intro_designs,Introduction (p. 2),pipeline,12,0,NA,==,TRUE,of 12 previously published survey experiments
+intro_correspondence,Introduction (p. 2),pipeline,73,0,percent,==,TRUE,somewhat smaller in magnitude at an average of 73% of the pre-COVID effect size
+figure_1_ci_level,Figure 1 note (p. 3),definitional,95,0,percent,==,FALSE,"95% confidence bands from LOESS smoother. geom_smooth's level argument, whose default the figure script takes"
+figure_1_who_declaration_day,Figure 1 note (p. 3),transcribed,11,0,NA,==,FALSE,The WHO declared COVID-19 a pandemic on 11 March 2020
+figure_1_coverage_period,Figure 1 note (p. 3),descriptive,NA,0,NA,==,TRUE,Proprietary data provided by Lucid cover the period 1 January 2019 - 18 March 2021
+figure_1_completes_2019,Figure 1 note (p. 3),pipeline,729284,0,NA,==,TRUE,"In 2019, Lucid sold 729,284 completed survey responses to academic buyers"
+figure_1_completes_2020,Figure 1 note (p. 3),pipeline,2185387,0,NA,==,TRUE,"compared with 2,185,387 in 2020"
+background_commercial_growth,Background (p. 3),definitional,40,0,percent,approx,FALSE,demand for survey respondents in 2020 increased by roughly 40% among commercial clients. The deposit carries no commercial-client data
+background_academic_growth,Background (p. 3),pipeline,200,0,percent,==,TRUE,and by 200% among academic clients (see Figure 1)
+background_figure_1_reference,Background (p. 3),descriptive,NA,0,NA,==,TRUE,cross-reference: (see Figure 1)
+footnote_1_conversation_day,Footnote 1 (p. 3),definitional,18,0,NA,==,FALSE,Conversation with Lucid representatives on 18 March 2021
+design_weekly_sample,Design (p. 4),pipeline,1000,0,NA,approx,TRUE,"we recruited weekly samples of approximately 1,000 US-based participants via Lucid"
+design_survey_min_minutes,Design (p. 4),definitional,10,0,minutes,==,FALSE,"Each survey was between 10 and 15 min-long. A statement about the instrument, not about the responses"
+design_survey_max_minutes,Design (p. 4),definitional,15,0,minutes,==,FALSE,Each survey was between 10 and 15 min-long
+design_median_duration,Design (p. 4),pipeline,12.8,1,minutes,==,TRUE,(median duration: 12.8 min)
+design_module_min,Design (p. 4),definitional,3,0,minutes,==,FALSE,structured in discrete 3-5 min modules
+design_module_max,Design (p. 4),definitional,5,0,minutes,==,FALSE,structured in discrete 3-5 min modules
+design_criteria_count,Selection criteria (p. 4),structural,5,0,NA,==,FALSE,the numbered list of selection criteria runs 1 to 5
+design_replications,Selection criteria (p. 4),pipeline,33,0,NA,==,TRUE,We conducted 33 replications across 12 unique studies
+design_studies,Selection criteria (p. 4),pipeline,12,0,NA,==,TRUE,We conducted 33 replications across 12 unique studies
+design_modified_studies,Selection criteria (p. 5),descriptive,NA,0,NA,==,TRUE,"Modified versions of studies 2, 3, 5, and 7 were also replicated using COVID-specific content"
+design_null_studies,Selection criteria (p. 5),structural,2,0,NA,==,FALSE,"For studies with null results (studies 11-12). A classification of the two studies, stated in the text and visible in Table 1"
+design_appendix_a_reference,Selection criteria (p. 5),descriptive,NA,0,NA,==,TRUE,cross-reference: A description of each modified version ... are provided in Online Appendix Section A
+results_studies,Results (p. 5),pipeline,12,0,NA,==,TRUE,the original effect size(s) for each of the 12 pre-COVID studies listed in Table 1
+results_table_1_reference,Results (p. 5),descriptive,NA,0,NA,==,TRUE,cross-reference: the 12 pre-COVID studies listed in Table 1
+results_studies_with_precovid_replication,Results (p. 5),pipeline,7,0,NA,==,TRUE,at least one pre-COVID replication estimate of the original effect size(s) for 7 of these studies
+results_precovid_estimates,Results (p. 5),pipeline,89,0,NA,==,TRUE,"In total, we obtained 89 pre-COVID estimates"
+results_replication_estimates,Results (p. 5),pipeline,101,0,NA,==,TRUE,and 101 replication estimates
+footnote_3_gss_administrations,Footnote 3 (p. 5),definitional,20,0,NA,==,TRUE,The GSS has administered the welfare versus aid to the poor experiment 20 times between 1986 and 2018
+footnote_3_gss_first_year,Footnote 3 (p. 5),definitional,1986,0,NA,==,FALSE,between 1986 and 2018
+footnote_3_gss_last_year,Footnote 3 (p. 5),definitional,2018,0,NA,==,FALSE,between 1986 and 2018
+footnote_3_all_precovid_estimates,Footnote 3 (p. 5),pipeline,108,0,NA,==,TRUE,"If all GSS estimates are included, we have 108 pre-COVID-19 estimates in total"
+footnote_3_benchmark_year,Footnote 3 (p. 5),definitional,1986,0,NA,==,FALSE,we use the 1986 GSS experiment as our original estimate
+footnote_3_huber_replications,Footnote 3 (p. 5),definitional,2,0,NA,==,TRUE,take the first two replications conducted on online samples by Huber and Paris (2013) as our pre-COVID replication estimates
+results_ci_multiplier,Results (p. 5),definitional,1.96,2,NA,==,FALSE,"the 95 per cent intervals plotted in Figures 2 and 3 are the estimate plus or minus 1.96 standard errors, visible at the call site in clean_summary_estimates.R"
+results_summary_estimates,Results (p. 6),pipeline,138,0,NA,==,TRUE,"Across the 12 studies, we obtained 138 summary effect size estimates"
+results_summary_conjoint,Results (p. 6),pipeline,82,0,NA,==,TRUE,82 for the conjoint studies
+results_summary_nonconjoint,Results (p. 6),pipeline,56,0,NA,==,TRUE,and 56 for the remaining studies
+results_fig2_pairs,Results (p. 6),pipeline,28,0,NA,==,TRUE,Figure 2 compares the 28 estimated summary effects from the pre-COVID studies with their 28 replications
+results_all_smaller_nonconjoint,Results (p. 6),descriptive,NA,0,NA,==,TRUE,All replication summary estimates were smaller in magnitude than their pre-COVID estimates
+results_correctly_signed_nonconjoint,Results (p. 6),pipeline,24,0,NA,==,TRUE,with 24 of 28 signed in the same direction
+results_sig_smaller_of_24,Results (p. 6),pipeline,10,0,NA,==,TRUE,"Of the 24 correctly signed estimates, 10 were significantly smaller in replication. Superseded by the 2023 corrigendum, which gives 11"
+results_incorrectly_signed,Results (p. 6),pipeline,4,0,NA,==,TRUE,Of the four incorrectly signed estimates
+results_sig_among_incorrect,Results (p. 6),pipeline,3,0,NA,==,TRUE,three were significantly different
+results_atomic_sig_count,Results (p. 6),pipeline,2,0,NA,==,TRUE,two of six estimates from the atomic aversion study
+results_atomic_estimate_count,Results (p. 6),pipeline,6,0,NA,==,TRUE,two of six estimates from the atomic aversion study
+results_foreign_aid_significant,Results (p. 6),descriptive,NA,0,NA,==,TRUE,the foreign aid misperceptions study [is one of the three significantly different incorrectly signed estimates]
+results_conjoint_pairs,Results (p. 6),pipeline,41,0,NA,==,TRUE,Figure 3 plots the analogous information for the 41 conjoint estimates and their 41 replications
+results_conjoint_same_sign,Results (p. 6),descriptive,NA,0,NA,==,TRUE,all of which are signed in the same direction
+results_conjoint_smaller,Results (p. 6),pipeline,35,0,NA,==,TRUE,"Of these, 35 of 41 were smaller in replication"
+results_conjoint_sig_among_smaller,Results (p. 6),pipeline,6,0,NA,==,TRUE,"35 of 41 were smaller in replication (6 statistically significant differences). Superseded by the 2023 corrigendum, which gives 11"
+results_conjoint_larger,Results (p. 6),pipeline,6,0,NA,==,TRUE,and 6 of 41 were larger in replication
+results_conjoint_sig_among_larger,Results (p. 6),pipeline,1,0,NA,==,TRUE,6 of 41 were larger in replication (1 of 6 significant differences)
+results_pooled_correctly_signed,Results (p. 6),pipeline,65,0,NA,==,TRUE,Pooling across all 65 of 69 correctly signed pairs presented in Figures 2-3
+results_pooled_pairs,Results (p. 6),pipeline,69,0,NA,==,TRUE,Pooling across all 65 of 69 correctly signed pairs
+results_correspondence_overall,Results (p. 6),pipeline,73,0,percent,==,TRUE,"the replication estimates were, on average, 73% as large as the pre-COVID estimates"
+results_correspondence_conjoint,Results (p. 6),pipeline,87,0,percent,==,TRUE,"The 41 correctly signed estimates from the conjoint replication were, on average, 87% as large as the original"
+results_correspondence_nonconjoint,Results (p. 6),pipeline,49,0,percent,==,TRUE,"The 24 of 28 correctly signed estimates from the other replications were, on average, 49% as large"
+results_figures_2_3_reference,Results (p. 6),descriptive,NA,0,NA,==,TRUE,cross-reference: the 65 of 69 correctly signed pairs presented in Figures 2-3
+figure_2_caption_pairs,Figure 2 caption (p. 7),pipeline,28,0,NA,==,TRUE,Comparison of 28 summary effect sizes across 11 studies (conjoint excluded)
+figure_2_caption_studies,Figure 2 caption (p. 7),pipeline,11,0,NA,==,TRUE,Comparison of 28 summary effect sizes across 11 studies (conjoint excluded)
+figure_2_ci_level,Figure 2 note (p. 7),definitional,95,0,percent,==,FALSE,Estimated summary effect sizes and 95% confidence intervals
+figure_2_sig_count,Figure 2 note (p. 7),pipeline,13,0,NA,==,TRUE,"Thirteen of 28 replication estimates were significantly different from their pre-COVID benchmark at P < 0.05. Superseded by the 2023 corrigendum, which gives 14 before adjustment and 13 after"
+figure_2_alpha,Figure 2 note (p. 7),definitional,0.05,2,NA,==,FALSE,significantly different from their pre-COVID benchmark at P < 0.05
+figure_3_caption_pairs,Figure 3 caption (p. 8),pipeline,41,0,NA,==,TRUE,Comparison of 41 summary effect sizes in conjoint experiments
+figure_3_ci_level,Figure 3 note (p. 8),definitional,95,0,percent,==,FALSE,Estimated summary effect sizes and 95% confidence intervals
+figure_3_sig_count,Figure 3 note (p. 8),pipeline,7,0,NA,==,TRUE,"Seven of 41 replication estimates were significantly different from their pre-COVID benchmark at P < 0.05. Superseded by the 2023 corrigendum, which gives 12 before adjustment and 7 after"
+figure_3_alpha,Figure 3 note (p. 8),definitional,0.05,2,NA,==,FALSE,significantly different from their pre-COVID benchmark at P < 0.05
+comparison_osc_experiments,Results (p. 7),transcribed,100,0,NA,==,FALSE,Open Science Collaboration (2015) replicated 100 experiments
+comparison_osc_journals,Results (p. 7),transcribed,3,0,NA,==,FALSE,from 3 top psychology journals
+comparison_osc_replicated,Results (p. 7),transcribed,40,0,percent,approx,FALSE,found that about 40% replicated
+comparison_camerer_experiments,Results (p. 7),transcribed,18,0,NA,==,FALSE,Camerer et al. (2016) replicated 18 survey and lab-based experiments
+comparison_camerer_successful,Results (p. 7),transcribed,11,0,NA,==,FALSE,effect sizes in the 11 studies that successfully replicated
+comparison_camerer_ratio,Results (p. 7),transcribed,66,0,percent,approx,FALSE,were approximately 66% of the original
+comparison_coppock_estimates,Results (p. 7),transcribed,40,0,NA,==,FALSE,Coppock (2019) replicated 40 treatment effect estimates
+comparison_coppock_experiments,Results (p. 7),transcribed,12,0,NA,==,FALSE,from 12 survey experiments
+comparison_coppock_ratio,Results (p. 7),transcribed,66,0,percent,==,FALSE,the median MTurk estimate was 66% of the original effect size
+comparison_prior_studies,Results (p. 7),structural,NA,0,NA,==,FALSE,Prior replications of studies 7 and 8 have found effect sizes at least as large as the original
+footnote_5_survey_day,Footnote 5 (p. 9),definitional,29,0,NA,==,FALSE,In a separate Lucid survey fielded on 29 October. That survey is not in the deposit
+footnote_5_game_share,Footnote 5 (p. 9),definitional,51,0,percent,==,FALSE,51% reported they were [recruited from a game]. Not in the deposit
+footnote_5_game_pass,Footnote 5 (p. 9),definitional,38,0,percent,==,FALSE,"among those coming from an online game, only 38% passed the ACQ. Not in the deposit"
+footnote_5_nongame_pass,Footnote 5 (p. 9),definitional,82,0,percent,==,FALSE,versus 82% of those not coming from a game. Not in the deposit
+footnote_5_interview_year,Footnote 5 (p. 9),definitional,2021,0,NA,==,FALSE,Interviews with Lucid representatives in 2021
+footnote_5_table_2_reference,Footnote 5 (p. 9),descriptive,NA,0,NA,==,TRUE,cross-reference: the Easy ACQ from Table 2
+inattention_classifier_count,Inattention (p. 10),structural,2,0,NA,==,FALSE,We offer two approaches for classifying respondents as inattentive: 1) ... and 2) ...
+device_surveys,Inattention (p. 10),pipeline,13,0,NA,==,TRUE,Applying this approach across the 13 surveys used for the replication studies
+device_webapp_min,Inattention (p. 10),pipeline,0.19,2,NA,==,TRUE,the proportion of participants coming from web applications ranged from 0.19 to 0.61
+device_webapp_max,Inattention (p. 10),pipeline,0.61,2,NA,==,TRUE,the proportion of participants coming from web applications ranged from 0.19 to 0.61
+device_mobile_min,Inattention (p. 10),pipeline,0.31,2,NA,==,TRUE,the proportion of participants coming from mobiles ranged from 0.31 to 0.73
+device_mobile_max,Inattention (p. 10),pipeline,0.73,2,NA,==,TRUE,the proportion of participants coming from mobiles ranged from 0.31 to 0.73
+device_additional_sample,Inattention (p. 10),pipeline,63245,0,NA,==,TRUE,"Based on an additional sample of 63,245 respondents obtained from Lucid surveys"
+device_additional_sample_period,Inattention (p. 10),descriptive,NA,0,NA,==,TRUE,"an additional sample of 63,245 respondents obtained from Lucid surveys fielded prior to March 2020"
+device_2020_webapp,Inattention (p. 10),pipeline,41,0,percent,approx,TRUE,"In the 2020 surveys, approximately 41% of respondents came from web applications"
+device_2020_mobile,Inattention (p. 10),pipeline,56,0,percent,==,TRUE,In the 2020 surveys ... (56% from mobiles)
+device_2019_webapp,Inattention (p. 10),pipeline,33,0,percent,==,TRUE,an increase from 33% ... in 2019
+device_2019_mobile,Inattention (p. 10),pipeline,56,0,percent,==,TRUE,an increase from 33% (56% from mobiles) in 2019
+device_2018_webapp,Inattention (p. 10),pipeline,13,0,percent,==,TRUE,and just 13% ... in 2018
+device_2018_mobile,Inattention (p. 10),pipeline,33,0,percent,==,TRUE,and just 13% (33% from mobiles) in 2018
+device_trending_upward,Inattention (p. 10),descriptive,NA,0,NA,==,TRUE,the proportion of participants from both web applications and mobiles was trending upward prior to the COVID-19 outbreak
+device_figure_4_reference,Inattention (p. 10),descriptive,NA,0,NA,==,TRUE,"cross-reference: These results, reported in Figure 4"
+device_overlap_mobile_given_webapp,Inattention (p. 10),pipeline,97,0,percent,==,TRUE,97% of participants from web applications were also on mobile devices
+device_overlap_webapp_given_mobile,Inattention (p. 10),pipeline,72,0,percent,==,TRUE,and 72% on mobile devices arrived from web applications
+device_duration_gap_webapp,Inattention (p. 10),pipeline,7,0,minutes,approx,TRUE,Those from web applications spent approximately 7 min less time completing surveys than those from web browsers
+device_duration_browser,Inattention (p. 10),pipeline,21.5,1,minutes,==,TRUE,"those from web browsers, who spent an average of 21.5 min"
+device_duration_gap_mobile,Inattention (p. 10),pipeline,6,0,minutes,approx,TRUE,Respondents from mobile devices spent roughly 6 min less time completing surveys than subjects from nonmobile devices
+device_acq_surveys,Inattention (p. 10),pipeline,2,0,NA,==,TRUE,in 2 of the 13 surveys we included ACQs of varying difficulty
+device_acq_significance,Inattention (p. 10),descriptive,NA,0,NA,==,TRUE,"found those on web applications (or mobiles) were significantly less likely to pass the ACQs, compared to those coming from browsers (or nonmobiles)"
+device_table_2_reference,Inattention (p. 10),descriptive,NA,0,NA,==,TRUE,cross-reference: These results are reported in Table 2
+table_2_note_c9_c10_reference,Table 2 note (p. 11),descriptive,NA,0,NA,==,TRUE,cross-reference: novel ACQs that subjects completed after reading a short news article (see Fig. C.9-C.10)
+table_2_note_hard_week,Table 2 note (p. 11),definitional,9,0,NA,==,FALSE,The Hard ACQ comes from Peyton (2020) and was included with the direct replication of the original study in Week 9
+table_2_note_original_pass,Table 2 note (p. 11),pipeline,87,0,percent,==,TRUE,was passed by 87% of respondents in the original study
+table_2_note_c11_reference,Table 2 note (p. 11),descriptive,NA,0,NA,==,TRUE,cross-reference: passed by 87% of respondents in the original study (see Fig. C.11)
+table_2_note_alpha,Table 2 note (p. 11),definitional,0.05,2,NA,==,FALSE,Standard errors in parentheses P < 0.05*
+figure_5_reference,Inattention (p. 11),descriptive,NA,0,NA,==,TRUE,cross-reference: Figure 5 shows that regardless of the approach used to classify subjects as attentive
+figure_5_attentive_positive,Inattention (p. 11),descriptive,NA,0,NA,==,TRUE,estimated treatment effects among the attentive are positive and significant
+figure_5_acq_pass_estimate,Inattention (p. 11),pipeline,0.39,2,NA,==,TRUE,"Among those who passed the ACQ, the average effect of treatment was 0.39 (SE: 0.15)"
+figure_5_acq_pass_se,Inattention (p. 11),pipeline,0.15,2,NA,==,TRUE,"Among those who passed the ACQ, the average effect of treatment was 0.39 (SE: 0.15)"
+figure_5_browser_estimate,Inattention (p. 11),pipeline,0.33,2,NA,==,TRUE,"Among those coming from browsers, the estimate was 0.33 (SE: 0.10)"
+figure_5_browser_se,Inattention (p. 11),pipeline,0.10,2,NA,==,TRUE,"Among those coming from browsers, the estimate was 0.33 (SE: 0.10)"
+figure_5_nonmobile_estimate,Inattention (p. 11),pipeline,0.52,2,NA,==,TRUE,among nonmobile users it was 0.52 (SE: 0.12)
+figure_5_nonmobile_se,Inattention (p. 11),pipeline,0.12,2,NA,==,TRUE,among nonmobile users it was 0.52 (SE: 0.12)
+figure_5_acq_fail_estimate,Inattention (p. 11),pipeline,0.08,2,NA,==,TRUE,"Among those who failed the ACQ (estimate: 0.08, SE: 0.09)"
+figure_5_acq_fail_se,Inattention (p. 11),pipeline,0.09,2,NA,==,TRUE,"Among those who failed the ACQ (estimate: 0.08, SE: 0.09)"
+figure_5_webapp_estimate,Inattention (p. 11),pipeline,-0.03,2,NA,==,TRUE,"came from a web application (estimate: -0.03, SE: 0.12)"
+figure_5_webapp_se,Inattention (p. 11),pipeline,0.12,2,NA,==,TRUE,"came from a web application (estimate: -0.03, SE: 0.12)"
+figure_5_mobile_estimate,Inattention (p. 11),pipeline,-0.04,2,NA,==,TRUE,"or used a mobile phone (estimate: -0.04, SE: 0.10)"
+figure_5_mobile_se,Inattention (p. 11),pipeline,0.10,2,NA,==,TRUE,"or used a mobile phone (estimate: -0.04, SE: 0.10)"
+figure_5_inattentive_near_zero,Inattention (p. 11),descriptive,NA,0,NA,==,TRUE,estimated treatment effects were all close to zero and nonsignificant [for the three inattentive subgroups]
+inattention_correspondence,Inattention (p. 11),pipeline,73,0,percent,==,TRUE,"Pooling across all replication studies, we find effect sizes were, on average, 73% their pre-COVID magnitude"
+inattention_attentive_share,Inattention (p. 11),pipeline,73,0,percent,==,TRUE,If 73% of respondents were attentive
+inattention_inattentive_share,Inattention (p. 11),pipeline,26,0,percent,==,TRUE,"If 73% of respondents were attentive and 26% inattentive, our replication estimate would, on average, match our pre-COVID benchmarks"
+inattention_aronow_pass_rate,Inattention (p. 11),transcribed,70,0,percent,approx,FALSE,Aronow et al. (2020) report that approximately 70% of respondents passed ACQs in surveys fielded between March and July 2020
+inattention_divisor,Inattention (p. 11),definitional,0.70,2,NA,==,FALSE,Dividing each of the COVID era summary estimates that we obtained by 0.70. The divisor is visible at the call site in text_correspondence_summary.R
+inattention_inflated_correspondence,Inattention (p. 11),pipeline,104,0,percent,==,TRUE,yields an estimated replication correspondence of 104% the pre-COVID effect sizes
+inattention_figure_5_reference,Inattention (p. 11),descriptive,NA,0,NA,==,TRUE,cross-reference: consistent with the evidence provided in Figure 5
+figure_5_note_field_month,Figure 5 note (p. 12),definitional,5,0,month,==,TRUE,"Estimates for the Lucid replication, fielded in May 2020"
+figure_5_note_corr_nonmobile_browser,Figure 5 note (p. 12),pipeline,0.67,2,NA,==,TRUE,Pairwise correlations between these methods: 0.67 for nonmobile and browsers
+figure_5_note_corr_nonmobile_acq,Figure 5 note (p. 12),pipeline,0.10,2,NA,==,TRUE,0.10 for non-mobiles and ACQ pass
+figure_5_note_corr_browser_acq,Figure 5 note (p. 12),pipeline,0.09,2,NA,==,TRUE,and 0.09 for browsers and ACQ pass
+figure_5_note_original_year,Figure 5 note (p. 12),definitional,2017,0,NA,==,FALSE,In the MTurk sample from March 2017
+figure_5_note_original_pass,Figure 5 note (p. 12),pipeline,87,0,percent,==,TRUE,Peyton (2020) Appendix S5.8 reports 87% of respondents passed their pretreatment ACQ
+figure_5_note_replication_pass,Figure 5 note (p. 12),pipeline,19,0,percent,==,TRUE,"In our direct replication, 19% of respondents passed this same ACQ"
+discussion_replications,Discussion (p. 12),pipeline,33,0,NA,==,TRUE,We investigated by conducting 33 replications during the early COVID era of 12 published experimental studies
+discussion_studies,Discussion (p. 12),pipeline,12,0,NA,==,TRUE,33 replications during the early COVID era of 12 published experimental studies
+discussion_one_exception,Discussion (p. 12),descriptive,NA,0,NA,==,TRUE,"Because these pre-COVID experiments were, with one exception, successfully replicated"
+discussion_second_chance_passed,Discussion (p. 13),definitional,17,0,NA,==,FALSE,Only 17 of the 410 subjects (4%) in this treatment group passed. A separate Lucid study that is not in the deposit
+discussion_second_chance_n,Discussion (p. 13),definitional,410,0,NA,==,FALSE,Only 17 of the 410 subjects (4%) in this treatment group passed. Not in the deposit
+discussion_second_chance_share,Discussion (p. 13),definitional,4,0,percent,==,FALSE,Only 17 of the 410 subjects (4%) in this treatment group passed. Not in the deposit
+acknowledgment_irb_protocol,Financial support (p. 14),structural,1312013102,0,NA,==,FALSE,This research was approved by the Yale University Institutional Review Board (Protocol number 1312013102)
+appendix_standardization,Online Appendix A preamble (p. 1),definitional,NA,0,NA,==,FALSE,"All within-study estimates for non-binary outcomes are standardized using Glass's Delta, which scales outcomes by the standard deviation in the control group. Visible at the call site in glass_delta()"
+a1_precovid_summary,Online Appendix A.1 (p. 1),pipeline,30,0,percentage points,==,TRUE,"Pooling across the pre-COVID studies, the summary effect size estimate is a 30 percentage point increase in support for Russian journalists"
+a1_replication_estimate,Online Appendix A.1 (p. 1),pipeline,25.5,1,percentage points,==,TRUE,Our effect estimate of 25.5 points is 83% of this magnitude
+a1_relative,Online Appendix A.1 (p. 1),pipeline,83,0,percent,==,TRUE,Our effect estimate of 25.5 points is 83% of this magnitude
+a1_difference,Online Appendix A.1 (p. 1),pipeline,5.5,1,percentage points,==,TRUE,this difference of 5.5 percentage points is not statistically significant (P = 0.16)
+a1_difference_p,Online Appendix A.1 (p. 1),pipeline,0.16,2,NA,==,TRUE,this difference of 5.5 percentage points is not statistically significant (P = 0.16)
+a1_baseline_1950,Online Appendix A.1 (p. 1),definitional,36,0,percent,==,FALSE,baseline levels of support in the control condition among Americans in 1950 (36%). The deposit reconstructs the three pre-COVID studies from published response counts and exports only their treatment effects
+a1_baseline_1980,Online Appendix A.1 (p. 1),definitional,55,0,percent,==,FALSE,baseline levels of support in the control condition among Americans in 1980 (55%). Same source as a1_baseline_1950
+a1_baseline_1983,Online Appendix A.1 (p. 1),definitional,44,0,percent,==,FALSE,baseline levels of support in the control condition among Americans in 1983 (44%). Same source as a1_baseline_1950
+a1_baseline_lucid,Online Appendix A.1 (p. 1),definitional,45,0,percent,==,FALSE,quite similar to COVID-era Lucid respondents (45%). A control-group mean the rewrite does not export
+a2_stimulus_values,Online Appendix A.2 (pp. 2-3),transcribed,NA,0,NA,==,FALSE,"The dollar amounts and travel time quoted from the Tversky and Kahneman (1981) and Klein et al. (2018) instruments: $15, $125, $10, $120, $140, $5, 20 minutes, $250, $30, $20, $240, N-95"
+a2_tk_cheap_share,Online Appendix A.2 (p. 2),transcribed,68,0,percent,==,FALSE,68% of participants said they would travel when they could save $5 on the $15 item
+a2_tk_expensive_share,Online Appendix A.2 (p. 2),transcribed,29,0,percent,==,FALSE,whereas 29% said they would travel when they could save $5 on the $125 item
+a2_tk_effect,Online Appendix A.2 (p. 2),transcribed,39,0,percentage points,==,FALSE,this difference of 39 percentage points illustrates how individuals assess the potential gains and losses
+a2_ml_cheap_share,Online Appendix A.2 (p. 3),transcribed,49,0,percent,==,FALSE,"In the replication by Klein et al. (2018), 49% of participants said they would travel"
+a2_ml_expensive_share,Online Appendix A.2 (p. 3),transcribed,32,0,percent,==,FALSE,whereas 32% said they would travel to save $10 on the expensive wall-hanging
+a2_c1_c4_reference,Online Appendix A.2 (p. 3),descriptive,NA,0,NA,==,TRUE,cross-reference: See Figures C.1-C.4 for a full description of each condition
+a2_direct_effect,Online Appendix A.2 (p. 3),pipeline,15,0,percentage points,==,TRUE,The estimated effect in our direct replication of 15 percentage points
+a2_precovid_effect,Online Appendix A.2 (p. 3),pipeline,16,0,percentage points,==,TRUE,was indistinguishable from the pre-COVID replication (16 percentage points)
+a2_covid_effect,Online Appendix A.2 (p. 3),pipeline,7,0,percentage points,==,TRUE,the estimated treatment effect of 7 percentage points was indistinguishable from zero
+a2_covid_vs_precovid_diff,Online Appendix A.2 (p. 3),pipeline,9,0,percentage points,==,TRUE,"smaller than both the pre-COVID replication (difference of 9 percentage points, SE = 0.05, P = 0.02)"
+a2_covid_vs_precovid_se,Online Appendix A.2 (p. 3),pipeline,0.05,2,NA,==,TRUE,"difference of 9 percentage points, SE = 0.05, P = 0.02"
+a2_covid_vs_precovid_p,Online Appendix A.2 (p. 3),pipeline,0.02,2,NA,==,TRUE,"difference of 9 percentage points, SE = 0.05, P = 0.02"
+a2_covid_vs_direct_diff,Online Appendix A.2 (p. 3),pipeline,8,0,percentage points,==,TRUE,"and our direct replication (difference of 8 percentage points, SE = 0.06, P = 0.09)"
+a2_covid_vs_direct_se,Online Appendix A.2 (p. 3),pipeline,0.06,2,NA,==,TRUE,"difference of 8 percentage points, SE = 0.06, P = 0.09"
+a2_covid_vs_direct_p,Online Appendix A.2 (p. 3),pipeline,0.09,2,NA,==,TRUE,"difference of 8 percentage points, SE = 0.06, P = 0.09"
+a2_summary_pre,Online Appendix A.2 (p. 3),pipeline,0.17,2,NA,==,TRUE,"Pooling across the pre-COVID replication and original, the summary effect size estimate is 0.17 (SE = 0.01, P < 0.01)"
+a2_summary_pre_se,Online Appendix A.2 (p. 3),pipeline,0.01,2,NA,==,TRUE,"the summary effect size estimate is 0.17 (SE = 0.01, P < 0.01)"
+a2_summary_covid,Online Appendix A.2 (p. 3),pipeline,0.11,2,NA,==,TRUE,"compared to 0.11 (SE = 0.03, P < 0.01) for our replications"
+a2_summary_covid_se,Online Appendix A.2 (p. 3),pipeline,0.03,2,NA,==,TRUE,"compared to 0.11 (SE = 0.03, P < 0.01) for our replications"
+a2_summaries_significant,Online Appendix A.2 (p. 3),descriptive,NA,0,NA,==,TRUE,both summary effect sizes are reported with P < 0.01
+a2_correspondence,Online Appendix A.2 (p. 3),pipeline,64,0,percent,==,TRUE,for a correspondence of 64%
+a3_stimulus_values,Online Appendix A.3 (pp. 4-5),transcribed,NA,0,NA,==,FALSE,"The Asian disease scenario quoted from Tversky and Kahneman (1981): 600 people, 200 saved, 400 die, 1/3 and 2/3 probabilities, and the 2021 coronavirus wording"
+a3_tk_gain,Online Appendix A.3 (p. 4),transcribed,72,0,percent,==,FALSE,"In the original study, 72% selected Program A in the gain frame"
+a3_tk_loss,Online Appendix A.3 (p. 4),transcribed,22,0,percent,==,FALSE,whereas 22% selected Program A in the loss frame
+a3_tk_effect,Online Appendix A.3 (p. 4),transcribed,50,0,percentage points,==,FALSE,for an estimated treatment effect of 50 percentage points
+a3_replications,Online Appendix A.3 (p. 5),pipeline,5,0,NA,==,TRUE,The summary effect size for our five replications
+a3_precovid_studies,Online Appendix A.3 (p. 5),pipeline,5,0,NA,==,TRUE,the summary effect size for the five pre-COVID experiments
+a3_covid_summary,Online Appendix A.3 (p. 5),pipeline,0.15,2,NA,==,TRUE,"The summary effect size for our five replications is 0.15 (SE = 0.02, P < 0.01)"
+a3_covid_se,Online Appendix A.3 (p. 5),pipeline,0.02,2,NA,==,TRUE,"The summary effect size for our five replications is 0.15 (SE = 0.02, P < 0.01)"
+a3_relative,Online Appendix A.3 (p. 5),pipeline,50,0,percent,approx,TRUE,approximately 50% the size of the summary effect size for the five pre-COVID experiments
+a3_pre_summary,Online Appendix A.3 (p. 5),pipeline,0.29,2,NA,==,TRUE,"(summary effect size: 0.29, SE = 0.01, P < 0.01)"
+a3_pre_se,Online Appendix A.3 (p. 5),pipeline,0.01,2,NA,==,TRUE,"(summary effect size: 0.29, SE = 0.01, P < 0.01)"
+a3_difference,Online Appendix A.3 (p. 5),pipeline,0.14,2,NA,==,TRUE,"smaller than those from pre-COVID experiments (difference: 0.14, SE = 0.02, P < 0.01)"
+a3_difference_se,Online Appendix A.3 (p. 5),pipeline,0.02,2,NA,==,TRUE,"(difference: 0.14, SE = 0.02, P < 0.01)"
+a3_all_distinguishable,Online Appendix A.3 (p. 5),descriptive,NA,0,NA,==,TRUE,"all COVID-era replication estimates are statistically distinguishable from zero, and in the expected direction"
+a4_coding_low,Online Appendix A.4 (p. 6),definitional,-1,0,NA,==,FALSE,"responses are coded as -1 (too much), 0 (about the right amount), and 1 (too little)"
+a4_coding_mid,Online Appendix A.4 (p. 6),definitional,0,0,NA,==,FALSE,"responses are coded as -1, 0 and 1"
+a4_coding_high,Online Appendix A.4 (p. 6),definitional,1,0,NA,==,FALSE,"responses are coded as -1, 0 and 1"
+a4_within_subject_weeks,Online Appendix A.4 (p. 6),descriptive,NA,0,NA,==,TRUE,Two of our replications (Week 9 and Week 5) were within-subject experiments
+a4_cawi_summary,Online Appendix A.4 (p. 6),pipeline,0.44,2,NA,==,TRUE,"The summary effect size for the experimental estimates from CAWI surveys is 0.44 (SE = 0.02, P < 0.01)"
+a4_cawi_se,Online Appendix A.4 (p. 6),pipeline,0.02,2,NA,==,TRUE,"the experimental estimates from CAWI surveys is 0.44 (SE = 0.02, P < 0.01)"
+a4_cawi_relative,Online Appendix A.4 (p. 6),pipeline,44,0,percent,approx,TRUE,approximately 44% the size of the summary effect sizes for the CAPI and PAPI surveys
+a4_capi_summary,Online Appendix A.4 (p. 6),pipeline,1.00,2,NA,==,TRUE,"the CAPI (1.00, SE = 0.01, P < 0.01) surveys from the GSS"
+a4_capi_se,Online Appendix A.4 (p. 6),pipeline,0.01,2,NA,==,TRUE,"the CAPI (1.00, SE = 0.01, P < 0.01) surveys from the GSS"
+a4_papi_summary,Online Appendix A.4 (p. 6),pipeline,1.05,2,NA,==,TRUE,"and PAPI (1.05, SE = 0.01, P < 0.01) surveys from the GSS"
+a4_papi_se,Online Appendix A.4 (p. 6),pipeline,0.01,2,NA,==,TRUE,"and PAPI (1.05, SE = 0.01, P < 0.01) surveys from the GSS"
+a4_experimental_summary,Online Appendix A.4 (p. 6),pipeline,0.43,2,NA,==,TRUE,"our experimental estimates (summary effect size: 0.43, SE = 0.02, P < 0.01)"
+a4_experimental_se,Online Appendix A.4 (p. 6),pipeline,0.02,2,NA,==,TRUE,"our experimental estimates (summary effect size: 0.43, SE = 0.02, P < 0.01)"
+a4_huber_summary,Online Appendix A.4 (p. 6),pipeline,0.46,2,NA,==,TRUE,"are indistinguishable from the pre-COVID estimates (0.46, SE = 0.05, P < 0.01) from Huber and Paris (2013)"
+a4_huber_se,Online Appendix A.4 (p. 6),pipeline,0.05,2,NA,==,TRUE,"the pre-COVID estimates (0.46, SE = 0.05, P < 0.01) from Huber and Paris (2013)"
+a4_benchmark_summary,Online Appendix A.4 (p. 8),pipeline,0.70,2,NA,==,TRUE,"The summary effect size for these three estimates is 0.70 (SE = 0.04, P < 0.01)"
+a4_benchmark_se,Online Appendix A.4 (p. 8),pipeline,0.04,2,NA,==,TRUE,"The summary effect size for these three estimates is 0.70 (SE = 0.04, P < 0.01)"
+a4_benchmark_relative,Online Appendix A.4 (p. 8),pipeline,61,0,percent,approx,TRUE,our COVID-era replication estimates are approximately 61% the size of this pre-COVID benchmark
+a4_benchmark_year,Online Appendix A.4 (p. 8),definitional,1986,0,NA,==,FALSE,we benchmark against the original 1986 estimate and the two replications on online samples
+a4_all_distinguishable,Online Appendix A.4 (p. 6),descriptive,NA,0,NA,==,TRUE,All replication estimates are statistically distinguishable from zero and are in the expected direction
+a4_footnote_3_cawi_q,Online Appendix A.4 footnote 3 (p. 8),pipeline,12.72,2,NA,==,TRUE,"CAWI chi-squared: 12.72, P = 0.31"
+a4_footnote_3_cawi_p,Online Appendix A.4 footnote 3 (p. 8),pipeline,0.31,2,NA,==,TRUE,"CAWI chi-squared: 12.72, P = 0.31"
+a4_footnote_3_capi_q,Online Appendix A.4 footnote 3 (p. 8),pipeline,17.21,2,NA,==,TRUE,"CAPI chi-squared: 17.21, P = 0.03"
+a4_footnote_3_capi_p,Online Appendix A.4 footnote 3 (p. 8),pipeline,0.03,2,NA,==,TRUE,"CAPI chi-squared: 17.21, P = 0.03"
+a4_footnote_3_papi_q,Online Appendix A.4 footnote 3 (p. 8),pipeline,85.19,2,NA,==,TRUE,"PAPI chi-squared: 85.19, P < 0.01"
+a4_footnote_3_papi_p,Online Appendix A.4 footnote 3 (p. 8),descriptive,NA,0,NA,==,TRUE,"PAPI chi-squared: 85.19, P < 0.01"
+a4_gss_wording_year,Online Appendix A.4 figure note (p. 9),definitional,2002,0,NA,==,FALSE,"Starting in 2002, the GSS replaced assistance to the poor with assistance for the poor"
+a4_anes_coding,Online Appendix A.4 figure note (p. 9),definitional,NA,0,NA,==,FALSE,"The other replications use the ANES question wording, coded 1, 0 and -1"
+a4_week_13_direct,Online Appendix A.4 figure note (p. 9),descriptive,NA,0,NA,==,TRUE,Week 13 is a direct replication of Huber and Paris (2013) using the GSS question wordings
+a5_stimulus_values,Online Appendix A.5 (p. 10),transcribed,NA,0,NA,==,FALSE,"The Druckman (2001) party-endorsement wording: 200 saved, 400 die, 1/3 and 2/3 probabilities"
+a5_table_reference,Online Appendix A.5 (p. 11),descriptive,NA,0,NA,==,TRUE,cross-reference: Table A.5 provides a summary of differences between the original study and the replications by treatment arm
+a5_program_a_significant,Online Appendix A.5 (p. 10),descriptive,NA,0,NA,==,TRUE,All estimates are statistically distinguishable from zero and in the expected direction when Program A is used to describe the risk-averse alternative
+a5_partisan_attenuation,Online Appendix A.5 (pp. 10-11),descriptive,NA,0,NA,==,TRUE,"among Democrats, preference reversal effects are indistinguishable from zero when Program A is replaced with Republicans' Program; among Republicans, when replaced with Democrats' Program"
+a5_all_expected_direction,Online Appendix A.5 (p. 11),descriptive,NA,0,NA,==,TRUE,"Although the replications estimates are, on average, smaller than those from the original study, all replication estimates are in the expected direction"
+a5_table_note_threshold,Online Appendix Table 1 note (p. 12),definitional,1,0,NA,==,FALSE,Relative size is the summary effect size divided by the original effect size: values less than 1 indicate summary effect sizes smaller than original effect sizes
+a5_table_note_alpha,Online Appendix Table 1 note (p. 12),definitional,0.05,2,NA,==,FALSE,P < 0.05*
+a6_survey_year,Online Appendix A.6 (p. 13),transcribed,1998,0,NA,==,FALSE,respondents from a nationally representative telephone survey fielded in 1998
+a6_gilens_effect,Online Appendix A.6 (p. 13),transcribed,16.6,1,percentage points,==,FALSE,The original study reported that respondents in the treatment condition were 16.6 percentage points less likely to support cuts for foreign aid
+a6_scale_points,Online Appendix A.6 (p. 13),definitional,3,0,NA,==,FALSE,support for foreign aid was measured on a 3-point scale
+a6_original_estimate,Online Appendix A.6 (p. 13),pipeline,0.21,2,NA,==,TRUE,"The estimated treatment effect in the original study is an increase in support for foreign aid of 0.21 (SE = 0.06, P =< 0.01)"
+a6_original_se,Online Appendix A.6 (p. 13),pipeline,0.06,2,NA,==,TRUE,"an increase in support for foreign aid of 0.21 (SE = 0.06, P =< 0.01)"
+a6_replication_estimate,Online Appendix A.6 (p. 13),pipeline,0.05,2,NA,==,TRUE,"The estimated treatment effect in the replication study is a decrease in support for foreign aid by 0.05 (SE = 0.06, P = 0.40)"
+a6_replication_se,Online Appendix A.6 (p. 13),pipeline,0.06,2,NA,==,TRUE,"a decrease in support for foreign aid by 0.05 (SE = 0.06, P = 0.40)"
+a6_replication_p,Online Appendix A.6 (p. 13),pipeline,0.40,2,NA,==,TRUE,"a decrease in support for foreign aid by 0.05 (SE = 0.06, P = 0.40)"
+a6_difference,Online Appendix A.6 (p. 13),pipeline,0.26,2,NA,==,TRUE,"The estimate from the original study is therefore 0.26 units larger, in the opposite direction, than the replication study (SE = 0.09, P < 0.01)"
+a6_difference_se,Online Appendix A.6 (p. 13),pipeline,0.09,2,NA,==,TRUE,"0.26 units larger, in the opposite direction, than the replication study (SE = 0.09, P < 0.01)"
+a6_only_failure,Online Appendix A.6 (p. 13),descriptive,NA,0,NA,==,TRUE,This is the only experimental result among our set that we classify as a replication failure
+a7_knobe_help,Online Appendix A.7 (p. 14),transcribed,23,0,percent,==,FALSE,"In the Help condition, 23% of subjects agreed with the statement"
+a7_knobe_harm,Online Appendix A.7 (p. 14),transcribed,82,0,percent,==,FALSE,whereas 82% of those in the Harm condition agreed
+a7_knobe_effect,Online Appendix A.7 (p. 14),transcribed,59,0,percentage points,==,FALSE,this estimated treatment effect of 59 percentage points
+a7_ml_effect,Online Appendix A.7 (p. 14),pipeline,64,0,percentage points,==,TRUE,"the replication study from Klein et al. (2018), which found an estimated treatment effect of 64 percentage points"
+a7_c5_c8_reference,Online Appendix A.7 (p. 15),descriptive,NA,0,NA,==,TRUE,cross-reference: See Figures C.5-C.8 for full text of each condition
+a7_direct_effect,Online Appendix A.7 (p. 15),pipeline,0.39,2,NA,==,TRUE,"The estimated treatment effect is 0.39 (SE = 0.04, P < 0.01) in the direct replication"
+a7_direct_se,Online Appendix A.7 (p. 15),pipeline,0.04,2,NA,==,TRUE,"The estimated treatment effect is 0.39 (SE = 0.04, P < 0.01) in the direct replication"
+a7_covid_effect,Online Appendix A.7 (p. 15),pipeline,0.38,2,NA,==,TRUE,"and 0.38 in the COVID-specific replication (SE = 0.04, P < 0.01)"
+a7_covid_se,Online Appendix A.7 (p. 15),pipeline,0.04,2,NA,==,TRUE,"and 0.38 in the COVID-specific replication (SE = 0.04, P < 0.01)"
+a7_covid_vs_direct_diff,Online Appendix A.7 (p. 15),pipeline,0.01,2,NA,approx,TRUE,The estimated treatment effect for the COVID-specific replication is about 0.01 points smaller than the direct replication
+a7_covid_vs_direct_se,Online Appendix A.7 (p. 15),pipeline,0.04,2,NA,==,TRUE,"about 0.01 points smaller than the direct replication (SE = 0.04, P = 0.46)"
+a7_covid_vs_direct_p,Online Appendix A.7 (p. 15),pipeline,0.46,2,NA,==,TRUE,"about 0.01 points smaller than the direct replication (SE = 0.04, P = 0.46)"
+a7_relative_precovid,Online Appendix A.7 (p. 15),pipeline,60,0,percent,approx,TRUE,The direct replication is approximately 60% the size of the pre-COVID benchmark
+a7_difference_precovid,Online Appendix A.7 (p. 15),pipeline,0.25,2,NA,==,TRUE,"approximately 60% the size of the pre-COVID benchmark (difference of 0.25 points, SE = 0.04, P < 0.01)"
+a7_difference_precovid_se,Online Appendix A.7 (p. 15),pipeline,0.04,2,NA,==,TRUE,"(difference of 0.25 points, SE = 0.04, P < 0.01)"
+a7_all_distinguishable,Online Appendix A.7 (p. 15),descriptive,NA,0,NA,==,TRUE,all estimates are in the expected direction and statistically distinguishable from zero
+a8_stimulus_values,Online Appendix A.8 (p. 17),transcribed,NA,0,NA,==,FALSE,"The Press, Sagan and Valentino (2013) scenario as quoted: 1,000 civilian deaths, the 90/90, 90/70 and 90/45 labels, 100 conventional cruise missiles, 2 nuclear cruise missiles and the $100 raffle"
+a8_prospective_arms,Online Appendix A.8 (p. 17),structural,3,0,NA,==,FALSE,subjects were assigned to one of three treatment arms that varied only in the likely success of the conventional strike
+a8_9090_success,Online Appendix A.8 (p. 17),pipeline,90,0,percent,==,TRUE,a 90/90 condition in which the nuclear and conventional strike both had a 90% chance of success. The condition label names the conventional strike's chance of success
+a8_9070_success,Online Appendix A.8 (p. 17),pipeline,75,0,percent,==,TRUE,a 90/70 condition in which the conventional strike had a 75% chance of success. The condition label names the conventional strike's chance of success
+a8_9045_success,Online Appendix A.8 (p. 17),pipeline,45,0,percent,==,TRUE,a 90/45 condition in which the conventional strike had a 45% chance of success. The condition label names the conventional strike's chance of success
+a8_retrospective_arms,Online Appendix A.8 (p. 17),structural,2,0,NA,==,FALSE,subjects were assigned to one of two treatment arms that described the weapons used
+a8_original_9070_prefer,Online Appendix A.8 (p. 18),pipeline,37,0,percentage points,==,TRUE,"In the original study, the 90/70 condition caused an increase in the proportion of subject that preferred the nuclear option by about 37 percentage points relative to the 90/90 condition"
+a8_original_9045_prefer,Online Appendix A.8 (p. 18),pipeline,51,0,percentage points,==,TRUE,"The estimated effect of the 90/45 condition, relative to the 90/90 condition, was 51 percentage points"
+a8_original_9070_approve,Online Appendix A.8 (p. 18),pipeline,17,0,percentage points,==,TRUE,the 90/70 condition caused an increase in the proportion of subjects that approved of the nuclear option by about 17 percentage points
+a8_original_9045_approve,Online Appendix A.8 (p. 18),pipeline,27,0,percentage points,==,TRUE,and the 90/45 condition caused an increase of about 27 percentage points
+a8_monotonic,Online Appendix A.8 (p. 18),descriptive,NA,0,NA,==,TRUE,estimated treatment effects increased monotonically with the relative effectiveness of nuclear weapons
+a8_table_2_reference,Online Appendix A.8 (p. 19),descriptive,NA,0,NA,==,TRUE,cross-reference: Table 2 provides a summary of the differences in estimates from the prospective experiment
+a8_approve_opposite_sign,Online Appendix A.8 (p. 19),descriptive,NA,0,NA,==,TRUE,Estimates for the Approve Nuclear Use outcome were of the opposite sign and not distinguishable from zero in 2/3 of our replications
+a8_abp_retrospective_approve,Online Appendix A.8 (p. 19),pipeline,12,0,percentage points,==,TRUE,the nuclear strike caused a 12 percentage point reduction in the proportion of respondents who approved the strike
+a8_abp_retrospective_ethical,Online Appendix A.8 (p. 19),pipeline,13,0,percentage points,==,TRUE,and a 13 percentage point reduction in the proportion who believed the strike was ethical
+a8_table_3_reference,Online Appendix A.8 (p. 19),descriptive,NA,0,NA,==,TRUE,cross-reference: Table 3 provides a summary of the differences in estimates from the retrospective experiment
+a8_prefer_smaller_significant,Online Appendix A.8 (p. 19),descriptive,NA,0,NA,==,TRUE,"our replication estimates for the Prefer Nuclear Use outcome in the prospective experiment are significantly smaller, but of the expected sign and statistically distinguishable from zero"
+a8_table_note_threshold,"Online Appendix Tables 2 and 3 notes (pp. 20, 21)",definitional,1,0,NA,==,FALSE,values less than 1 indicate summary effect size is smaller than the ABP or original effect size
+a8_table_note_alpha,"Online Appendix Tables 2 and 3 notes (pp. 20, 21)",definitional,0.05,2,NA,==,FALSE,P < 0.05*
+a9_original_n,Online Appendix A.9 (p. 21),transcribed,1407,0,NA,==,FALSE,"1,407 U.S. respondents from a nationally representative online survey fielded by Knowledge Networks in 2012"
+a9_original_year,Online Appendix A.9 (p. 21),transcribed,2012,0,NA,==,FALSE,fielded by Knowledge Networks in 2012
+a9_attributes,Online Appendix A.9 (p. 22),definitional,9,0,NA,==,FALSE,immigrants' backgrounds varying along nine randomly assigned attributes
+a9_country_levels,Online Appendix A.9 (p. 22),definitional,10,0,NA,==,TRUE,country was 10 levels
+a9_gender_levels,Online Appendix A.9 (p. 22),definitional,2,0,NA,==,TRUE,and gender was 2
+a9_profiles,Online Appendix A.9 (p. 22),transcribed,900000,0,NA,approx,FALSE,"for a total of approximately 900,000 unique immigrant profiles"
+a9_pairs_per_subject,Online Appendix A.9 (p. 22),definitional,5,0,NA,==,FALSE,Each subject evaluated 5 pairs of immigrants
+a9_original_obs,Online Appendix A.9 (p. 22),transcribed,14070,0,NA,==,FALSE,"for a total of 14,070 observations (1,407 respondents x 5 pairs x 2 immigrants per pair)"
+a9_immigrants_per_pair,Online Appendix A.9 (p. 22),definitional,2,0,NA,==,FALSE,2 immigrants per pair
+a9_replication_n,Online Appendix A.9 (p. 22),definitional,1328,0,NA,==,FALSE,"a direct replication of this conjoint experiment in May 2020 on a sample of 1,328 respondents. The conjoint respondent count is not in any output file"
+a9_replication_obs,Online Appendix A.9 (p. 22),definitional,13280,0,NA,==,FALSE,"for a total of 13,280 observations. Same source as a9_replication_n"
+a9_response_coding_high,Online Appendix A.9 (p. 22),definitional,1,0,NA,==,FALSE,"a regression of the binary response (1 if the immigrant profile is preferred, 0 otherwise)"
+a9_response_coding_low,Online Appendix A.9 (p. 22),definitional,0,0,NA,==,FALSE,"(1 if the immigrant profile is preferred, 0 otherwise)"
+a9_male_effect,Online Appendix A.9 (p. 22),pipeline,2,0,percentage points,==,TRUE,the negative point estimates for Male indicate that male immigrants are about 2 percentage points less likely to be selected than female immigrants
+a9_total_amces,Online Appendix A.9 (p. 22),pipeline,81,0,NA,==,TRUE,"In total, there are 81 estimated AMCEs in Figure A.10"
+a9_amces_original,Online Appendix A.9 (p. 22),pipeline,41,0,NA,==,TRUE,41 for the original study
+a9_amces_replication,Online Appendix A.9 (p. 22),pipeline,41,0,NA,==,TRUE,and 41 for the replication
+a9_opposite_sign_count,Online Appendix A.9 (p. 22),pipeline,1,0,NA,==,TRUE,Only one of 41 replication estimates is signed in the opposite direction when compared to the original study
+a9_gardener_original,Online Appendix A.9 (p. 22),pipeline,0.02,2,NA,==,TRUE,the AMCE for Gardener is 0.02 points in the original study and approximately zero in the replication
+a9_gardener_not_significant,Online Appendix A.9 (p. 22),descriptive,NA,0,NA,==,TRUE,but neither estimate is distinguishable from zero
+a9_smaller_count,Online Appendix A.9 (p. 23),pipeline,27,0,NA,==,TRUE,The majority of the replication estimates (27 of 41) are smaller in magnitude than the original estimates
+a9_footnote_4_fdr,Online Appendix A.9 footnote 4 (p. 23),pipeline,7,0,NA,==,TRUE,only 7 of 41 differences are statistically significant after correcting for multiple comparisons to control the false discovery rate
+a10_original_n,Online Appendix A.10 (p. 25),transcribed,2742,0,NA,==,FALSE,"2,742 MTurk workers were exposed to two fake news stories"
+a10_stories,Online Appendix A.10 (p. 25),definitional,6,0,NA,==,TRUE,randomly selected from a sample of six fake news stories
+a10_arms,Online Appendix A.10 (p. 25),definitional,12,0,NA,==,FALSE,the experiment has 6 x 2 = 12 treatment arms
+a10_scale_points,Online Appendix A.10 (p. 25),definitional,5,0,NA,==,FALSE,subjects were asked to indicate their agreement or disagreement on a 5-point scale
+a10_original_low,Online Appendix A.10 (p. 25),pipeline,-0.24,2,NA,==,TRUE,average treatment effects ranging from -0.24 scale points on the low end
+a10_original_high,Online Appendix A.10 (p. 25),pipeline,-0.95,2,NA,==,TRUE,to -0.95 scale points on the high end
+a10_replication_n,Online Appendix A.10 (p. 25),definitional,1415,0,NA,==,TRUE,"a direct replication of this experiment on a sample of 1,415 respondents in April 2020"
+a10_replication_low,Online Appendix A.10 (p. 25),pipeline,-0.04,2,NA,==,TRUE,"All replication estimates, ranging from -0.04 to -0.67"
+a10_replication_high,Online Appendix A.10 (p. 25),pipeline,-0.67,2,NA,==,TRUE,"All replication estimates, ranging from -0.04 to -0.67"
+a10_all_smaller,Online Appendix A.10 (p. 25),descriptive,NA,0,NA,==,TRUE,"All replication estimates are uniformly smaller then those in the original study, but all are correctly signed"
+a10_footnote_5_significant,Online Appendix A.10 footnote 5 (p. 25),pipeline,2,0,NA,==,TRUE,only two of these differences (John Podesta and Trump stories) are statistically distinguishable from zero
+a10_footnote_5_named,Online Appendix A.10 footnote 5 (p. 25),descriptive,NA,0,NA,==,TRUE,the two significantly different stories are the John Podesta and Trump stories
+a11_original_n,Online Appendix A.11 (p. 26),transcribed,1020,0,NA,==,FALSE,"1,020 U.S. respondents from a nationally representative online survey fielded by Knowledge Networks in 2015"
+a11_original_year,Online Appendix A.11 (p. 26),transcribed,2015,0,NA,==,FALSE,fielded by Knowledge Networks in 2015
+a11_gini_start,Online Appendix A.11 (p. 26),transcribed,1968,0,NA,==,FALSE,"trends in U.S. income inequality, as measured by the Gini coefficient over the period 1968-2010"
+a11_gini_end,Online Appendix A.11 (p. 26),transcribed,2010,0,NA,==,FALSE,over the period 1968-2010
+a11_manip_coding,Online Appendix A.11 (p. 27),definitional,NA,0,NA,==,FALSE,"Responses to the first question are coded 1 if the subject answers correct and 0 otherwise; to the second, 1 if incorrect and 0 otherwise"
+a11_trust_items,Online Appendix A.11 (p. 27),transcribed,6,0,NA,==,FALSE,an institutional trust scale (6-items)
+a11_sj_items,Online Appendix A.11 (p. 27),transcribed,8,0,NA,==,FALSE,a system justification scale (8-items)
+a11_esj_items,Online Appendix A.11 (p. 27),transcribed,15,0,NA,==,FALSE,or an economic system justification scale (15-items)
+a11_sj_n,Online Appendix A.11 (p. 27),transcribed,339,0,NA,==,FALSE,"In total, 339 subjects (169 in control, 170 in treatment) completed the system justification scale"
+a11_sj_control,Online Appendix A.11 (p. 27),transcribed,169,0,NA,==,FALSE,"339 subjects (169 in control, 170 in treatment)"
+a11_sj_treatment,Online Appendix A.11 (p. 27),transcribed,170,0,NA,==,FALSE,"339 subjects (169 in control, 170 in treatment)"
+a11_trust_n,Online Appendix A.11 (p. 27),transcribed,338,0,NA,==,FALSE,"338 completed the institutional trust scale (169 in treatment, 169 in control)"
+a11_esj_n,Online Appendix A.11 (p. 27),transcribed,336,0,NA,==,FALSE,336 completed the economic system justification scale (167 in treatment and 169 in control)
+a11_esj_treatment,Online Appendix A.11 (p. 27),transcribed,167,0,NA,==,FALSE,336 completed the economic system justification scale (167 in treatment and 169 in control)
+a11_replication_n,Online Appendix A.11 (p. 27),definitional,804,0,NA,==,FALSE,"In our replication, 804 subjects were presented with all three system justification scales. The Trump and White replication respondent count is not in any output file"
+a11_expected_direction,Online Appendix A.11 (p. 28),descriptive,NA,0,NA,==,TRUE,All replication estimates are in the expected direction when compared to the original study
+a11_all_smaller,Online Appendix A.11 (p. 28),pipeline,5,0,NA,==,TRUE,all 5 replication estimates are smaller in magnitude than those in the original study
+a11_none_significant,Online Appendix A.11 (p. 28),descriptive,NA,0,NA,==,TRUE,none of these differences are statistically distinguishable from zero
+a12_original_total_n,Online Appendix A.12 (p. 28),transcribed,3837,0,NA,==,FALSE,"a total of 3,837 U.S. respondents were exposed to information about corruption"
+a12_exp1_n,Online Appendix A.12 (p. 28),transcribed,624,0,NA,==,FALSE,Experiment 1 (624 MTurk workers in 2014)
+a12_exp2_n,Online Appendix A.12 (p. 29),transcribed,1324,0,NA,==,FALSE,"Experiment 2 (nationally representative sample of 1,324 U.S. adults in 2014)"
+a12_exp3_n,Online Appendix A.12 (p. 29),transcribed,1870,0,NA,==,FALSE,"Experiment 3 (1,870 MTurk workers in 2017)"
+a12_scale_items_trust,Online Appendix A.12 (p. 29),transcribed,4,0,NA,==,FALSE,subjects' trust in government was measured using a 4-item scale
+a12_scale_items_redistribution,Online Appendix A.12 (p. 29),transcribed,4,0,NA,==,FALSE,support for redistribution was measured using a 4-item scale
+a12_replication_n,Online Appendix A.12 (p. 29),definitional,1424,0,NA,==,TRUE,"a direct replication of Experiment 3 on a sample of 1,424 respondents in May 2020"
+a12_coding_corrupt,Online Appendix A.12 (p. 29),definitional,0,0,NA,==,FALSE,treatment was coded 0 if a subject was assigned to the Corrupt arm
+a12_coding_control,Online Appendix A.12 (p. 29),definitional,0.5,1,NA,==,FALSE,0.5 if assigned Control
+a12_coding_honest,Online Appendix A.12 (p. 29),definitional,1,0,NA,==,FALSE,and 1 if assigned Honest
+a12_original_trust_significant,Online Appendix A.12 (p. 29),descriptive,NA,0,NA,==,TRUE,The author found significant effects on subjects' trust in government in all three experiments
+a12_original_redistribution_null,Online Appendix A.12 (p. 29),descriptive,NA,0,NA,==,TRUE,but support for redistribution was indistinguishable from zero
+a12_replication_trust_significant,Online Appendix A.12 (p. 29),descriptive,NA,0,NA,==,TRUE,"The estimated treatment effect on trust in government in the replication is statistically distinguishable from zero, and in the expected direction"
+a12_replication_smaller,Online Appendix A.12 (p. 30),descriptive,NA,0,NA,==,TRUE,this estimate is significantly smaller in magnitude than all of the estimates in the original study
+a12_replication_redistribution_null,Online Appendix A.12 (p. 30),descriptive,NA,0,NA,==,TRUE,The estimated treatment effects on support for redistribution are indistinguishable from zero in the replication
+b_surveys,Online Appendix B (p. 31),pipeline,13,0,NA,==,TRUE,These estimates are presented below for the pooled sample of respondents across all 13 surveys that we conducted between March and July 2020
+corrigendum_scope,Corrigendum (p. 306),descriptive,NA,0,NA,==,TRUE,Correcting these mistakes affects Figures 2-3 and the first paragraph on p. 6 in the published article
+corrigendum_conclusions_unchanged,Corrigendum (p. 306),descriptive,NA,0,NA,==,TRUE,"All point estimates, standard errors, and substantive conclusions are unchanged"
+corrigendum_correctly_signed,Corrigendum (p. 306),pipeline,24,0,NA,==,TRUE,"Of the 24 correctly signed estimates, 11 were significantly smaller in replication"
+corrigendum_sig_smaller_of_24,Corrigendum (p. 306),pipeline,11,0,NA,==,TRUE,"Of the 24 correctly signed estimates, 11 were significantly smaller in replication"
+corrigendum_incorrectly_signed,Corrigendum (p. 309),pipeline,4,0,NA,==,TRUE,"Of the four incorrectly signed estimates, three were significantly different"
+corrigendum_sig_among_incorrect,Corrigendum (p. 309),pipeline,3,0,NA,==,TRUE,"Of the four incorrectly signed estimates, three were significantly different"
+corrigendum_atomic_sig_count,Corrigendum (p. 309),pipeline,2,0,NA,==,TRUE,the foreign aid misperceptions study and two of six estimates from the atomic aversion study
+corrigendum_atomic_estimate_count,Corrigendum (p. 309),pipeline,6,0,NA,==,TRUE,two of six estimates from the atomic aversion study
+corrigendum_conjoint_pairs,Corrigendum (p. 309),pipeline,41,0,NA,==,TRUE,Figure 3 plots the analogous information for the 41 conjoint estimates and their 41 replications
+corrigendum_conjoint_smaller,Corrigendum (p. 309),pipeline,35,0,NA,==,TRUE,"Of these, 35 of 41 were smaller in replication (11 statistically significant differences)"
+corrigendum_conjoint_sig_among_smaller,Corrigendum (p. 309),pipeline,11,0,NA,==,TRUE,35 of 41 were smaller in replication (11 statistically significant differences)
+corrigendum_conjoint_larger,Corrigendum (p. 309),pipeline,6,0,NA,==,TRUE,and 6 of 41 were larger in replication (1 of 6 significant differences)
+corrigendum_conjoint_sig_among_larger,Corrigendum (p. 309),pipeline,1,0,NA,==,TRUE,6 of 41 were larger in replication (1 of 6 significant differences)
+corrigendum_figure_1_caption_pairs,Corrigendum Figure 1 caption (p. 307),pipeline,28,0,NA,==,TRUE,Comparison of 28 summary effect sizes across 11 studies (conjoint excluded)
+corrigendum_figure_1_caption_studies,Corrigendum Figure 1 caption (p. 307),pipeline,11,0,NA,==,TRUE,Comparison of 28 summary effect sizes across 11 studies (conjoint excluded)
+corrigendum_figure_1a_note_sig,Corrigendum Figure 1a note (p. 307),pipeline,13,0,NA,==,TRUE,Thirteen of 28 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05. The note reprinted with the article's original panel
+corrigendum_figure_1b_note_sig,Corrigendum Figure 1b note (p. 307),pipeline,14,0,NA,==,TRUE,14 of 28 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05
+corrigendum_figure_1b_note_fdr,Corrigendum Figure 1b note (p. 307),pipeline,13,0,NA,==,TRUE,and 13 of these (denoted by square shaped points) remained statistically significant after adjusting for multiple comparisons to control the false discovery rate
+corrigendum_figure_1_ci_level,Corrigendum Figure 1 notes (p. 307),definitional,95,0,percent,==,FALSE,Estimated summary effect sizes and 95% confidence intervals
+corrigendum_figure_1_alpha,Corrigendum Figure 1 notes (p. 307),definitional,0.05,2,NA,==,FALSE,significantly different from their pre-COVID benchmark at p < 0.05
+corrigendum_figure_2_caption_pairs,Corrigendum Figure 2 caption (p. 308),pipeline,41,0,NA,==,TRUE,Comparison of 41 summary effect sizes in conjoint experiments
+corrigendum_figure_2a_note_sig,Corrigendum Figure 2a note (p. 308),pipeline,7,0,NA,==,TRUE,7 of 41 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05. The note reprinted with the article's original panel
+corrigendum_figure_2b_note_sig,Corrigendum Figure 2b note (p. 308),pipeline,12,0,NA,==,TRUE,12 of 41 replication estimates were significantly different from their pre-COVID benchmark at p < 0.05
+corrigendum_figure_2b_note_fdr,Corrigendum Figure 2b note (p. 308),pipeline,7,0,NA,==,TRUE,and 7 of these (denoted by square shaped points) remained statistically significant after adjusting for multiple comparisons
+corrigendum_figure_2_ci_level,Corrigendum Figure 2 notes (p. 308),definitional,95,0,percent,==,FALSE,Estimated summary effect sizes and 95% confidence intervals
+corrigendum_figure_2_alpha,Corrigendum Figure 2 notes (p. 308),definitional,0.05,2,NA,==,FALSE,significantly different from their pre-COVID benchmark at p < 0.05
+corrigendum_archive_updated,Corrigendum (p. 309),descriptive,NA,0,NA,==,TRUE,The replication archive has been updated so that the code used to generate Figures 2-3 now produces the correct versions shown here in Figures 1-2
+float_table_1,Float inventory,structural,0,0,NA,==,FALSE,"Table 1 lists twelve studies with their design, the weeks they were replicated in and a success verdict. It prints no estimates"
+float_table_2,Float inventory,structural,36,0,NA,==,FALSE,Table 2 prints eighteen pass rates and eighteen standard errors
+float_figure_1,Float inventory,structural,0,0,NA,==,FALSE,Figure 1 prints no numbers on its face; its note carries the two annual totals
+float_figure_2,Float inventory,structural,0,0,NA,==,FALSE,Figure 2 prints no numbers on its face; its note carries the significance count
+float_figure_3,Float inventory,structural,0,0,NA,==,FALSE,Figure 3 prints no numbers on its face; its note carries the significance count
+float_figure_4,Float inventory,structural,0,0,NA,==,FALSE,Figure 4 prints no numbers on its face
+float_figure_5,Float inventory,structural,0,0,NA,==,FALSE,Figure 5 prints no numbers on its face; the ten estimates it plots are stated in the prose on p. 11
+float_appendix_table_1,Float inventory,structural,42,0,NA,==,FALSE,"Appendix Table 1 prints six rows of a replication summary, an original estimate, a difference, each with a standard error, and a relative effect size"
+float_appendix_table_2,Float inventory,structural,44,0,NA,==,FALSE,"Appendix Table 2 prints four rows of twelve numbers each, less the four relative sizes printed as a dash"
+float_appendix_table_3,Float inventory,structural,24,0,NA,==,FALSE,Appendix Table 3 prints two rows of twelve numbers each
+float_figure_a1,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.1 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a2,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.2 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a3,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.3 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a4,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.4 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a5,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.5 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a6,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.6 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a7,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.7 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a8,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.8 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a9,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.9 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a10,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.10 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a11,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.11 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a12,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.12 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_a13,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure A.13 plots estimates with confidence intervals and prints no numbers on its face
+float_figure_b1,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.1 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b2,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.2 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b3,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.3 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b4,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.4 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b5,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.5 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b6,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.6 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b7,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.7 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_b8,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure B.8 plots covariate proportions with confidence intervals and prints no numbers on its face
+float_figure_c1,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.1 is a screenshot of survey content and states no estimated quantity
+float_figure_c2,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.2 is a screenshot of survey content and states no estimated quantity
+float_figure_c3,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.3 is a screenshot of survey content and states no estimated quantity
+float_figure_c4,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.4 is a screenshot of survey content and states no estimated quantity
+float_figure_c5,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.5 is a screenshot of survey content and states no estimated quantity
+float_figure_c6,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.6 is a screenshot of survey content and states no estimated quantity
+float_figure_c7,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.7 is a screenshot of survey content and states no estimated quantity
+float_figure_c8,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.8 is a screenshot of survey content and states no estimated quantity
+float_figure_c9,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.9 is a screenshot of survey content and states no estimated quantity
+float_figure_c10,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.10 is a screenshot of survey content and states no estimated quantity
+float_figure_c11,Float inventory,structural,0,0,NA,==,FALSE,Appendix Figure C.11 is a screenshot of survey content and states no estimated quantity
+float_corrigendum_figure_1,Float inventory,structural,0,0,NA,==,FALSE,Corrigendum Figure 1 reprints the article's Figure 2 in two panels and prints no numbers on its face
+float_corrigendum_figure_2,Float inventory,structural,0,0,NA,==,FALSE,Corrigendum Figure 2 reprints the article's Figure 3 in two panels and prints no numbers on its face
+plotted_figure_2,Float inventory,structural,28,0,NA,==,TRUE,"Figure 2 plots 28 points, one per non-conjoint study-outcome pair, each with a horizontal and a vertical interval"
+plotted_figure_3,Float inventory,structural,41,0,NA,==,TRUE,"Figure 3 plots 41 points, one per conjoint attribute level, each with a horizontal and a vertical interval"
+plotted_figure_5,Float inventory,structural,10,0,NA,==,TRUE,"Figure 5 plots ten estimates with intervals, on the ten labelled rows below its two headings"
+plotted_figure_a1,Float inventory,structural,4,0,NA,==,TRUE,"Figure A.1 plots four estimates, on the rows labelled Hyman and Sheatsley (1950), Schuman and Presser (1980), Schuman et al. (1983) and Week 3"
+plotted_figure_a2,Float inventory,structural,4,0,NA,==,TRUE,"Figure A.2 plots four estimates, on the rows labelled Tversky and Kahneman (1981), Many Labs (2018), Direct replication and COVID-specific"
+plotted_figure_a3,Float inventory,structural,10,0,NA,==,TRUE,"Figure A.3 plots ten estimates, on ten labelled rows"
+plotted_figure_a4,Float inventory,structural,34,0,NA,==,TRUE,"Figure A.4 plots 34 estimates across three panels: fourteen computer-assisted web interviews, nine computer-assisted personal interviews and eleven paper and pencil interviews"
+plotted_figure_a5,Float inventory,structural,24,0,NA,==,TRUE,"Figure A.5 plots 24 estimates: two partisan panels, three risk-averse labels and four studies"
+plotted_figure_a6,Float inventory,structural,2,0,NA,==,TRUE,"Figure A.6 plots two estimates, on the rows labelled Gilens (2001) and Week 3"
+plotted_figure_a7,Float inventory,structural,4,0,NA,==,TRUE,"Figure A.7 plots four estimates, on four labelled rows"
+plotted_figure_a8,Float inventory,structural,20,0,NA,==,TRUE,"Figure A.8 plots 20 estimates: two outcome panels, five surveys and the 90/70 and 90/45 contrasts"
+plotted_figure_a9,Float inventory,structural,10,0,NA,==,TRUE,Figure A.9 plots ten estimates: two outcome panels and five surveys
+plotted_figure_a10,Float inventory,structural,82,0,NA,==,TRUE,"Figure A.10 plots 82 estimates, the original study and the replication for each of 41 attribute levels"
+plotted_figure_a11,Float inventory,structural,12,0,NA,==,TRUE,"Figure A.11 plots twelve estimates, the original study and the replication for each of six stories"
+plotted_figure_a12,Float inventory,structural,10,0,NA,==,TRUE,"Figure A.12 plots ten estimates: two manipulation checks and three outcome scales, each for the original study and the replication"
+plotted_figure_a13,Float inventory,structural,8,0,NA,==,TRUE,Figure A.13 plots eight estimates: two outcome panels and four samples

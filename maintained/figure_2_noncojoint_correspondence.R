@@ -1,5 +1,5 @@
 # peyton_huber_coppock_2022/maintained/figure_2_noncojoint_correspondence.R
-# Output: maintained/output/figure_2_noncojoint_correspondence.pdf/.png
+# Output: maintained/output/figure_2_noncojoint_correspondence.pdf/.png/.csv
 # Depends on: maintained/output/phc_summary_clean.rds, helpers.R
 # Description: Comparison of 28 non-conjoint summary effect sizes (pre-COVID vs COVID-era).
 
@@ -73,6 +73,21 @@ g <- gg_df |>
     legend.key         = element_blank(),
     plot.margin        = unit(c(0.1, 0.1, 0.1, 0.1), "lines")
   )
+
+# The plotted values ----
+# One row per plotted point, carrying both coordinates, both confidence intervals
+# and the two significance verdicts the point's shape and shade encode.
+write_csv(
+  gg_df |>
+    arrange(study_group, study_group_detail) |>
+    select(
+      study_group, study_group_detail,
+      estimate_pre, std.error_pre, conf.low_pre, conf.high_pre,
+      estimate_ycls, std.error_ycls, conf.low_ycls, conf.high_ycls,
+      estimate_diff, se_diff, p_diff, p_adjust, sign_diff, sig_diff, sig_diff_adj
+    ),
+  file.path(out_dir, "figure_2_noncojoint_correspondence.csv")
+)
 
 ggsave(
   here::here("maintained", "output", "figure_2_noncojoint_correspondence.pdf"),

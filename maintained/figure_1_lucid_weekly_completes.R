@@ -1,5 +1,5 @@
 # peyton_huber_coppock_2022/maintained/figure_1_lucid_weekly_completes.R
-# Output: maintained/output/figure_1_lucid_weekly_completes.pdf/.png
+# Output: maintained/output/figure_1_lucid_weekly_completes.pdf/.png/.csv
 # Depends on: original/phc_lucid_completes.rds, helpers.R
 # Description: Weekly Lucid survey completions sold to academic buyers, Jan 2019 to Mar 2021.
 
@@ -58,6 +58,14 @@ g <- ggplot(gg_df, aes(y = completes, x = date)) +
     axis.text.x              = element_text(size = 10),
     axis.title.x             = element_text(size = 10)
   )
+
+# The plotted values ----
+# A PDF records the time it was written, so the figure file cannot serve as the
+# reproduction check. The CSV of what the figure plots can.
+write_csv(
+  gg_df |> arrange(date) |> select(date, completes),
+  file.path(out_dir, "figure_1_lucid_weekly_completes.csv")
+)
 
 ggsave(
   here::here("maintained", "output", "figure_1_lucid_weekly_completes.pdf"),
