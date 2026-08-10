@@ -13,6 +13,7 @@ format:
 ```{r}
 #| label: setup
 #| include: false
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(here)
 library(tidyverse)
 here::i_am("errata.qmd")
@@ -35,9 +36,15 @@ pct <- function(x) sprintf("%.0f", x)
 # Spelled-out numbers have to be computed too, so the count in a corrected sentence is
 # rendered rather than typed.
 as_word <- function(n) {
-  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
+  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+             "eighteen", "nineteen", "twenty")
   words[n]
 }
+
+# Each entry's location is stored as the sentence-internal phrase; a heading raises its
+# first letter.
+capitalize <- function(x) paste0(str_to_upper(str_sub(x, 1, 1)), str_sub(x, 2))
 
 ae <- appendix_estimates |>
   mutate(study_base = str_replace(study_group, "^Press et al\\. \\(2013\\).*",
@@ -73,140 +80,206 @@ psv_terms <- unique(ae$term[str_detect(coalesce(ae$term, ""), "^90/")])
 conventional_9070 <- as.numeric(str_extract(psv_terms[psv_terms == "90/70"], "\\d+$"))
 ```
 
-Eleven corrections to the article and its online appendix, none of which changes a conclusion. Every corrected value below is computed at render time from the maintained reanalysis of the deposited replication archive, `10.7910/DVN/38UTBF`. The article is `10.1017/XPS.2021.17`; a corrigendum published in 2023, `10.1017/XPS.2022.23`, corrects the significance counts in the article's Figures 2 and 3 and the first paragraph of page 6, and nothing below repeats a correction that corrigendum already made. The reanalysis is at `active-maintenance-aec/peyton_huber_coppock_2022`.
+```{r entries}
+# THE ERRATA SPINE. Every correction is defined once, here, and the document below is
+# rendered from it. The same rows are written out as errata_entries.csv at the foot of
+# this file, so any other document that needs to state what was corrected reads them
+# rather than keeping a second hand-typed copy that can quietly drift.
+#
+# [[...]] marks the span that changes, and is the only markup a published or corrected
+# field may carry. Each renderer resolves it its own way: bold here, a \was{} macro in a
+# future edition. Everything else in a field is literal text.
+#
+# Numbering is APPEND-ONLY. An entry number can already have been cited, so a later
+# finding is added at the end and entries are never reordered, renumbered, merged or
+# split.
+#
+# Corrected values are computed at render time, never typed: a field that carries a
+# pipeline quantity is a str_glue() over the objects read in the setup chunk above.
+# `location` holds the phrase the heading embeds, lowercased at its first letter so the
+# heading can raise it; `form` is a future edition's choice of macro, "full" where the
+# quoted passage is a whole sentence set as a block and "brief" where it is a fragment
+# standing in for a single token.
+entries <- tribble(
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+
+  1, "quantity", "pipeline", "full",
+  "the four estimates attributed to the original study are the pre-COVID replication's",
+  "online appendix, Section A.8, page 18",
+  "In the original study, the 90/70 condition caused an increase in the proportion of subject that preferred the nuclear option by about [[37]] percentage points relative to the 90/90 condition. The estimated effect of the 90/45 condition, relative to the 90/90 condition, was [[51]] percentage points. Similarly, the 90/70 condition caused an increase in the proportion of subjects that approved of the nuclear option by about [[17]] percentage points, and the 90/45 condition caused an increase of about [[27]] percentage points.",
+  str_glue(
+    "In the original study, the 90/70 condition caused an increase in the proportion of ",
+    "subject that preferred the nuclear option by about ",
+    "[[{pp(100 * psv_cell('90/70', 'Prefer Nuclear Use'))}]] percentage points relative to ",
+    "the 90/90 condition. The estimated effect of the 90/45 condition, relative to the ",
+    "90/90 condition, was [[{pp(100 * psv_cell('90/45', 'Prefer Nuclear Use'))}]] percentage ",
+    "points. Similarly, the 90/70 condition caused an increase in the proportion of subjects ",
+    "that approved of the nuclear option by about ",
+    "[[{pp(100 * psv_cell('90/70', 'Approve Nuclear Use'))}]] percentage points, and the ",
+    "90/45 condition caused an increase of about ",
+    "[[{pp(100 * psv_cell('90/45', 'Approve Nuclear Use'))}]] percentage points."),
+  paste(
+    "All four published figures are the estimates from the Aronow, Baron and Pinson (2019)",
+    "pre-COVID replication rather than from Press, Sagan and Valentino (2013). The",
+    "appendix's own Table 2 prints both columns and gives the original study 0.30, 0.48,",
+    "0.05 and 0.28 against the replication's 0.37, 0.51, 0.17 and 0.27."),
+
+  2, "quantity", "pipeline", "full",
+  "the count of significant differences",
+  "online appendix, Section A.10, footnote 5, page 25",
+  "Although all 6 replication estimates are smaller in magnitude than those in the original study, only [[two]] of these differences ([[John Podesta and Trump]] stories) are statistically distinguishable from zero.",
+  str_glue(
+    "Although all 6 replication estimates are smaller in magnitude than those in the ",
+    "original study, only [[{as_word(nrow(porter_significant))}]] of these differences ",
+    "([[{paste(paste(head(porter_names, -1), collapse = ', '), 'and', tail(porter_names, 1))}]] ",
+    "stories) are statistically distinguishable from zero."),
+  paste(
+    "The two additional differences are significant at conventional levels before any",
+    "adjustment for multiple comparisons, which is what the footnote describes; three of the",
+    "four survive a Benjamini-Hochberg adjustment across the six stories. The 2023",
+    "corrigendum corrected the same class of error in the article's Figures 2 and 3 and did",
+    "not reach this footnote."),
+
+  3, "quantity", "pipeline", "full",
+  "the replication estimate and its distance from the benchmark",
+  "online appendix, Section A.1, page 1",
+  "Pooling across the pre-COVID studies, the summary effect size estimate is a 30 percentage point increase in support for Russian journalists. Our effect estimate of [[25.5]] points is 83% of this magnitude, and this difference of [[5.5]] percentage points is not statistically significant (P = 0.16).",
+  str_glue(
+    "Pooling across the pre-COVID studies, the summary effect size estimate is a ",
+    "{pp(100 * russians$estimate_pre)} percentage point increase in support for Russian ",
+    "journalists. Our effect estimate of [[{pp(100 * russians$estimate_ycls)}]] points is ",
+    "{pct(100 * russians$estimate_ycls / russians$estimate_pre)}% of this magnitude, and this ",
+    "difference of [[{pp(-100 * russians$estimate_diff)}]] percentage points is not ",
+    "statistically significant (P = {sprintf('%.2f', russians$p_diff)})."),
+  paste(
+    "The sentence's own three figures do not agree with each other: 30 less 25.5 is 4.5, not",
+    "5.5. The ratio and the p-value it also prints are both right, and both follow from the",
+    "corrected estimate and difference."),
+
+  4, "quantity", "pipeline", "full",
+  "the non-conjoint correspondence",
+  "page 6",
+  "The 24 of 28 correctly signed estimates from the other replications were, on average, [[49%]] as large as the pre-COVID summary effect sizes.",
+  str_glue(
+    "The 24 of 28 correctly signed estimates from the other replications were, on average, ",
+    "[[{pct(100 * corr('avg_pct_precovid_nonconjoint'))}%]] as large as the pre-COVID summary ",
+    "effect sizes."),
+  str_glue(
+    "The mean ratio over those 24 pairs is ",
+    "{sprintf('%.3f', corr('avg_pct_precovid_nonconjoint'))}. The overall 73% and the conjoint ",
+    "87% stated in the same paragraph both reproduce exactly, and the three are consistent ",
+    "with one another only at {pct(100 * corr('avg_pct_precovid_nonconjoint'))} per cent."),
+
+  5, "quantity", "pipeline", "full",
+  "the average duration among browser respondents",
+  "page 10",
+  "Those from web applications spent approximately 7 min less time completing surveys than those from web browsers, who spent an average of [[21.5]] min.",
+  str_glue(
+    "Those from web applications spent approximately ",
+    "{pp(dev_value('duration_mean_browser') - dev_value('duration_mean_webapp'))} min less ",
+    "time completing surveys than those from web browsers, who spent an average of ",
+    "[[{pp(dev_value('duration_mean_browser'))}]] min."),
+  str_glue(
+    "{pp(dev_value('duration_mean_nonmobile'))} minutes is the average among nonmobile ",
+    "respondents, which the next sentence uses."),
+
+  6, "quantity", "pipeline", "full",
+  "the inattentive share",
+  "page 11",
+  "If 73% of respondents were attentive and [[26%]] inattentive, our replication estimate would, on average, match our pre-COVID benchmarks.",
+  str_glue(
+    "If {pct(100 * corr('avg_pct_precovid_overall'))}% of respondents were attentive and ",
+    "[[{pct(100 * (1 - corr('avg_pct_precovid_overall')))}%]] inattentive, our replication ",
+    "estimate would, on average, match our pre-COVID benchmarks."),
+  str_glue(
+    "The correspondence is {sprintf('%.1f', 100 * corr('avg_pct_precovid_overall'))} per ",
+    "cent, so the two shares are the attentive figure and its complement."),
+
+  7, "quantity", "pipeline", "full",
+  "the number of estimated AMCEs",
+  "online appendix, Section A.9, page 22",
+  "In total, there are [[81]] estimated AMCEs in Figure A.10 – 41 for the original study and 41 for the replication.",
+  str_glue(
+    "In total, there are [[{nrow(conjoint)}]] estimated AMCEs in Figure A.10 -- ",
+    "{sum(conjoint$study == 'Pre-COVID')} for the original study and ",
+    "{sum(conjoint$study == 'Replication')} for the replication."),
+  str_glue("The two component counts are right and Figure A.10 plots {nrow(conjoint)} points."),
+
+  8, "quantity", "pipeline", "brief",
+  "the 90/70 condition's success rate",
+  "online appendix, Section A.8, page 17",
+  "2) a \"90/70\" condition in which the conventional strike had a [[75%]] chance of success",
+  str_glue(
+    "2) a \"90/70\" condition in which the conventional strike had a ",
+    "[[{conventional_9070}%]] chance of success"),
+  paste(
+    "The condition's two siblings are described at the rates their labels name, a 90% chance",
+    "for the 90/90 condition and 45% for the 90/45 condition, and the label is written 90/70",
+    "in the same paragraph, in the sentence that follows it and on Figure A.8."),
+
+  9, "cross_reference", "pipeline", "full",
+  "a reference to a table that does not exist",
+  "online appendix, Section A.5, page 11",
+  "[[Table A.5]] provides a summary of differences between the original study and the replications by treatment arm.",
+  "[[Table 1]] provides a summary of differences between the original study and the replications by treatment arm.",
+  paste(
+    "The appendix carries no Table A.5. The table this sentence points at is captioned Table",
+    "1 and appears on the following page; the deposited file that builds it is named",
+    "`appendix_table_a5.tex`, so it is the printed caption rather than the reference that",
+    "departed from the intended numbering."),
+
+  10, "definition", "pipeline", "full",
+  "whether every replication estimate was smaller",
+  "page 6",
+  "[[All]] replication summary estimates were smaller in magnitude than their pre-COVID estimates, with 24 of 28 signed in the same direction.",
+  "[[All but one of the]] replication summary estimates were smaller in magnitude than their pre-COVID estimates, with 24 of 28 signed in the same direction.",
+  str_glue(
+    "The exception is the support-for-redistribution pair, whose pre-COVID summary effect is ",
+    "{sprintf('%.5f', larger_pair$estimate_pre)} and whose COVID-era estimate is ",
+    "{sprintf('%.3f', larger_pair$estimate_ycls)}. It is one of the four pairs signed against ",
+    "their benchmark, so the count in the second half of the sentence is unaffected."),
+
+  11, "quantity", "pipeline", "full",
+  "the standard error of the difference between the two intentionality arms",
+  "online appendix, Section A.7, page 15",
+  "The estimated treatment effect for the COVID-specific replication is about 0.01 points smaller than the direct replication (SE = [[0.04]], P = 0.46).",
+  str_glue(
+    "The estimated treatment effect for the COVID-specific replication is about ",
+    "{sprintf('%.2f', kn_direct$estimate - kn_covid$estimate)} points smaller than the direct ",
+    "replication (SE = [[{sprintf('%.2f', kn_se)}]], P = 0.46)."),
+  paste(
+    "0.04 is the standard error of the difference against the pre-COVID benchmark, given in",
+    "the sentence that follows. The published P = 0.46 is the one-tailed p-value at the",
+    "corrected standard error, so the sentence is internally consistent once the standard",
+    "error is corrected.")
+) |>
+  mutate(across(c(title, published, corrected, note), as.character))
+
+stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# The spine's markup, resolved for this document.
+bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")
+```
+
+`r capitalize(as_word(nrow(entries)))` corrections to the article and its online appendix, none of which changes a conclusion. Every corrected value below is computed at render time from the maintained reanalysis of the deposited replication archive, `10.7910/DVN/38UTBF`. The article is `10.1017/XPS.2021.17`; a corrigendum published in 2023, `10.1017/XPS.2022.23`, corrects the significance counts in the article's Figures 2 and 3 and the first paragraph of page 6, and nothing below repeats a correction that corrigendum already made. The reanalysis is at `active-maintenance-aec/peyton_huber_coppock_2022`.
 
 Values on the percentage-point scale are stated to one decimal place throughout, including numbers that were not wrong. Bold marks the tokens that changed.
 
 ---
 
-## 1. Online appendix, Section A.8, page 18: the four estimates attributed to the original study are the pre-COVID replication's
-
-Published:
-
-> In the original study, the 90/70 condition caused an increase in the proportion of subject that preferred the nuclear option by about **37** percentage points relative to the 90/90 condition. The estimated effect of the 90/45 condition, relative to the 90/90 condition, was **51** percentage points. Similarly, the 90/70 condition caused an increase in the proportion of subjects that approved of the nuclear option by about **17** percentage points, and the 90/45 condition caused an increase of about **27** percentage points.
-
-Corrected:
-
-> In the original study, the 90/70 condition caused an increase in the proportion of subject that preferred the nuclear option by about **`r pp(100 * psv_cell("90/70", "Prefer Nuclear Use"))`** percentage points relative to the 90/90 condition. The estimated effect of the 90/45 condition, relative to the 90/90 condition, was **`r pp(100 * psv_cell("90/45", "Prefer Nuclear Use"))`** percentage points. Similarly, the 90/70 condition caused an increase in the proportion of subjects that approved of the nuclear option by about **`r pp(100 * psv_cell("90/70", "Approve Nuclear Use"))`** percentage points, and the 90/45 condition caused an increase of about **`r pp(100 * psv_cell("90/45", "Approve Nuclear Use"))`** percentage points.
-
-All four published figures are the estimates from the Aronow, Baron and Pinson (2019) pre-COVID replication rather than from Press, Sagan and Valentino (2013). The appendix's own Table 2 prints both columns and gives the original study 0.30, 0.48, 0.05 and 0.28 against the replication's 0.37, 0.51, 0.17 and 0.27.
-
-## 2. Online appendix, Section A.10, footnote 5, page 25: the count of significant differences
-
-Published:
-
-> Although all 6 replication estimates are smaller in magnitude than those in the original study, only **two** of these differences (**John Podesta and Trump** stories) are statistically distinguishable from zero.
-
-Corrected:
-
-> Although all 6 replication estimates are smaller in magnitude than those in the original study, only **`r as_word(nrow(porter_significant))`** of these differences (**`r paste(paste(head(porter_names, -1), collapse = ", "), "and", tail(porter_names, 1))`** stories) are statistically distinguishable from zero.
-
-The two additional differences are significant at conventional levels before any adjustment for multiple comparisons, which is what the footnote describes; three of the four survive a Benjamini-Hochberg adjustment across the six stories. The 2023 corrigendum corrected the same class of error in the article's Figures 2 and 3 and did not reach this footnote.
-
-## 3. Online appendix, Section A.1, page 1: the replication estimate and its distance from the benchmark
-
-Published:
-
-> Pooling across the pre-COVID studies, the summary effect size estimate is a 30 percentage point increase in support for Russian journalists. Our effect estimate of **25.5** points is 83% of this magnitude, and this difference of **5.5** percentage points is not statistically significant (P = 0.16).
-
-Corrected:
-
-> Pooling across the pre-COVID studies, the summary effect size estimate is a `r pp(100 * russians$estimate_pre)` percentage point increase in support for Russian journalists. Our effect estimate of **`r pp(100 * russians$estimate_ycls)`** points is `r pct(100 * russians$estimate_ycls / russians$estimate_pre)`% of this magnitude, and this difference of **`r pp(-100 * russians$estimate_diff)`** percentage points is not statistically significant (P = `r sprintf("%.2f", russians$p_diff)`).
-
-The sentence's own three figures do not agree with each other: 30 less 25.5 is 4.5, not 5.5. The ratio and the p-value it also prints are both right, and both follow from the corrected estimate and difference.
-
-## 4. Page 6: the non-conjoint correspondence
-
-Published:
-
-> The 24 of 28 correctly signed estimates from the other replications were, on average, **49%** as large as the pre-COVID summary effect sizes.
-
-Corrected:
-
-> The 24 of 28 correctly signed estimates from the other replications were, on average, **`r pct(100 * corr("avg_pct_precovid_nonconjoint"))`%** as large as the pre-COVID summary effect sizes.
-
-The mean ratio over those 24 pairs is `r sprintf("%.3f", corr("avg_pct_precovid_nonconjoint"))`. The overall 73% and the conjoint 87% stated in the same paragraph both reproduce exactly, and the three are consistent with one another only at `r pct(100 * corr("avg_pct_precovid_nonconjoint"))` per cent.
-
-## 5. Page 10: the average duration among browser respondents
-
-Published:
-
-> Those from web applications spent approximately 7 min less time completing surveys than those from web browsers, who spent an average of **21.5** min.
-
-Corrected:
-
-> Those from web applications spent approximately `r pp(dev_value("duration_mean_browser") - dev_value("duration_mean_webapp"))` min less time completing surveys than those from web browsers, who spent an average of **`r pp(dev_value("duration_mean_browser"))`** min.
-
-`r pp(dev_value("duration_mean_nonmobile"))` minutes is the average among nonmobile respondents, which the next sentence uses.
-
-## 6. Page 11: the inattentive share
-
-Published:
-
-> If 73% of respondents were attentive and **26%** inattentive, our replication estimate would, on average, match our pre-COVID benchmarks.
-
-Corrected:
-
-> If `r pct(100 * corr("avg_pct_precovid_overall"))`% of respondents were attentive and **`r pct(100 * (1 - corr("avg_pct_precovid_overall")))`%** inattentive, our replication estimate would, on average, match our pre-COVID benchmarks.
-
-The correspondence is `r sprintf("%.1f", 100 * corr("avg_pct_precovid_overall"))` per cent, so the two shares are the attentive figure and its complement.
-
-## 7. Online appendix, Section A.9, page 22: the number of estimated AMCEs
-
-Published:
-
-> In total, there are **81** estimated AMCEs in Figure A.10 – 41 for the original study and 41 for the replication.
-
-Corrected:
-
-> In total, there are **`r nrow(conjoint)`** estimated AMCEs in Figure A.10 -- `r sum(conjoint$study == "Pre-COVID")` for the original study and `r sum(conjoint$study == "Replication")` for the replication.
-
-The two component counts are right and Figure A.10 plots `r nrow(conjoint)` points.
-
-## 8. Online appendix, Section A.8, page 17: the 90/70 condition's success rate
-
-Published:
-
-> 2) a "90/70" condition in which the conventional strike had a **75%** chance of success
-
-Corrected:
-
-> 2) a "90/70" condition in which the conventional strike had a **`r conventional_9070`%** chance of success
-
-The condition's two siblings are described at the rates their labels name, a 90% chance for the 90/90 condition and 45% for the 90/45 condition, and the label is written 90/70 in the same paragraph, in the sentence that follows it and on Figure A.8.
-
-## 9. Online appendix, Section A.5, page 11: a reference to a table that does not exist
-
-Published:
-
-> **Table A.5** provides a summary of differences between the original study and the replications by treatment arm.
-
-Corrected:
-
-> **Table 1** provides a summary of differences between the original study and the replications by treatment arm.
-
-The appendix carries no Table A.5. The table this sentence points at is captioned Table 1 and appears on the following page; the deposited file that builds it is named `appendix_table_a5.tex`, so it is the printed caption rather than the reference that departed from the intended numbering.
-
-## 10. Page 6: whether every replication estimate was smaller
-
-Published:
-
-> **All** replication summary estimates were smaller in magnitude than their pre-COVID estimates, with 24 of 28 signed in the same direction.
-
-Corrected:
-
-> **All but one of the** replication summary estimates were smaller in magnitude than their pre-COVID estimates, with 24 of 28 signed in the same direction.
-
-The exception is the support-for-redistribution pair, whose pre-COVID summary effect is `r sprintf("%.5f", larger_pair$estimate_pre)` and whose COVID-era estimate is `r sprintf("%.3f", larger_pair$estimate_ycls)`. It is one of the four pairs signed against their benchmark, so the count in the second half of the sentence is unaffected.
-
-## 11. Online appendix, Section A.7, page 15: the standard error of the difference between the two intentionality arms
-
-Published:
-
-> The estimated treatment effect for the COVID-specific replication is about 0.01 points smaller than the direct replication (SE = **0.04**, P = 0.46).
-
-Corrected:
-
-> The estimated treatment effect for the COVID-specific replication is about `r sprintf("%.2f", kn_direct$estimate - kn_covid$estimate)` points smaller than the direct replication (SE = **`r sprintf("%.2f", kn_se)`**, P = 0.46).
-
-0.04 is the standard error of the difference against the pre-COVID benchmark, given in the sentence that follows. The published P = 0.46 is the one-tailed p-value at the corrected standard error, so the sentence is internally consistent once the standard error is corrected.
+```{r emit-entries, results="asis"}
+# A heading is only a heading when a blank line precedes it, so every entry opens with one.
+walk(seq_len(nrow(entries)), function(i) {
+  e <- entries[i, ]
+  cat("\n\n## ", e$entry, ". ", capitalize(e$location), ": ", e$title,
+      "\n\nPublished:\n\n> ", bold(e$published),
+      "\n\nCorrected:\n\n> ", bold(e$corrected),
+      "\n\n", e$note, "\n", sep = "")
+})
+```
+
+```{r emit-spine}
+# The machine-readable spine, written wherever this document is rendered, so that any
+# other document stating what was corrected reads these rows rather than retyping them.
+write_csv(entries, here("errata_entries.csv"))
+```

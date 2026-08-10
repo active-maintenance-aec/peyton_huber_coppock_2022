@@ -674,7 +674,7 @@ comparison downstream.
 |:-----------|:-----------------------|
 | R version  | 4.6.0                  |
 | Platform   | aarch64-apple-darwin23 |
-| Date run   | 2026-08-09             |
+| Date run   | 2026-08-10             |
 | tidyverse  | 2.0.0                  |
 | estimatr   | 1.0.6                  |
 | metafor    | 5.0.1                  |

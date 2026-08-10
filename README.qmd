@@ -50,6 +50,19 @@ published_claims <- read_csv(
 )
 
 float_coverage <- read_csv(here("ground_truth", "float_coverage.csv"), show_col_types = FALSE)
+
+# The errata spine, written by errata.qmd. Every count of corrections in this report is
+# read from it rather than typed, so the two documents cannot disagree about how many
+# there are.
+spine <- read_csv(here("errata_entries.csv"), show_col_types = FALSE)
+n_errata <- nrow(spine)
+
+spelled <- function(n) {
+  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+             "eighteen", "nineteen", "twenty")
+  words[n]
+}
 ```
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
@@ -126,7 +139,7 @@ One further failure is worth separating out because it is a fact about a depende
 
 ## Does the maintained rewrite reproduce the paper?
 
-Almost everywhere. The ground truth carries `r n_claims` rows; `r n_rewrite` of the `r n_rewrite + n_rewrite_zero` the rewrite can compute agree with the published value at the page's own precision, and `r n_holds_true` of the `r n_holds_true + n_holds_false` claims about shape, sign or count hold. That includes every count the 2023 corrigendum corrected. The `r n_rewrite_zero + n_holds_false` that do not are among the rows the number-by-number comparison below lists, and eleven of them are corrected in `peyton_huber_coppock_2022_errata.pdf`.
+Almost everywhere. The ground truth carries `r n_claims` rows; `r n_rewrite` of the `r n_rewrite + n_rewrite_zero` the rewrite can compute agree with the published value at the page's own precision, and `r n_holds_true` of the `r n_holds_true + n_holds_false` claims about shape, sign or count hold. That includes every count the 2023 corrigendum corrected. The `r n_rewrite_zero + n_holds_false` that do not are among the rows the number-by-number comparison below lists, and `r spelled(n_errata)` of them are corrected in `peyton_huber_coppock_2022_errata.pdf`.
 
 Two things are worth stating. First, the deposited archive is **not** the version that produced the erroneous counts in the published article. Harvard Dataverse version 2.0, released 6 October 2022, replaced `manuscript.R` with the corrected code, and running it reproduces the corrigendum's numbers exactly. Second, `lemon` and `ggforce` are both current CRAN packages, so nothing in this archive depends on an abandoned graphics package.
 
@@ -215,7 +228,7 @@ The deposit was updated alongside the corrigendum. Harvard Dataverse version 2.0
 
 ## Everything else the reanalysis found
 
-Eleven further corrections are set out in `peyton_huber_coppock_2022_errata.pdf` at the root of this repository, each quoting the published sentence and the corrected one, with every corrected value computed at render time from `maintained/output/`. None of them changes a conclusion. The largest is a paragraph of the online appendix that attributes four estimates to the original atomic aversion study which are in fact the pre-COVID replication's, as the appendix's own Table 2 shows.
+`r str_to_title(spelled(n_errata))` further corrections are set out in `peyton_huber_coppock_2022_errata.pdf` at the root of this repository, each quoting the published sentence and the corrected one, with every corrected value computed at render time from `maintained/output/`. None of them changes a conclusion. The largest is a paragraph of the online appendix that attributes four estimates to the original atomic aversion study which are in fact the pre-COVID replication's, as the appendix's own Table 2 shows.
 
 ## A rounding difference in Table 2
 
