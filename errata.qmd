@@ -100,8 +100,14 @@ conventional_9070 <- as.numeric(str_extract(psv_terms[psv_terms == "90/70"], "\\
 # heading can raise it; `form` is a future edition's choice of macro, "full" where the
 # quoted passage is a whole sentence set as a block and "brief" where it is a fragment
 # standing in for a single token.
+#
+# `claim_ids` names the ground truth rows the entry corrects, semicolon separated, and it is
+# what makes "has this finding been published?" a query over the corpus rather than a reading
+# of every note. It is empty where the entry has no ground truth row: a reference list is not
+# an extraction claim. Every id listed here is checked against the ground truth by
+# ground_truth/build_ground_truth.R, which refuses to finish on a dangling one.
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
 
   1, "quantity", "pipeline", "full",
   "the four estimates attributed to the original study are the pre-COVID replication's",
@@ -123,6 +129,7 @@ entries <- tribble(
     "pre-COVID replication rather than from Press, Sagan and Valentino (2013). The",
     "appendix's own Table 2 prints both columns and gives the original study 0.30, 0.48,",
     "0.05 and 0.28 against the replication's 0.37, 0.51, 0.17 and 0.27."),
+  "a8_original_9070_prefer;a8_original_9045_prefer;a8_original_9070_approve;a8_original_9045_approve",
 
   2, "quantity", "pipeline", "full",
   "the count of significant differences",
@@ -139,6 +146,7 @@ entries <- tribble(
     "four survive a Benjamini-Hochberg adjustment across the six stories. The 2023",
     "corrigendum corrected the same class of error in the article's Figures 2 and 3 and did",
     "not reach this footnote."),
+  "a10_footnote_5_significant;a10_footnote_5_named",
 
   3, "quantity", "pipeline", "full",
   "the replication estimate and its distance from the benchmark",
@@ -155,6 +163,7 @@ entries <- tribble(
     "The sentence's own three figures do not agree with each other: 30 less 25.5 is 4.5, not",
     "5.5. The ratio and the p-value it also prints are both right, and both follow from the",
     "corrected estimate and difference."),
+  "a1_replication_estimate;a1_difference",
 
   4, "quantity", "pipeline", "full",
   "the non-conjoint correspondence",
@@ -169,6 +178,7 @@ entries <- tribble(
     "{sprintf('%.3f', corr('avg_pct_precovid_nonconjoint'))}. The overall 73% and the conjoint ",
     "87% stated in the same paragraph both reproduce exactly, and the three are consistent ",
     "with one another only at {pct(100 * corr('avg_pct_precovid_nonconjoint'))} per cent."),
+  "results_correspondence_nonconjoint",
 
   5, "quantity", "pipeline", "full",
   "the average duration among browser respondents",
@@ -182,6 +192,7 @@ entries <- tribble(
   str_glue(
     "{pp(dev_value('duration_mean_nonmobile'))} minutes is the average among nonmobile ",
     "respondents, which the next sentence uses."),
+  "device_duration_browser",
 
   6, "quantity", "pipeline", "full",
   "the inattentive share",
@@ -194,6 +205,7 @@ entries <- tribble(
   str_glue(
     "The correspondence is {sprintf('%.1f', 100 * corr('avg_pct_precovid_overall'))} per ",
     "cent, so the two shares are the attentive figure and its complement."),
+  "inattention_inattentive_share",
 
   7, "quantity", "pipeline", "full",
   "the number of estimated AMCEs",
@@ -204,6 +216,7 @@ entries <- tribble(
     "{sum(conjoint$study == 'Pre-COVID')} for the original study and ",
     "{sum(conjoint$study == 'Replication')} for the replication."),
   str_glue("The two component counts are right and Figure A.10 plots {nrow(conjoint)} points."),
+  "a9_total_amces",
 
   8, "quantity", "pipeline", "brief",
   "the 90/70 condition's success rate",
@@ -216,6 +229,7 @@ entries <- tribble(
     "The condition's two siblings are described at the rates their labels name, a 90% chance",
     "for the 90/90 condition and 45% for the 90/45 condition, and the label is written 90/70",
     "in the same paragraph, in the sentence that follows it and on Figure A.8."),
+  "a8_9070_success",
 
   9, "cross_reference", "pipeline", "full",
   "a reference to a table that does not exist",
@@ -227,6 +241,7 @@ entries <- tribble(
     "1 and appears on the following page; the deposited file that builds it is named",
     "`appendix_table_a5.tex`, so it is the printed caption rather than the reference that",
     "departed from the intended numbering."),
+  "a5_table_reference",
 
   10, "definition", "pipeline", "full",
   "whether every replication estimate was smaller",
@@ -238,6 +253,7 @@ entries <- tribble(
     "{sprintf('%.5f', larger_pair$estimate_pre)} and whose COVID-era estimate is ",
     "{sprintf('%.3f', larger_pair$estimate_ycls)}. It is one of the four pairs signed against ",
     "their benchmark, so the count in the second half of the sentence is unaffected."),
+  "results_all_smaller_nonconjoint",
 
   11, "quantity", "pipeline", "full",
   "the standard error of the difference between the two intentionality arms",
@@ -251,9 +267,10 @@ entries <- tribble(
     "0.04 is the standard error of the difference against the pre-COVID benchmark, given in",
     "the sentence that follows. The published P = 0.46 is the one-tailed p-value at the",
     "corrected standard error, so the sentence is internally consistent once the standard",
-    "error is corrected.")
+    "error is corrected."),
+  "a7_covid_vs_direct_se"
 ) |>
-  mutate(across(c(title, published, corrected, note), as.character))
+  mutate(across(c(title, published, corrected, note, claim_ids), as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
 
