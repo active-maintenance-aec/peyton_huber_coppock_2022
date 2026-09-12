@@ -22,6 +22,7 @@ out <- function(f) read_csv(here::here("maintained", "output", f), show_col_type
 
 figure_2 <- out("figure_2_noncojoint_correspondence.csv")
 figure_3 <- out("figure_3_conjoint_correspondence.csv")
+table_2 <- out("table_2_acq_pass_rates_cells.csv")
 appendix_estimates <- out("appendix_study_estimates.csv")
 appendix_cells <- out("appendix_table_cells.csv")
 correspondence <- out("text_correspondence_summary.csv")
@@ -32,6 +33,25 @@ dev_value <- function(name) device$value[device$quantity == name]
 
 pp <- function(x) sprintf("%.1f", x)
 pct <- function(x) sprintf("%.0f", x)
+two <- function(x) sprintf("%.2f", x)
+
+# Table 2 prints each cell as the estimate with its standard error in parentheses, both
+# at two decimal places.
+t2 <- function(lev, col) {
+  row <- table_2 |> filter(level == lev, column == col)
+  str_glue("{two(row$estimate)} ({two(row$std.error)})")
+}
+
+# The corrigendum's four counts, recomputed rather than copied out of it. Each is the
+# count the article should have printed, and the whole point of the entries that use
+# them is that the published article printed something else.
+f2_correct <- figure_2 |> filter(!sign_diff)
+f2_sig <- figure_2 |> filter(sig_diff == "Significant")
+f2_sig_adj <- figure_2 |> filter(sig_diff_adj == "Significant")
+f2_correct_smaller_sig <- f2_correct |> filter(sig_diff == "Significant", estimate_diff < 0)
+f3_sig <- figure_3 |> filter(sig_diff == "Significant")
+f3_sig_adj <- figure_3 |> filter(sig_diff_adj == "Significant")
+f3_smaller_sig <- figure_3 |> filter(estimate_diff < 0, sig_diff == "Significant")
 
 # Spelled-out numbers have to be computed too, so the count in a corrected sentence is
 # rendered rather than typed.
@@ -275,7 +295,92 @@ entries <- tribble(
     "the sentence that follows. The published P = 0.46 is the one-tailed p-value at the",
     "corrected standard error, so the sentence is internally consistent once the standard",
     "error is corrected."),
-  "a7_covid_vs_direct_se"
+  "a7_covid_vs_direct_se",
+
+  12, "quantity", "pipeline", "brief",
+  "the Easy ACQ pass rate among web application respondents",
+  "page 11, Table 2",
+  "Easy, Web app: [[0.55 (0.02)]]",
+  str_glue("Easy, Web app: [[{t2('Easy', 'Web-App')}]]"),
+  paste(
+    "The deposited script rounds each pass rate to three decimal places before formatting",
+    "it to two, so 0.5449 is printed as 0.545 and then as 0.55. At the table's own",
+    "precision the rate is 0.54. It is the only one of Table 2's 36 published numbers the",
+    "reanalysis does not reproduce: no other cell, difference or standard error changes,",
+    "and neither does the sign or the significance of any difference in the table."),
+  "table_2_easy_webapp_estimate",
+
+  13, "citation", "published_page", "brief",
+  "a coauthor's given name set as her surname",
+  "page 6, Table 1",
+  "Inequality and system justification ([[Trump & Ariel]], 2018)",
+  "Inequality and system justification ([[Trump & White]], 2018)",
+  paste(
+    "The article's own reference list gives the work as \"Trump, Kris-Stella and Ariel",
+    "White. 2018\", and the body cites it correctly as Trump and White (2018). Only Table",
+    "1's row for the study carries the wrong surname. The authors' accepted manuscript",
+    "types \"(Trump & White, 2018)\", so the substitution was made after acceptance.",
+    "Neither the reproduction nor an audit of the reference list could have found it: the",
+    "table prints no estimate, and the reference it mis-cites is itself correct."),
+  "",
+
+  14, "note", "publisher record", "full",
+  "the count of significant differences under Figure 2",
+  "page 7, the note to Figure 2",
+  "Estimated summary effect sizes and 95% confidence intervals from pre-COVID experiments (horizontal axis) and COVID era replications (vertical axis). [[Thirteen]] of 28 replication estimates were significantly different from their pre-COVID benchmark at P < [[0.05.]]",
+  str_glue(
+    "Estimated summary effect sizes and 95% confidence intervals from pre-COVID ",
+    "experiments (horizontal axis) and COVID era replications (vertical axis). ",
+    "[[{nrow(f2_sig)}]] of 28 replication estimates were significantly different from ",
+    "their pre-COVID benchmark at P < [[0.05, and {nrow(f2_sig_adj)} of these (denoted by ",
+    "square shaped points) remained statistically significant after adjusting for multiple ",
+    "comparisons to control the false discovery rate (Benjamini and Hochberg, 1995).]]"),
+  paste(
+    "The corrigendum's own account is that the code adjusting p-values for multiple",
+    "comparisons was wrong, so the published note reported the adjusted count while",
+    "describing it as the unadjusted one. The figure changes with the note: the corrected",
+    "artwork marks the estimates that survive the adjustment with square points, which the",
+    "published figure does not distinguish. No point estimate, standard error, confidence",
+    "interval or substantive conclusion changes."),
+  "",
+
+  15, "note", "publisher record", "full",
+  "the count of significant differences under Figure 3",
+  "page 8, the note to Figure 3",
+  "Estimated summary effect sizes and 95% confidence intervals from pre-COVID experiments (horizontal axis) and COVID era replications (vertical axis). [[Seven]] of 41 replication estimates were significantly different from their pre-COVID benchmark at P < [[0.05.]]",
+  str_glue(
+    "Estimated summary effect sizes and 95% confidence intervals from pre-COVID ",
+    "experiments (horizontal axis) and COVID era replications (vertical axis). ",
+    "[[{nrow(f3_sig)}]] of 41 replication estimates were significantly different from ",
+    "their pre-COVID benchmark at P < [[0.05, and {nrow(f3_sig_adj)} of these (denoted by ",
+    "square shaped points) remained statistically significant after adjusting for multiple ",
+    "comparisons to control the false discovery rate (Benjamini and Hochberg, 1995).]]"),
+  paste(
+    "The same error as entry 14 and the same remedy. The corrigendum sets both figures'",
+    "notes in the same words, and the corrected artwork again marks with square points the",
+    "estimates that survive the adjustment."),
+  "",
+
+  16, "quantity", "publisher record", "full",
+  "the counts of significant differences in the first paragraph",
+  "page 6",
+  "Of the 24 correctly signed estimates, [[10]] were significantly smaller in replication. Of the four incorrectly signed estimates, three were significantly different – the foreign aid misperceptions study and two of six estimates from the atomic aversion study. Figure 3 plots the analogous information for the 41 conjoint estimates and their 41 replications, all of which are signed in the same direction. Of these, 35 of 41 were smaller in replication ([[6]] statistically significant differences) and 6 of 41 were larger in replication (1 of 6 significant differences).",
+  str_glue(
+    "Of the 24 correctly signed estimates, [[{nrow(f2_correct_smaller_sig)}]] were ",
+    "significantly smaller in replication. Of the four incorrectly signed estimates, three ",
+    "were significantly different – the foreign aid misperceptions study and two of six ",
+    "estimates from the atomic aversion study. Figure 3 plots the analogous information for ",
+    "the 41 conjoint estimates and their 41 replications, all of which are signed in the ",
+    "same direction. Of these, 35 of 41 were smaller in replication ",
+    "([[{nrow(f3_smaller_sig)}]] statistically significant differences) and 6 of 41 were ",
+    "larger in replication (1 of 6 significant differences)."),
+  paste(
+    "The corrigendum prints the whole paragraph and marks these two counts. Both are",
+    "unadjusted counts that the published article took from the faulty adjustment, which is",
+    "the error entries 14 and 15 correct in the two figures. The two sentences the",
+    "corrigendum leaves standing are quoted here because it quotes them: they are what fixes",
+    "which counts the two numbers refer to."),
+  ""
 ) |>
   mutate(across(c(title, published, corrected, note, claim_ids), as.character))
 
@@ -285,7 +390,7 @@ stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
 bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")
 ```
 
-`r capitalize(as_word(nrow(entries)))` corrections to the article and its online appendix, none of which changes a conclusion. Every corrected value below is computed at render time from the maintained reanalysis of the deposited replication archive, `10.7910/DVN/38UTBF`. The article is `10.1017/XPS.2021.17`; a corrigendum published in 2023, `10.1017/XPS.2022.23`, corrects the significance counts in the article's Figures 2 and 3 and the first paragraph of page 6, and nothing below repeats a correction that corrigendum already made. The reanalysis is at `active-maintenance-aec/peyton_huber_coppock_2022`.
+`r capitalize(as_word(nrow(entries)))` corrections to the article and its online appendix, none of which changes a conclusion. Every corrected value below is computed at render time from the maintained reanalysis of the deposited replication archive, `10.7910/DVN/38UTBF`. The article is `10.1017/XPS.2021.17`. A corrigendum published in 2023, `10.1017/XPS.2022.23`, corrected the counts of statistically significant differences in the article's Figures 2 and 3 and in the first paragraph of page 6; entries 14 through 16 below are that corrigendum's corrections rather than this reanalysis's, carried here so the note is a complete account of what the published article gets wrong. Their values are recomputed from the reanalysis like every other, not copied out of the corrigendum, and all four agree with it exactly. The reanalysis is at `active-maintenance-aec/peyton_huber_coppock_2022`.
 
 Values on the percentage-point scale are stated to one decimal place throughout, including numbers that were not wrong. Bold marks the tokens that changed.
 
