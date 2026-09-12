@@ -200,8 +200,9 @@ entries <- tribble(
   str_glue(
     "The mean ratio over those 24 pairs is ",
     "{sprintf('%.3f', corr('avg_pct_precovid_nonconjoint'))}. The overall 73% and the conjoint ",
-    "87% stated in the same paragraph both reproduce exactly, and the three are consistent ",
-    "with one another only at {pct(100 * corr('avg_pct_precovid_nonconjoint'))} per cent."),
+    "87% stated in the same paragraph both reproduce exactly, and 73% is the mean over the ",
+    "65 correctly signed pairs of the two groups together, which is the denominator the ",
+    "paragraph's three figures share."),
   "results_correspondence_nonconjoint",
 
   5, "quantity", "pipeline", "full",
