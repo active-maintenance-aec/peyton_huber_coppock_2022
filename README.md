@@ -156,7 +156,7 @@ rewrite can compute agree with the published value at the page’s own
 precision, and 53 of the 59 claims about shape, sign or count hold. That
 includes every count the 2023 corrigendum corrected. The 35 that do not
 are among the rows the number-by-number comparison below lists, and
-eleven of them are corrected in `peyton_huber_coppock_2022_errata.pdf`.
+sixteen of them are corrected in `peyton_huber_coppock_2022_errata.pdf`.
 
 Two things are worth stating. First, the deposited archive is **not**
 the version that produced the erroneous counts in the published article.
@@ -251,7 +251,7 @@ code that produced them is no longer in it.
 
 ## Everything else the reanalysis found
 
-Eleven further corrections are set out in
+Sixteen further corrections are set out in
 `peyton_huber_coppock_2022_errata.pdf` at the root of this repository,
 each quoting the published sentence and the corrected one, with every
 corrected value computed at render time from `maintained/output/`. None
@@ -674,9 +674,9 @@ comparison downstream.
 |:-----------|:-----------------------|
 | R version  | 4.6.0                  |
 | Platform   | aarch64-apple-darwin23 |
-| Date run   | 2026-08-10             |
+| Date run   | 2026-09-27             |
 | tidyverse  | 2.0.0                  |
-| estimatr   | 1.0.6                  |
+| estimatr   | 2.0.1                  |
 | metafor    | 5.0.1                  |
 | ggthemes   | 5.2.0                  |
 | ggrepel    | 0.9.8                  |
