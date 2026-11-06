@@ -126,8 +126,29 @@ conventional_9070 <- as.numeric(str_extract(psv_terms[psv_terms == "90/70"], "\\
 # of every note. It is empty where the entry has no ground truth row: a reference list is not
 # an extraction claim. Every id listed here is checked against the ground truth by
 # ground_truth/build_ground_truth.R, which refuses to finish on a dangling one.
+# corrected_values runs parallel to claim_ids, one value per id in the same order, on the
+# claim's scale (the pipeline quantity, formatted as the corrected sentence formats it). Each
+# value is computed once, here, and the corrected sentence below is glued from the same
+# object, so the two cannot be written apart; the gate after the spine re-checks that each
+# value sits inside the [[...]] span it belongs to. An entry of a class that changes no
+# quantity, a note-form entry, and an entry whose ids do not each name a number in the
+# sentence carry NA.
+cv1 <- c(pp(100 * psv_cell('90/70', 'Prefer Nuclear Use')),
+         pp(100 * psv_cell('90/45', 'Prefer Nuclear Use')),
+         pp(100 * psv_cell('90/70', 'Approve Nuclear Use')),
+         pp(100 * psv_cell('90/45', 'Approve Nuclear Use')))
+cv3 <- c(pp(100 * russians$estimate_ycls), pp(-100 * russians$estimate_diff))
+cv4 <- pct(100 * corr('avg_pct_precovid_nonconjoint'))
+cv5 <- pp(dev_value('duration_mean_browser'))
+cv6 <- pct(100 * (1 - corr('avg_pct_precovid_overall')))
+cv7 <- nrow(conjoint)
+cv8 <- conventional_9070
+cv11 <- sprintf('%.2f', kn_se)
+cv12_row <- table_2 |> filter(level == "Easy", column == "Web-App")
+cv12 <- two(cv12_row$estimate)
+
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids, ~corrected_values,
 
   1, "quantity", "pipeline", "full",
   "the four estimates attributed to the original study are the pre-COVID replication's",
@@ -136,20 +157,21 @@ entries <- tribble(
   str_glue(
     "In the original study, the 90/70 condition caused an increase in the proportion of ",
     "subject that preferred the nuclear option by about ",
-    "[[{pp(100 * psv_cell('90/70', 'Prefer Nuclear Use'))}]] percentage points relative to ",
+    "[[{cv1[1]}]] percentage points relative to ",
     "the 90/90 condition. The estimated effect of the 90/45 condition, relative to the ",
-    "90/90 condition, was [[{pp(100 * psv_cell('90/45', 'Prefer Nuclear Use'))}]] percentage ",
+    "90/90 condition, was [[{cv1[2]}]] percentage ",
     "points. Similarly, the 90/70 condition caused an increase in the proportion of subjects ",
     "that approved of the nuclear option by about ",
-    "[[{pp(100 * psv_cell('90/70', 'Approve Nuclear Use'))}]] percentage points, and the ",
+    "[[{cv1[3]}]] percentage points, and the ",
     "90/45 condition caused an increase of about ",
-    "[[{pp(100 * psv_cell('90/45', 'Approve Nuclear Use'))}]] percentage points."),
+    "[[{cv1[4]}]] percentage points."),
   paste(
     "All four published figures are the estimates from the Aronow, Baron and Pinson (2019)",
     "pre-COVID replication rather than from Press, Sagan and Valentino (2013). The",
     "appendix's own Table 2 prints both columns and gives the original study 0.30, 0.48,",
     "0.05 and 0.28 against the replication's 0.37, 0.51, 0.17 and 0.27."),
   "a8_original_9070_prefer;a8_original_9045_prefer;a8_original_9070_approve;a8_original_9045_approve",
+  str_c(cv1, collapse = ";"),
 
   2, "quantity", "pipeline", "full",
   "the count of significant differences",
@@ -167,6 +189,7 @@ entries <- tribble(
     "corrigendum corrected the same class of error in the article's Figures 2 and 3 and did",
     "not reach this footnote."),
   "a10_footnote_5_significant;a10_footnote_5_named",
+  NA_character_,
 
   3, "quantity", "pipeline", "full",
   "the replication estimate and its distance from the benchmark",
@@ -179,15 +202,16 @@ entries <- tribble(
     # the convention this note states for percentage-point values, and a restatement
     # the edition sets on the page is a change like any other, so it carries a mark.
     "[[{pp(100 * russians$estimate_pre)}]] percentage point increase in support for Russian ",
-    "journalists. Our effect estimate of [[{pp(100 * russians$estimate_ycls)}]] points is ",
+    "journalists. Our effect estimate of [[{cv3[1]}]] points is ",
     "{pct(100 * russians$estimate_ycls / russians$estimate_pre)}% of this magnitude, and this ",
-    "difference of [[{pp(-100 * russians$estimate_diff)}]] percentage points is not ",
+    "difference of [[{cv3[2]}]] percentage points is not ",
     "statistically significant (P = {sprintf('%.2f', russians$p_diff)})."),
   paste(
     "The sentence's own three figures do not agree with each other: 30 less 25.5 is 4.5, not",
     "5.5. The ratio and the p-value it also prints are both right, and both follow from the",
     "corrected estimate and difference."),
   "a1_replication_estimate;a1_difference",
+  str_c(cv3, collapse = ";"),
 
   4, "quantity", "pipeline", "full",
   "the non-conjoint correspondence",
@@ -195,7 +219,7 @@ entries <- tribble(
   "The 24 of 28 correctly signed estimates from the other replications were, on average, [[49%]] as large as the pre-COVID summary effect sizes.",
   str_glue(
     "The 24 of 28 correctly signed estimates from the other replications were, on average, ",
-    "[[{pct(100 * corr('avg_pct_precovid_nonconjoint'))}%]] as large as the pre-COVID summary ",
+    "[[{cv4}%]] as large as the pre-COVID summary ",
     "effect sizes."),
   str_glue(
     "The mean ratio over those 24 pairs is ",
@@ -204,6 +228,7 @@ entries <- tribble(
     "65 correctly signed pairs of the two groups together, which is the denominator the ",
     "paragraph's three figures share."),
   "results_correspondence_nonconjoint",
+  cv4,
 
   5, "quantity", "pipeline", "full",
   "the average duration among browser respondents",
@@ -216,11 +241,12 @@ entries <- tribble(
     # The correction is the browser mean alone, which is what claim_ids names.
     "{sprintf('%.0f', dev_value('duration_mean_browser') - dev_value('duration_mean_webapp'))} min less ",
     "time completing surveys than those from web browsers, who spent an average of ",
-    "[[{pp(dev_value('duration_mean_browser'))}]] min."),
+    "[[{cv5}]] min."),
   str_glue(
     "{pp(dev_value('duration_mean_nonmobile'))} minutes is the average among nonmobile ",
     "respondents, which the next sentence uses."),
   "device_duration_browser",
+  cv5,
 
   6, "quantity", "pipeline", "full",
   "the inattentive share",
@@ -228,23 +254,25 @@ entries <- tribble(
   "If 73% of respondents were attentive and [[26%]] inattentive, our replication estimate would, on average, match our pre-COVID benchmarks.",
   str_glue(
     "If {pct(100 * corr('avg_pct_precovid_overall'))}% of respondents were attentive and ",
-    "[[{pct(100 * (1 - corr('avg_pct_precovid_overall')))}%]] inattentive, our replication ",
+    "[[{cv6}%]] inattentive, our replication ",
     "estimate would, on average, match our pre-COVID benchmarks."),
   str_glue(
     "The correspondence is {sprintf('%.1f', 100 * corr('avg_pct_precovid_overall'))} per ",
     "cent, so the two shares are the attentive figure and its complement."),
   "inattention_inattentive_share",
+  cv6,
 
   7, "quantity", "pipeline", "full",
   "the number of estimated AMCEs",
   "online appendix, Section A.9, page 22",
   "In total, there are [[81]] estimated AMCEs in Figure A.10 – 41 for the original study and 41 for the replication.",
   str_glue(
-    "In total, there are [[{nrow(conjoint)}]] estimated AMCEs in Figure A.10 – ",
+    "In total, there are [[{cv7}]] estimated AMCEs in Figure A.10 – ",
     "{sum(conjoint$study == 'Pre-COVID')} for the original study and ",
     "{sum(conjoint$study == 'Replication')} for the replication."),
   str_glue("The two component counts are right and Figure A.10 plots {nrow(conjoint)} points."),
   "a9_total_amces",
+  as.character(cv7),
 
   8, "quantity", "pipeline", "brief",
   "the 90/70 condition's success rate",
@@ -252,12 +280,13 @@ entries <- tribble(
   "2) a \"90/70\" condition in which the conventional strike had a [[75%]] chance of success",
   str_glue(
     "2) a \"90/70\" condition in which the conventional strike had a ",
-    "[[{conventional_9070}%]] chance of success"),
+    "[[{cv8}%]] chance of success"),
   paste(
     "The condition's two siblings are described at the rates their labels name, a 90% chance",
     "for the 90/90 condition and 45% for the 90/45 condition, and the label is written 90/70",
     "in the same paragraph, in the sentence that follows it and on Figure A.8."),
   "a8_9070_success",
+  as.character(cv8),
 
   9, "cross_reference", "pipeline", "full",
   "a reference to a table that does not exist",
@@ -270,6 +299,7 @@ entries <- tribble(
     "`appendix_table_a5.tex`, so it is the printed caption rather than the reference that",
     "departed from the intended numbering."),
   "a5_table_reference",
+  NA_character_,
 
   10, "definition", "pipeline", "full",
   "whether every replication estimate was smaller",
@@ -282,6 +312,7 @@ entries <- tribble(
     "{sprintf('%.3f', larger_pair$estimate_ycls)}. It is one of the four pairs signed against ",
     "their benchmark, so the count in the second half of the sentence is unaffected."),
   "results_all_smaller_nonconjoint",
+  NA_character_,
 
   11, "quantity", "pipeline", "full",
   "the standard error of the difference between the two intentionality arms",
@@ -290,19 +321,20 @@ entries <- tribble(
   str_glue(
     "The estimated treatment effect for the COVID-specific replication is about ",
     "{sprintf('%.2f', kn_direct$estimate - kn_covid$estimate)} points smaller than the direct ",
-    "replication (SE = [[{sprintf('%.2f', kn_se)}]], P = 0.46)."),
+    "replication (SE = [[{cv11}]], P = 0.46)."),
   paste(
     "0.04 is the standard error of the difference against the pre-COVID benchmark, given in",
     "the sentence that follows. The published P = 0.46 is the one-tailed p-value at the",
     "corrected standard error, so the sentence is internally consistent once the standard",
     "error is corrected."),
   "a7_covid_vs_direct_se",
+  cv11,
 
   12, "quantity", "pipeline", "brief",
   "the Easy ACQ pass rate among web application respondents",
   "page 11, Table 2",
   "Easy, Web app: [[0.55 (0.02)]]",
-  str_glue("Easy, Web app: [[{t2('Easy', 'Web-App')}]]"),
+  str_glue("Easy, Web app: [[{cv12} ({two(cv12_row$std.error)})]]"),
   paste(
     "The deposited script rounds each pass rate to three decimal places before formatting",
     "it to two, so 0.5449 is printed as 0.545 and then as 0.55. At the table's own",
@@ -310,6 +342,7 @@ entries <- tribble(
     "reanalysis does not reproduce: no other cell, difference or standard error changes,",
     "and neither does the sign or the significance of any difference in the table."),
   "table_2_easy_webapp_estimate",
+  cv12,
 
   13, "citation", "published_page", "brief",
   "a coauthor's given name set as her surname",
@@ -324,6 +357,7 @@ entries <- tribble(
     "Neither the reproduction nor an audit of the reference list could have found it: the",
     "table prints no estimate, and the reference it mis-cites is itself correct."),
   "",
+  NA_character_,
 
   14, "note", "publisher record", "full",
   "the count of significant differences under Figure 2",
@@ -344,6 +378,7 @@ entries <- tribble(
     "published figure does not distinguish. No point estimate, standard error, confidence",
     "interval or substantive conclusion changes."),
   "",
+  NA_character_,
 
   15, "note", "publisher record", "full",
   "the count of significant differences under Figure 3",
@@ -361,6 +396,7 @@ entries <- tribble(
     "notes in the same words, and the corrected artwork again marks with square points the",
     "estimates that survive the adjustment."),
   "",
+  NA_character_,
 
   16, "quantity", "publisher record", "full",
   "the counts of significant differences in the first paragraph",
@@ -381,11 +417,59 @@ entries <- tribble(
     "the error entries 14 and 15 correct in the two figures. The two sentences the",
     "corrigendum leaves standing are quoted here because it quotes them: they are what fixes",
     "which counts the two numbers refer to."),
-  ""
+  "",
+  NA_character_
 ) |>
-  mutate(across(c(title, published, corrected, note, claim_ids), as.character))
+  mutate(across(c(title, published, corrected, note, claim_ids, corrected_values),
+                as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# Gate: corrected_values agrees with the sentence it was glued into ----
+# The column and the sentence are written from one object, so they begin in agreement and
+# this gate exists for the edit that separates them: a value moved from one marked span to
+# another, a span reworded to carry a second number, a claim id appended without its value.
+# Each value has to be inside the span it belongs to, matched by position where the counts
+# line up, and inside SOME span where an entry marks a label as well as a number and its
+# spans outnumber its values.
+marked_spans <- function(x) str_match_all(x, "\\[\\[(.*?)\\]\\]")[[1]][, 2]
+
+quantified <- entries |>
+  filter(!is.na(corrected_values)) |>
+  mutate(ids = str_split(claim_ids, ";"), values = str_split(corrected_values, ";"),
+         spans = map(corrected, marked_spans))
+
+stopifnot(all(lengths(quantified$ids) == lengths(quantified$values)))
+
+value_placed <- pmap_lgl(quantified, function(...) {
+  e <- list(...)
+  if (length(e$values) == length(e$spans)) {
+    all(map2_lgl(e$values, e$spans, \(v, s) str_detect(s, fixed(v))))
+  } else {
+    all(map_lgl(e$values, \(v) any(map_lgl(e$spans, \(s) str_detect(s, fixed(v))))))
+  }
+})
+
+if (!all(value_placed)) {
+  print(quantified |> filter(!value_placed) |> select(entry, title, corrected_values, corrected))
+  stop("An entry's corrected_values are not in the spans of its corrected sentence.")
+}
+
+# An entry that changes a quantity has to say which one, and an entry that changes none may
+# not carry a value. The class is the declaration and this is where it binds. A note-form
+# entry corrects nothing and carries NA even where its class is quantity, and an entry with
+# no claim_ids has no claim to carry a value for.
+has_ids <- !is.na(entries$claim_ids) & entries$claim_ids != ""
+# Entry 2 names a claim that is a set of stories rather than a number, so no value can be
+# glued for it and it carries NA by name; the exemption is the only one.
+no_numeric_claim <- 2
+stopifnot(
+  all(!is.na(entries$corrected_values[entries$class == "quantity" & entries$form != "note" &
+                                        has_ids & !entries$entry %in% no_numeric_claim])),
+  all(is.na(entries$corrected_values[entries$class != "quantity"])),
+  all(is.na(entries$corrected_values[entries$form == "note"])),
+  all(is.na(entries$corrected_values) | has_ids)
+)
 
 # The spine's markup, resolved for this document.
 bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")
