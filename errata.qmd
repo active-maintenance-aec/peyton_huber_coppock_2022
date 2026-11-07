@@ -215,7 +215,7 @@ entries <- tribble(
 
   4, "quantity", "pipeline", "full",
   "the non-conjoint correspondence",
-  "page 6",
+  "page 384",
   "The 24 of 28 correctly signed estimates from the other replications were, on average, [[49%]] as large as the pre-COVID summary effect sizes.",
   str_glue(
     "The 24 of 28 correctly signed estimates from the other replications were, on average, ",
@@ -232,7 +232,7 @@ entries <- tribble(
 
   5, "quantity", "pipeline", "full",
   "the average duration among browser respondents",
-  "page 10",
+  "page 388",
   "Those from web applications spent approximately 7 min less time completing surveys than those from web browsers, who spent an average of [[21.5]] min.",
   str_glue(
     "Those from web applications spent approximately ",
@@ -250,7 +250,7 @@ entries <- tribble(
 
   6, "quantity", "pipeline", "full",
   "the inattentive share",
-  "page 11",
+  "page 389",
   "If 73% of respondents were attentive and [[26%]] inattentive, our replication estimate would, on average, match our pre-COVID benchmarks.",
   str_glue(
     "If {pct(100 * corr('avg_pct_precovid_overall'))}% of respondents were attentive and ",
@@ -303,7 +303,7 @@ entries <- tribble(
 
   10, "definition", "pipeline", "full",
   "whether every replication estimate was smaller",
-  "page 6",
+  "page 384",
   "[[All]] replication summary estimates were smaller in magnitude than their pre-COVID estimates, with 24 of 28 signed in the same direction.",
   "[[All but one of the]] replication summary estimates were smaller in magnitude than their pre-COVID estimates, with 24 of 28 signed in the same direction.",
   str_glue(
@@ -316,7 +316,7 @@ entries <- tribble(
 
   11, "quantity", "pipeline", "full",
   "the standard error of the difference between the two intentionality arms",
-  "online appendix, Section A.7, page 15",
+  "online appendix, Section A.7, page 16",
   "The estimated treatment effect for the COVID-specific replication is about 0.01 points smaller than the direct replication (SE = [[0.04]], P = 0.46).",
   str_glue(
     "The estimated treatment effect for the COVID-specific replication is about ",
@@ -332,7 +332,7 @@ entries <- tribble(
 
   12, "quantity", "pipeline", "brief",
   "the Easy ACQ pass rate among web application respondents",
-  "page 11, Table 2",
+  "page 389, Table 2",
   "Easy, Web app: [[0.55 (0.02)]]",
   str_glue("Easy, Web app: [[{cv12} ({two(cv12_row$std.error)})]]"),
   paste(
@@ -346,7 +346,7 @@ entries <- tribble(
 
   13, "citation", "published_page", "brief",
   "a coauthor's given name set as her surname",
-  "page 6, Table 1",
+  "page 384, Table 1",
   "Inequality and system justification ([[Trump & Ariel]], 2018)",
   "Inequality and system justification ([[Trump & White]], 2018)",
   paste(
@@ -361,7 +361,7 @@ entries <- tribble(
 
   14, "note", "publisher record", "full",
   "the count of significant differences under Figure 2",
-  "page 7, the note to Figure 2",
+  "page 385, the note to Figure 2",
   "Estimated summary effect sizes and 95% confidence intervals from pre-COVID experiments (horizontal axis) and COVID era replications (vertical axis). [[Thirteen]] of 28 replication estimates were significantly different from their pre-COVID benchmark at P < [[0.05.]]",
   str_glue(
     "Estimated summary effect sizes and 95% confidence intervals from pre-COVID ",
@@ -382,7 +382,7 @@ entries <- tribble(
 
   15, "note", "publisher record", "full",
   "the count of significant differences under Figure 3",
-  "page 8, the note to Figure 3",
+  "page 386, the note to Figure 3",
   "Estimated summary effect sizes and 95% confidence intervals from pre-COVID experiments (horizontal axis) and COVID era replications (vertical axis). [[Seven]] of 41 replication estimates were significantly different from their pre-COVID benchmark at P < [[0.05.]]",
   str_glue(
     "Estimated summary effect sizes and 95% confidence intervals from pre-COVID ",
@@ -400,7 +400,7 @@ entries <- tribble(
 
   16, "quantity", "publisher record", "full",
   "the counts of significant differences in the first paragraph",
-  "page 6",
+  "page 384",
   "Of the 24 correctly signed estimates, [[10]] were significantly smaller in replication. Of the four incorrectly signed estimates, three were significantly different – the foreign aid misperceptions study and two of six estimates from the atomic aversion study. Figure 3 plots the analogous information for the 41 conjoint estimates and their 41 replications, all of which are signed in the same direction. Of these, 35 of 41 were smaller in replication ([[6]] statistically significant differences) and 6 of 41 were larger in replication (1 of 6 significant differences).",
   str_glue(
     "Of the 24 correctly signed estimates, [[{nrow(f2_correct_smaller_sig)}]] were ",
